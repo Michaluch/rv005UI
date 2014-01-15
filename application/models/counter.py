@@ -14,7 +14,7 @@ class Counter(WrapperDB):
         super(Counter, self).__init__()
         self.choose_database("bugtracker")
         self.choose_collection("counter")
-        
+
     def create_counter(self):
         self.insert_data({"_id": "userid", "seq": 0})
         self.insert_data({"_id": "backlogid", "seq": 0})
@@ -27,6 +27,3 @@ class Counter(WrapperDB):
                                         update={"$inc": {"seq": 1}},
                                         new=True)
         return document["seq"]
-        
-        
-        
