@@ -1,0 +1,26 @@
+<html>
+<head>
+  <title>Bugtracker API Tests</title>
+  <style type="text/css">
+    * {
+      font-family: Tahoma, Verdana, Arial, sans-serif;
+    }
+
+    html, body {
+      font-family: Tahoma, Verdana, Arial, sans-serif;
+    }
+  </style>
+</head>
+<body>
+  <strong>Authentication</strong><br />
+  <a href="/user/register/?email=re0ne&password=pass123&fname=Andriy&lname=Karpyuk" target="_blank">Register</a><br />
+  <a href="/user/login/?email=re0ne&password=pass123" target="_blank">Login</a><br />
+  <a href="/user/logout/" target="_blank">Logout</a><br />
+  <strong>User</strong><br />
+  <a href="/user/get/" target="_blank">Get</a><br />
+  <a href="/user/change/?id=11&status=banned" target="_blank">Change</a><br />
+  <a href="/user/delete/?id=11" target="_blank">Delete</a><br /> 
+  <strong>List</strong><br />
+  <a href="/user/all/" target="_blank">User list</a><br />
+</body>
+</html>

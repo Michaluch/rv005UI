@@ -38,8 +38,4 @@ class Counter(object):
     def task(self):
         return self._next("task")
 
-    def comment(self):
-        return self._next("comment")
-
-
     
