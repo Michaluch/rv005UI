@@ -7,7 +7,7 @@ from helper import sha512
 
 from controllers.controller import Controller
 from models.users import UsersModel
-from models.backlog import Backlog
+from models.backlog import BacklogModel
 
 
 class Users(Controller):
@@ -136,7 +136,7 @@ class Users(Controller):
             return error("You not logged")
         email = request.values.get("email")
         # empty backlog object
-        b = Backlog({})
+        b = BacklogModel({})
         backlogs = b.all({"members": email})
         return write(backlogs)
 

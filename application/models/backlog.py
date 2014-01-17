@@ -84,10 +84,25 @@ class BacklogModel(Model):
 
 
 if __name__ == "__main__":
-    d = dict(name="some_name24", members=["name1", "name2"],
-             stories=[{"name": "story_name", "status": "doing"},
-                      {"name": "123story_name", "status": "done"}])
-    u = BacklogModel({})
+    d = {"id" : 1, 
+         "name": "Rv-005.UI",
+         "members" : [ "admin", "user"],  
+         "stories" : [ {
+		                "name" : "Bugtracking back-end",
+                        "description" : "As a developer",
+		                "status" : "doing",
+		                "comments" : [],
+		                "tasks" : [],
+		                "sprint": 1 },
+	                  { 
+		               "name" : "Bugtracking models-end" ,
+		               "description" : "Make User and Bugtracker models"  ,
+		               "status" : "to do", 
+		               "comments" : [],
+		               "tasks" : [],
+		               "sprint": 1   } ]
+}
+    #u = BacklogModel(d)
     #u.add()
     
     
