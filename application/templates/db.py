@@ -40,4 +40,4 @@ class DB(object):
         return self._collection.find_and_modify(where, what, new=True)
 
 if __name__ == "__main__":
-    db = DB()        
+    db = DB()
