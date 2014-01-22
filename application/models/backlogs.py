@@ -1,14 +1,14 @@
-from model import Model
+from models.model import Model
 import json
 
-class BacklogModel(Model):
-    
+
+class BacklogsModel(Model):   
     def __init__(self, backlog):
     	"""
         backlog dictionaty must have "name" key
         "members" and "stories" are not required
         """       
-        super(BacklogModel, self).__init__()
+        super(BacklogsModel, self).__init__()
         self._db.collection("backlogs")
         self.backlog = {"_id": self._counter.backlog(),
                              "name": backlog.get("name"),
@@ -49,8 +49,7 @@ class BacklogModel(Model):
     	!!!
     	"""
         cursor = self._db.select(what, self.backlog)
-        result = [item for item in cursor]
-        return result
+        return [item for item in cursor]
 
     def create_story(self, story):
     	"""

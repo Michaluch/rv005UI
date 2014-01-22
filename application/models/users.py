@@ -71,18 +71,5 @@ class UsersModel(Model):
         return cursor[0] if cursor.count() > 0 else None
 
     def all(self, what=None):
-        cursor = self._db.select(what, self._fields)# change None to what
-                                                    # (c)Nazar 
-
-        result = [item for item in cursor] # change to generator .it works faster (c)Nazar
-
-        #for item in cursor:
-        #    result.append(item)
-
-        return result
-if __name__ == "__main__":
-    u = UsersModel()
-    d = dict(email='blsdas@dsd.ds', password='123', fname='bla', lname='fsdf',
-        role='developer', avatar='avatar', status='active')
-    print(u.get(1))
-    
+        cursor = self._db.select(what, self._fields)
+        return [item for item in cursor]

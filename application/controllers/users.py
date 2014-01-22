@@ -7,7 +7,6 @@ from helper import sha512
 
 from controllers.controller import Controller
 from models.users import UsersModel
-from models.backlog import BacklogModel
 
 
 class Users(Controller):
@@ -131,14 +130,6 @@ class Users(Controller):
         except:
             return error("Invalid request")
 
-    def get_backlogs(self):
-        if not self.logged():
-            return error("You not logged")
-        email = request.values.get("email")
-        # empty backlog object
-        b = BacklogModel({})
-        backlogs = b.all({"members": email})
-        return write(backlogs)
 
     def fetch(self, **kwargs):
         action = kwargs.get("action")
@@ -158,7 +149,5 @@ class Users(Controller):
             return self.change()
         elif action == "all":
             return self.all()
-        elif action == "get_backlogs":
-            return self.get_backlogs()
         else:
             return error("Invalid request")
