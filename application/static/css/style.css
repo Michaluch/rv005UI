@@ -27,6 +27,17 @@ html, body {
     background-color: #6e914f;
 }
 
+#main-title {
+    float: left;
+    color: #f9191e;
+    font-weight: normal;
+    margin: 10px 15px;
+}
+
+#main-title-span {
+    color: #ffffff;
+}
+
 #bottom {
     width: 980px;
     height: 75px;
@@ -35,6 +46,8 @@ html, body {
 
 
 .content {
+    background-color: #FAFFFA;
+    padding: 15px 0px;
 
 }
 
@@ -45,13 +58,40 @@ html, body {
 .backlog {
     float: left;
     width: 310px;
-    background-color: #fffacd;
+    background-color: #d1e3c2;
+}
+
+.column-title {
+    color: #4aaff7;
+    margin: 10px;
+}
+
+.issue {
+    width: 305px;
+    height: 75px;
+    border: 2px inset #D8D8E6;
+    background-color: #f7faf4;
+}
+
+.color-part {
+    float:left;
+    height: 75px;
+    width: 7px;
+    background-color: #4cb7f3;
+}
+
+.subissue {
+    width: 295px;
+    height: 75px;
+    border: 2px outset #D8D8E6;
+    margin-left: 10px;
+    background-color: #f7faf4;
 }
  
 .doing {
     float: left;
     width: 310px;
-    background-color: #da70d6;
+    background-color: #d1e3c2;
     margin-left: 10px;
  
 }
@@ -59,7 +99,7 @@ html, body {
 .done {
     float: left;
     width: 310px;
-    background-color: #ffcc99;
+    background-color: #d1e3c2;
     margin-left: 10px;
 }
 
