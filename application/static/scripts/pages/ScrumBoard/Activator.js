@@ -1,10 +1,11 @@
 // config requirejs
-/*
-require.config({
-    urlArgs: "bust=" + (new Date()).getTime()
-});
-*/
 
-require(["/static/scripts/pages/ScrumBoard/Application.js"], function(Application) {
-	Application.start();
+require.config({
+    urlArgs: "bust=" + (new Date()).getTime(),  // never delete this
+    baseUrl: "/static/scripts" 
+}); 
+
+
+require(["pages/ScrumBoard/Application"], function(Application) {
+    Application.start();
 });

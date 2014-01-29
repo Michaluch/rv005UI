@@ -56,7 +56,7 @@ def comment(action=None, param=None):
 @app.route("/")
 @app.route("/<path:path>")
 def index(path=None):
-    return render_template("index.html")
+    return render_template("index1.html")
 
 
 if __name__ == "__main__":
