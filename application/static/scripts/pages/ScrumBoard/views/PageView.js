@@ -5,6 +5,8 @@ define(["pages/ScrumBoard/views/HeaderView", "pages/ScrumBoard/views/MainContent
 		},
 		
 		render: function() {	
+		    var $div = $("<div>").text("Page content").appendTo(document.body);
+		
 		    var headerView = new HeaderView();
 		    headerView.render();
 		    

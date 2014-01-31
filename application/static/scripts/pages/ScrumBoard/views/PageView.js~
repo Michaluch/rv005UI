@@ -5,6 +5,8 @@ define(["pages/ScrumBoard/views/HeaderView", "pages/ScrumBoard/views/MainContent
 		},
 		
 		render: function() {	
+		    var $div = $("<div>").text("Page content").appendTo(document.body);
+		
 		    var headerView = new HeaderView();
 		    headerView.render();
 		    
@@ -12,10 +14,7 @@ define(["pages/ScrumBoard/views/HeaderView", "pages/ScrumBoard/views/MainContent
 		    mainContentView.render();
 		    
 		    var footerView = new FooterView();
-		    footerView.render();	   
-
-			$("<div>").text("Page View").appendTo(document.body);
-			return this;
+		    footerView.render();
 		}
 	});
 

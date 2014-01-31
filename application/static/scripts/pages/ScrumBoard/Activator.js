@@ -2,7 +2,10 @@
 
 require.config({
     urlArgs: "bust=" + (new Date()).getTime(),  // never delete this
-    baseUrl: "/static/scripts" 
+    baseUrl: "/static/scripts",
+    paths: {
+        text: "libs/requirejs/text"
+    }
 }); 
 
 
