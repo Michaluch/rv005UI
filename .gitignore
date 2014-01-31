@@ -1,7 +1,9 @@
 # Python
 *.py[cod]
 *.pyc
-*.py~
+
+# Temp files
+*.*~
 
 # C extensions
 *.so
