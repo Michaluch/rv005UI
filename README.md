@@ -1,5 +1,4 @@
-		// BugTrack //
-~ What is BugTrack?
+= // BugTrack //
 
 A bug tracking system or defect tracking system is a software application that is designed to help keep track of reported software bugs in software development efforts.
 
@@ -12,10 +11,10 @@ pymongo - 2.6.3
 
 To install the requirements run:
 
-  pip install -r recuirements.txt
+ 	pip install -r recuirements.txt
 
 == Using
 
 To run te application, you must enter the following command:
 
-  python run.py
+	python run.py
