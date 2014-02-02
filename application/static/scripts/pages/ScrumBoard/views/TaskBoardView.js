@@ -9,7 +9,7 @@ define(["text!pages/ScrumBoard/templates/TaskBoardView.html"],
 			    },
 
 		render: function() {
-			   this.$el.append(this.template({text: "Super Issue"}));
+			   this.$el.html(this.template({text: "Super Issue"}));
 			return this;
 			}
                 

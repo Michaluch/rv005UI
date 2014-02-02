@@ -7,7 +7,7 @@ define(["pages/ScrumBoard/views/HeaderView",
 
      return Backbone.View.extend({
         
-        el: 'body',
+        el: "body",
 
         
         initialize: function(options) {
@@ -24,8 +24,8 @@ define(["pages/ScrumBoard/views/HeaderView",
                 var footerView = new FooterView();
             	footerView.render();
 
-        this.$el.empty()
-                .append(headerView.el)
+        this.$el.find(".wrapper")
+                .html(headerView.el)
                 .append(mainContentView.el)
                 .append(footerView.el);
  
