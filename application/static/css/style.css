@@ -7,6 +7,12 @@ html, body {
     font-family: Tahoma, Verdana, Arial, sans-serif;  
 }
 
+#loading {
+    display: block;
+    margin: 0 auto;
+    border: 0px;
+}
+
 .wrapper {
     width: 980px;
     margin: auto;
@@ -40,11 +46,7 @@ html, body {
         color: #ffffff;
     }
 
-    #bottom {
-        width: 980px;
-        height: 80px;
-        background-color: #d1e3c2;
-    }
+   
 
 /* /header */
 
@@ -56,6 +58,12 @@ html, body {
     padding: 15px 0px;
 
 }
+
+     #filter {
+        width: 980px;
+        height: 80px;
+        background-color: #d1e3c2;
+    }
 
     /* sprint */
     .sprint {
@@ -143,5 +151,7 @@ html, body {
 /* /content */    
 
 .footer {
-    background-color: #b87333;
+
+    background-color: #ffffff;
+    border: 1px solid grey;
 }

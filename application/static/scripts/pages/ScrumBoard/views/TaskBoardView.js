@@ -1,13 +1,17 @@
-define(function() {
+define(["text!pages/ScrumBoard/templates/TaskBoardView.html"],
+	function(taskBoardTemplate){
 
-	return Backbone.View.extend({
-		initialize: function(options) {
-		},
-		
-		render: function() {	    
-			$("<div>").text("Task board").appendTo(document.body);
+    return Backbone.View.extend({
+    	
+    	template: _.template(taskBoardTemplate), 
+
+		initialize: function(options){
+			    },
+
+		render: function() {
+			   this.$el.append(this.template({text: "Super Issue"}));
 			return this;
-		}
-	});
-
-});
+			}
+                
+ 	    });
+});	
