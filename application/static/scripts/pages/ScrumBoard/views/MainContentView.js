@@ -3,6 +3,8 @@ define(["pages/ScrumBoard/views/TaskBoardView",
     function(TaskBoardView, mainContent) {
 
         return Backbone.View.extend({
+            className: "content",
+
             initialize: function(options){
             },
 
@@ -12,7 +14,7 @@ define(["pages/ScrumBoard/views/TaskBoardView",
                 var taskBoardView = new TaskBoardView();
                 taskBoardView.render();
 
-                this.$el.find(".backlog, .doing, .done").append(taskBoardView.el);
+                this.$el.find(".todo, .doing, .done").append(taskBoardView.el);
 
                 return this;
             }
