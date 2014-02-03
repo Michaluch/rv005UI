@@ -35,8 +35,8 @@ html, body {
         background-color: #6e914f;
     }
 
-    #logo {
-        width: 150px;
+    #header-logo {
+        width: 120px;
     }
 
     #header-right-corner {
@@ -168,3 +168,35 @@ html, body {
     padding: 10px;
     background-color: #ffffff;
 }
+
+#footer-right-corner {
+    float: right;
+}
+
+#footer-right-corner img {
+    height: 20px;
+}
+
+#footer-logo {
+    width: 100px;
+}
+
+#footer-line {
+    line-height: 3.5;
+    font-size: 0.7em;
+}
+
+#footer-line a {
+    color: #4aaff7;
+    text-decoration: none;
+}
+
+#footer-line img {
+    height: 35px;
+}
+
+#footer-img {
+
+    margin-left: 30px;
+}
+
