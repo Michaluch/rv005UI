@@ -1,20 +1,15 @@
 define(["pages/ScrumBoard/views/HeaderView", 
         "pages/ScrumBoard/views/MainContentView",
         "pages/ScrumBoard/views/FooterView"],
-       function(HeaderView, MainContentView, FooterView) { 
+    function(HeaderView, MainContentView, FooterView) {   
 
-    
-
-     return Backbone.View.extend({
+        return Backbone.View.extend({
+            el: "body",
         
-        el: "body",
+            initialize: function(options) {
+            },
 
-        
-        initialize: function(options) {
-                    },
-
-        render: function() {
-
+            render: function() {
                 var headerView = new HeaderView();
                 headerView.render();
 
@@ -24,12 +19,14 @@ define(["pages/ScrumBoard/views/HeaderView",
                 var footerView = new FooterView();
             	footerView.render();
 
-        this.$el.find(".wrapper")
+                this.$el.find(".wrapper")
                 .html(headerView.el)
                 .append(mainContentView.el)
                 .append(footerView.el);
  
-   		    return this;
-                }
-    });
+                return this;
+            }
+        });
+    
 });
+
