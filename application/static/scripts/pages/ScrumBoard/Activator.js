@@ -8,7 +8,7 @@ require.config({
     }
 }); 
 
-
 require(["pages/ScrumBoard/Application"], function(Application) {
     Application.start();
 });
+

@@ -1,14 +1,14 @@
-define(["text!pages/ScrumBoard/templates/HeaderView.html"], 
-    function(headerView) {
+define(["text!pages/ScrumBoard/templates/LoginView.html"], 
+    function(loginView) {
 
         return Backbone.View.extend({
-            className: "header",
-
+            className: "login",
+        
             initialize: function(options){
             },
                            
             render: function () {
-                this.$el.html(headerView);
+                this.$el.html(loginView);
                 return this;
             }
         })
