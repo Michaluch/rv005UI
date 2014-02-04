@@ -2,13 +2,15 @@ define(["text!pages/ScrumBoard/templates/LoginView.html"],
     function(loginView) {
 
         return Backbone.View.extend({
-            className: "wrapper",
+            el: "body",
         
             initialize: function(options){
             },
                            
             render: function () {
-                this.$el.html(loginView);
+                this.$el.find(".wrapper")
+                .html(loginView);
+
                 return this;
             }
         })

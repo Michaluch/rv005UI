@@ -1,18 +1,22 @@
-define(["pages/ScrumBoard/views/PageView"], 
-    function(PageView) {
+define(["pages/ScrumBoard/views/PageView",
+        "pages/ScrumBoard/views/LoginView"],
+
+    function(PageView, LoginView) {
         return Backbone.Router.extend({
             routes: {
                 "": "start",
-                "login": "login"
+                "login": "login",
+                "*other": "start"
             },
             
             start: function () {
-                _private.pageView = new PageView();
-                _private.pageView.render();
+                var pageView = new PageView();
+                pageView.render();
             },
             
             login: function () {
-                alert("Login");
+                var loginView = new LoginView();
+                loginView.render();
             }
         })
     }

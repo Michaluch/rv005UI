@@ -5,6 +5,7 @@ define(["pages/ScrumBoard/routers/PageRouter"],
 
         _public.start = function() {
             _private.router = new PageRouter();
+            Backbone.history.start();
         };
 
         return _public;

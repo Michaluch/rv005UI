@@ -2,7 +2,7 @@ define(["pages/ScrumBoard/views/HeaderView",
         "pages/ScrumBoard/views/MainContentView",
         "pages/ScrumBoard/views/FooterView"],
         
-    function(LoginView, HeaderView, MainContentView, FooterView) {
+    function(HeaderView, MainContentView, FooterView) {
         return Backbone.View.extend({
             el: "body",
         
