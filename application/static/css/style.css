@@ -61,27 +61,61 @@ html, body {
 
 /* /header */
 
-/*registration */
+/*sign-in */
 
-.registration {
-    padding: 5px;
-    width: 500px;
-    height: 400px;
-    padding-top: 200px;
+.sign-in {
+
+    border: 1px solid #C0CAD5;
+    background-color: #d1e3c2;
+    width: 350px;
+    height: 430px;
+    position: relative;
     margin: 0 auto;
+    padding: 40px 30px;
+    
+    
 }
 
-.registration p {
+#sign-in-image-div {
     text-align: center;
-    margin: 50px 0;
 }
 
-#submit {
-    text-align: right;
-    padding-right: 85px;
+#sign-in-image {
+    width: 110px;
+    border-radius: 55px;
 }
 
-/* /registration */
+#sign-in-clear {
+    height: 60px;
+}
+
+#sign-in-form p {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+#sign-in-form input {
+    padding: 3px 5px;
+
+}
+
+.label {
+    float: left;
+    padding-bottom: 5px;
+    color: #6e914f;
+    font-weight: bold;
+}
+
+#sign-in-submit {
+    background-color: #6e914f;
+    color: #FAFFFA;
+    font-weight: bold;
+    width: 140px;
+    border-color: #C0CAD5;
+    font-size: 14px;
+}
+
+/* /sign-in */
 
 
 /* content */

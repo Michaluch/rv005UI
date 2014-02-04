@@ -2,7 +2,7 @@ define(["text!pages/ScrumBoard/templates/LoginView.html"],
     function(loginView) {
 
         return Backbone.View.extend({
-            className: "login",
+            className: "wrapper",
         
             initialize: function(options){
             },
