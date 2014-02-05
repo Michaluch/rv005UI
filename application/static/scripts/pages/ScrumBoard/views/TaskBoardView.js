@@ -1,6 +1,7 @@
-define(["text!pages/ScrumBoard/templates/TaskBoardView.html"],
-	function(taskBoardTemplate){
+define(["text!pages/ScrumBoard/templates/TaskBoardView.html",
+        "pages/ScrumBoard/collections/Tasks"],
 
+	function(taskBoardTemplate, Tasks){
         return Backbone.View.extend({
             template: _.template(taskBoardTemplate), 
 
@@ -12,6 +13,5 @@ define(["text!pages/ScrumBoard/templates/TaskBoardView.html"],
                 return this;
 			}
         });
-
-});	
-
+    }
+);	
