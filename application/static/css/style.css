@@ -24,11 +24,8 @@ html, body {
 
 /* header */
 
-.header {
-    
-}
 
-    #top {
+    #header {
         padding: 10px;
         width: 960px;
         height: 30px;
