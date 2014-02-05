@@ -122,7 +122,7 @@ html, body {
 
 .content {
     background-color: #FAFFFA;
-    padding: 0 0 15px;
+    padding: 0 0 70px;
 
 }
 
@@ -222,7 +222,8 @@ html, body {
 /* /content */    
 
 .footer {
-    padding: 10px;
+    border-top: 1px solid #C0CAD5;
+    padding: 20px 10px 10px;
     background-color: #ffffff;
 }
 

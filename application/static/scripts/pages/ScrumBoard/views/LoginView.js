@@ -1,5 +1,6 @@
-define(["text!pages/ScrumBoard/templates/LoginView.html"], 
-    function(loginView) {
+define(["text!pages/ScrumBoard/templates/LoginView.html",
+        "text!pages/ScrumBoard/templates/FooterView.html"], 
+    function(loginView, footerView) {
 
         return Backbone.View.extend({
             el: "body",
@@ -8,8 +9,9 @@ define(["text!pages/ScrumBoard/templates/LoginView.html"],
             },
                            
             render: function () {
-                this.$el.find(".wrapper")
-                .html(loginView);
+                this.$(".wrapper")
+                .html(loginView)
+                .append(footerView);
 
                 return this;
             }
