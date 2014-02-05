@@ -7,8 +7,11 @@ class Model(object):
     _counter = None
 
     def __init__(self):
-        self._db = DB("mongodb://localhost:27017/")
-        self._db.database("bugtracker")
+        self._db = DB("mongodb://rv005UI:pass123@troup.mongohq.com:10012/")
+        self._db.database("IssueTracker")
+        print (self._db.database)
 
         self._counter = Counter()
         self._counter.create()
+if __name__ == "__main__":
+    new_connection = Model()
