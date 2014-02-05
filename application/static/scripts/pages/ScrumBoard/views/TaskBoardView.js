@@ -8,7 +8,7 @@ define(["text!pages/ScrumBoard/templates/TaskBoardView.html"],
             },
 
             render: function() {
-                this.$el.html(this.template({text: "Super Issue"}));
+                this.$el.html(this.template({issueText:["Issue1", "Issue2", "Issue3"], subIssueText:["SubIssue1", "SubIssue2"], count:3, subcount:2}));
                 return this;
 			}
         });

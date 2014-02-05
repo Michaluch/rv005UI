@@ -1,15 +1,16 @@
+<% for (var i=0; i<count; i++) { %>
 <div class="issue">
-    <%= text %>
+    <%= issueText[i] %>
 </div>
-
+<%
+for (var j=0;j<subcount; j++) { %>
 <div class="subissue">
-    SubIssue#1
-</div>    
+    <%=subIssueText[j]%>
+</div>   
+<% }
+ } %>
 
-<div class="subissue">
-    SubIssue#2
-</div>    
 
-<div class="issue">
-    Issue #2
-</div> 
+
+    
+
