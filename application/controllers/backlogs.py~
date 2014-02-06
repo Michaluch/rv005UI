@@ -28,6 +28,6 @@ class Backlogs(Controller):
         param = kwargs.get("param")
 
         if action == "get_backlogs":
-            return self.get_backlogs()
+            return write(self.get_backlogs())
         else:
             return error("Invalid request")
