@@ -4,26 +4,40 @@ define(["text!pages/ScrumBoard/templates/TaskBoardView.html",
         "pages/ScrumBoard/views/IssueView"],
 
 	function(taskBoardTemplate, Tasks, Task, IssueView){
+
         return some = Backbone.View.extend({      
+
             template: _.template(taskBoardTemplate), 
 
             initialize: function(options){
+                this.tasks = new Tasks();
             },
 
             render: function() {
-                var tasks = new Tasks();
-                tasks.fetch({
+                var that = this;
+
+                this.$el.html('');
+
+                that.tasks.fetch({
                     success: function (data, response, options) {
-                        for (var i = 0; i < data.length; i++) {
-                            var issue = new IssueView({model: data.at(i)});
-                            this.$('.todo').append(issue.render().el);
-                        }
+                        that.renderTasks();                        
                     },
                 });
-            
-                this.$el.html('');
+
                 return this;
+			},
+
+			renderTasks: function() {
+			    var that = this;
+			    that.tasks.each(function(task) {
+			        var issue = new IssueView({
+			            model: task
+		            });
+                    that.$el.append(issue.render().el);
+			    });
+
 			}
         });
+
     }
 );	
