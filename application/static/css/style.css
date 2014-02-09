@@ -151,7 +151,7 @@ html, body {
         }
 
         .issue {
-            width: 297px;
+            width: 283px;
             height: 75px;
             border: 1px solid #B2C0C0;
             background-color: #f7faf4;
@@ -161,23 +161,9 @@ html, body {
             border-bottom-left-radius: 5px;
             margin-left: 3px;
             margin-bottom: 2px;
+            padding: 7px;
         }
 
-
-        .subissue {
-            width: 290px;
-            height: 65px;
-            border: 1px solid #B2C0C0;
-            background-color: #f7faf4;
-            border-left-width: 7px;
-            border-left-color: #4aaff7;
-            border-top-left-radius: 5px;
-            border-bottom-left-radius: 5px;
-            margin-left: 10px;
-            margin-bottom: 2px;
-            
-        }
-         
         .doing {
             float: left;
             width: 310px;
@@ -253,5 +239,64 @@ html, body {
 #footer-img {
 
     margin-left: 30px;
+}
+
+ .subissue {
+    width: 276px;
+    height: 65px;
+    border: 1px solid #B2C0C0;
+    background-color: #f7faf4;
+    border-left-width: 7px;
+    border-left-color: #4aaff7;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    margin-left: 10px;
+    margin-bottom: 2px;
+    padding: 7px;
+}
+
+.subissue p {
+    margin-top: 17px;
+}
+
+.top-left-corner {
+    float: left;
+    font-size: 10px;
+}
+
+.top-right-corner {
+    float: right;
+    height: 15px;
+
+}
+
+.top-right-corner img {
+    height: 13px;
+}
+
+.sprint-line {
+    border: 1px solid lightgrey;
+}
+
+.subissue-hidden-edit {
+    display:none; 
+}
+
+.edit textarea {
+    overflow: auto;
+    resize: none;
+    width: 270px;
+    height: 50px;
+    border-radius: 5px;
+    border: 1px solid lightgrey;
+    padding: 7px 4px;
+}
+
+.select-form {
+    display: inline;
+}
+
+.input {
+    text-align: right;
 }
 
