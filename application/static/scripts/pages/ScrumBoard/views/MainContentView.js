@@ -17,7 +17,7 @@ define(["pages/ScrumBoard/views/TaskBoardView",
                 this.$(".todo, .doing, .done").append(taskBoardView.el);
 
                 return this;
-            }       
+            }
         })
     }
 );

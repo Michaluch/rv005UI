@@ -2,48 +2,63 @@ from models.model import Model
 import json
 
 
-class BacklogsModel(Model):   
-    def __init__(self, backlog):
+class BacklogsModel(Model):
+    _fields = {"_id": 1,
+               "name": "",
+               "stories": [],
+               "members": [],
+               "status": "To do",
+               }
+    def __init__(self):
     	"""
         backlog dictionaty must have "name" key
         "members" and "stories" are not required
         """       
         super(BacklogsModel, self).__init__()
         self._db.collection("backlog")
-        self.backlog = {"_id": self._counter.backlog(),
-                        "name": backlog.get("name"),
-                        "members": backlog.get("members", []),
-                        "stories": backlog.get("stories", [])}
 
-    def add(self):        
-        self._db.insert(self.backlog)
 
-    def delete(self):        
-        self._db.delete({"_id": self.backlog.get("_id")})
+    def add(self, backlog):
+        self._db.insert({"_id": self._counter.backlog(),
+                         "name": backlog.get("name"),
+                          "stories": backlog.get("stories", []),
+                          "members": backlog.get("members", []),
+                          "status": backlog.get("status", 'To do'),
+                           })
 
-    def edit(self, new_backlog):
-        """
-        backlog dictionaty must have "name" key
-        "members" and "stories" are not required
-        """        
-        try:
-            data = {"name": backlog["name"], "members": backlog.get("members", []),
-                    "stories": backlog.get("stories", [])}
-        except KeyError:
-            print("Backlog must have name value")
-        
-        self._db.update(self.backlog, {"$set": data})
+    def delete(self, id):
+        self._db.delete({"_id": id})
 
-    def get(self):
-        id = self.backlog.get("_id")
-        cursor = self._db.select_one({"_id": id}, self.backlog)       
+
+
+    def get(self, param):
+        if(isinstance(param, int)):
+            cursor = self._db.select_one({"_id": param}, self._fields)
+        elif(isinstance(param, str)):
+            cursor = self._db.select_one({"name": param}, self._fields)
+        else:
+            return None
+
         return cursor[0] if cursor.count() > 0 else None
+
+    def edit(self, id, backlog):
+        where = {"_id": id}
+
+        data = {"name": backlog.get("name"),
+                "stories": backlog.get("stories", []),
+                "members": backlog.get("members", []),
+                "status": backlog.get("status", 'To do'),
+                }
+
+        self._db.update(where, {"$set": data})
+
+
 
     def all(self, what=None):
         # cursor = self._db.select(what, self.backlog)
         cursor = self._db.select()
         return [item for item in cursor]
-
+    '''
     def create_story(self, story):
     	"""
     	story must have keys: name, status
@@ -67,6 +82,7 @@ class BacklogsModel(Model):
     	self.create_story(story)    	
     	self._db.update({"_id": self.backlog.get("_id")},
     	                {"$set": self.backlog.get("stories", [])})
+    '''
 
     def __str__(self):
     	return "<BacklogModel> {0}".format(self.backlog['name'])
