@@ -315,7 +315,7 @@ html, body {
     text-decoration: none;
 }
 
-.select-title.active {
+.active {
     border-radius: 5px 5px 0 0;
     border-bottom: none;
 }

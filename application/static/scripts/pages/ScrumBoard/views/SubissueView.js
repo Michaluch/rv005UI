@@ -7,7 +7,7 @@ define(["text!pages/ScrumBoard/templates/SubissueView.html"],
 	           events: {
                    "click .image-edit": "edit",
                    "click .save": "save",
-                   "click .select-type .select-title": "drop"
+                   "click .select-title": "drop"
 	           },
 
 	           initialize: function(options){
@@ -26,23 +26,34 @@ define(["text!pages/ScrumBoard/templates/SubissueView.html"],
                save: function() {
                    this.$(".subissue-hidden-edit").css("display", "none");
                    this.$(".subissue").css("height", "65px");
+                   this.$(".select-title").each(function() {
+                    var defaultTitle = $(this).prev().val();
+                    if (defaultTitle) {
+                      $(this).text(defaultTitle);
+                    }
+                   })
                },
 
-               drop: function() {
-                   var dropBox = this.$(".drop");
-                   if ( dropBox.is(":hidden")) {
-                       dropBox.slideDown();
-                       this.$(".select-title").addClass("active");
+               drop: function(event) {
+                   event.preventDefault();
+                   var $selectTitle = $(event.currentTarget);
+                   var selectDiv = $(event.currentTarget).parent();
+                   var ulDrop = selectDiv.find(".drop");
+                   if ( ulDrop.is(":hidden") ) {
+                       ulDrop.slideDown();
+                       $selectTitle.addClass("active");
+                       $(selectDiv).find("input").val($selectTitle.text());
                    }
 
-                   $(".drop").find("li").click(function(){
-                      var selected = $(this).html();
-                      $("input").val($(selected).text());
-                      $(".select-title").removeClass("active").html(selected);
-                      dropBox.slideUp();
+                   ulDrop.find("li").click(function(event){
+                      var selected = $(event.currentTarget).html();
+                      selectDiv.find(".select-input").val($(selected).text());
+                      $selectTitle.removeClass("active").html(selected);
+                      ulDrop.slideUp();
 
-
+                      return false;
                    })
+                   return false;
                }
 
 
