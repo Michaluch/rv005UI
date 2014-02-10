@@ -1,16 +1,21 @@
 define(["text!pages/ScrumBoard/templates/TaskBoardView.html",
         "pages/ScrumBoard/collections/Tasks",
         "pages/ScrumBoard/models/Task",
-        "pages/ScrumBoard/views/IssueView"],
+        "pages/ScrumBoard/views/IssueView",
+        "pages/ScrumBoard/collections/Subissues",
+        "pages/ScrumBoard/models/Subissue",
+        "pages/ScrumBoard/views/SubissueView"],
 
-	function(taskBoardTemplate, Tasks, Task, IssueView){
+	function(taskBoardTemplate, Tasks, Task, IssueView, Subissues, Subissue, SubissueView){
 
-        return some = Backbone.View.extend({      
+        return some = Backbone.View.extend({ 
+            name: "TaskBoardView",
 
             template: _.template(taskBoardTemplate), 
 
             initialize: function(options){
                 this.tasks = new Tasks();
+                this.subissues = new Subissues();
             },
 
             render: function() {
@@ -20,10 +25,14 @@ define(["text!pages/ScrumBoard/templates/TaskBoardView.html",
 
                 that.tasks.fetch({
                     success: function (data, response, options) {
-                        that.renderTasks();                        
-                    },
+                        that.renderTasks();
+                        that.subissues.fetch({
+                            success: function(collection, response, options) {
+                                that.renderSubissues();
+                            }
+                        });
+                    }
                 });
-
                 return this;
 			},
 
@@ -36,7 +45,16 @@ define(["text!pages/ScrumBoard/templates/TaskBoardView.html",
                     that.$el.append(issue.render().el);
 			    });
 
-			}
+			},
+
+            renderSubissues: function() {
+                this.subissues.each(function(subissue) {
+                    var subissueView = new SubissueView({
+                        model: subissue
+                    });
+                    this.$el.append(subissueView.render().el);
+                }, this);
+            }
         });
 
     }
