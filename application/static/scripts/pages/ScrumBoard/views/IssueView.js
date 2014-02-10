@@ -7,7 +7,7 @@ define(["text!pages/ScrumBoard/templates/IssueView.html"],
             initialize: function(options){
             },
                            
-            render: function () {               
+            render: function () {
                 this.$el.html(this.template({name: this.model.get('name')}));
                 return this;
             }
