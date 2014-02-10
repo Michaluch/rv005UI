@@ -7,7 +7,8 @@ define(["text!pages/ScrumBoard/templates/SubissueView.html"],
 	           events: {
                    "click .image-edit": "edit",
                    "click .save": "save",
-                   "click .select-title": "drop"
+                   "click .select-title": "drop",
+                   "click .image-close": "close"
 	           },
 
 	           initialize: function(options){
@@ -21,17 +22,25 @@ define(["text!pages/ScrumBoard/templates/SubissueView.html"],
                edit: function() {
                    this.$(".subissue-hidden-edit").css("display", "block");
                    this.$(".subissue").css("height", "auto");
+                   this.$(".image-edit, .image-delete").css("display", "none");
+                   this.$(".image-close").css("display", "inline");
                },
 
                save: function() {
                    this.$(".subissue-hidden-edit").css("display", "none");
                    this.$(".subissue").css("height", "65px");
+                   this.$(".image-edit, .image-delete").css("display", "inline");
+                   this.$(".image-close").css("display", "none");
                    this.$(".select-title").each(function() {
                     var defaultTitle = $(this).prev().val();
                     if (defaultTitle) {
                       $(this).text(defaultTitle);
                     }
-                   })
+                   });
+                   var data = this.$(".select-input").map(function(){
+                       return $(this).serialize();
+                   }).get().join("&");
+                   $.post("/api/task/", data);
                },
 
                drop: function(event) {
@@ -54,6 +63,14 @@ define(["text!pages/ScrumBoard/templates/SubissueView.html"],
                       return false;
                    })
                    return false;
+               },
+
+               close: function() {
+                   this.$(".subissue-hidden-edit").css("display", "none");
+                   this.$(".subissue").css("height", "65px");
+                   this.$(".image-edit, .image-delete").css("display", "inline");
+                   this.$(".image-close").css("display", "none");
+
                }
 
 

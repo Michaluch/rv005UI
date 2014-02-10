@@ -276,6 +276,10 @@ html, body {
     height: 13px;
 }
 
+.image-close {
+    display: none;
+}
+
 .sprint-line {
     border: 1px solid lightgrey;
 }
