@@ -14,7 +14,7 @@ define(["pages/ScrumBoard/views/TaskBoardView",
                 var taskBoardView = new TaskBoardView();
                 taskBoardView.render();
 
-                this.$(".todo, .doing, .done").append(taskBoardView.el);
+                this.$(".todo").append(taskBoardView.el);
 
                 return this;
             }

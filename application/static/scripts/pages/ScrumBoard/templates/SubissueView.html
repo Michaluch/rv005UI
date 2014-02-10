@@ -13,18 +13,52 @@
 	        <textarea>
 	        </textarea>
 	    </form>
-        <form name="select-type" class="select-form">
-            <select>
-                <option>sub-task</option>
-                <option>sub-bug</option>
-            </select>
-        </form>
-        <form name="select-estimate" class="select-form">
+        <div class="select-wrapper">
+            <div class="select-type">
+                <a href="javascript:void(0);" class="select-title">Type</a>     <!--javascript:void(0);-->
+                <ul class="drop">
+                    <li><a href="#">task</a></li>
+                    <li><a href="#">bug</a></li>
+                </ul>
+                <form name="select-type">
+                    <input type="hidden" class="select-input" />
+                </form>
+            </div>
+
+            <div class="select-estimate">
+                <a href="javascript:void(0);" class="select-title">Estimate</a>     <!--javascript:void(0);-->
+                <ul class="drop">
+                    <li><a href="#">0.5 est. point</a></li>
+                    <li><a href="#">3 est. point</a></li>
+                    <li><a href="#">5 est. point</a></li>
+                    <li><a href="#">8 est. point</a></li>
+                    <li><a href="#">13 est. point</a></li>
+                </ul>
+                <form name="select-type">
+                    <input type="hidden" class="select-input" />
+                </form>
+            </div>
+
+            <div class="select-member">
+                <a href="javascript:void(0);" class="select-title">Team Member</a>     <!--javascript:void(0);-->
+                <ul class="drop">
+                    <li><a href="#">member 1</a></li>
+                    <li><a href="#">member 2</a></li>
+                </ul>
+                <form name="select-type">
+                    <input type="hidden" class="select-input" />
+                </form>
+            </div>
+        </div>
+
+        
+        <!--form name="select-estimate" class="select-form">
             <select>
                 <option>3 est. point</option>
                 <option>5 est. point</option>
             </select>
         </form>
+
         <form name="select-assingTo" class="select-form">
             <select>
                 <option>Team</option>
@@ -33,7 +67,7 @@
                 <option>Korolchuk</option>
                 <option>Puzyrko</option>`
             </select>
-        </form>
+        </form-->
         <div class="input">
             <input class="save" type="submit" value="Save" />
         </div>

@@ -241,6 +241,8 @@ html, body {
     margin-left: 30px;
 }
 
+ /* subissue */
+
  .subissue {
     width: 276px;
     height: 65px;
@@ -285,18 +287,100 @@ html, body {
 .edit textarea {
     overflow: auto;
     resize: none;
-    width: 270px;
+    width: 265px;
     height: 50px;
     border-radius: 5px;
     border: 1px solid lightgrey;
     padding: 7px 4px;
 }
 
-.select-form {
-    display: inline;
-}
-
 .input {
     text-align: right;
 }
 
+.select-type, .select-estimate, .select-member {
+    float: left;
+    margin: 5px;
+}
+
+.select-title, .select-title a {
+    display: block;
+    border-radius: 5px;
+    border: 1px solid #cecece;
+    width: 80px;
+    background-color: #d1e3c2;
+    color: #000;
+    font-size: 12px;
+    text-align: center;
+    text-decoration: none;
+}
+
+.select-title.active {
+    border-radius: 5px 5px 0 0;
+    border-bottom: none;
+}
+
+.drop {
+    margin: 0;
+    padding: 0;
+    width: 80px;
+    border: 1px solid #cecece;
+    border-top: none;
+    display: none;
+    position: absolute;
+    background-color: #f7faf4;
+    font-size: 12px;
+}
+
+.drop li {
+    display: block;
+    list-style: none;
+    border-top: 1px dotted #cecece;
+    cursor: pointer;
+    padding-left: 15px;
+}
+
+.drop li a {
+    color: #323232;
+    text-decoration: none;
+}
+
+.drop li:hover {
+    background-color: #d1e3c2;
+}
+
+
+
+
+
+/* /subissue */
+
+/*  =   Select 
+.slct {
+    
+    padding: 4px 15px 4px 10px;
+    color: #444;
+    background-position: 290px -145px;
+
+    /*
+        Супер финт обрезаем текст
+        чтобы не вылезал за рамку
+    
+    overflow: hidden;
+    white-space:nowrap;
+    text-overflow: ellipsis;
+    -o-text-overflow: ellipsis; 
+
+}
+.drop li {
+   
+    
+    padding: 4px 15px 4px 25px;
+    background-position: 10px -119px;
+}
+.drop li:hover {
+    background-color: #e8e8e8;
+    color: #222;
+}
+
+*/
