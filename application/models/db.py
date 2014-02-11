@@ -4,6 +4,7 @@ from pymongo import MongoClient
 class DB(object):
     _client = None
     _db = None
+    _collection = None
 
     def __init__(self, url):
         self._client = MongoClient(url)
@@ -38,6 +39,17 @@ class DB(object):
 
     def update_and_select(self, where, what):
         return self._collection.find_and_modify(where, what, new=True)
+
+    def push(self, where, field, what):
+        """
+        usage: db.backlog.update(
+                                 {backlog_id:1},
+                                 {$push: {issues: {name: "name1", sprint: 2}}}
+                                 )
+        note: the field ("issues") must be array only
+        """
+        what = {"$push": {field: what}}
+        return self._collection.update(where, what)
 
 
 

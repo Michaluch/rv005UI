@@ -14,10 +14,10 @@ class Counter(object):
             self._db.insert({"_id": "user", "next": 0})
         if not(self._db.check({"_id": "backlog"})):
             self._db.insert({"_id": "backlog", "next": 0})
-        if not(self._db.check({"_id": "story"})):
-            self._db.insert({"_id": "story", "next": 0})
-        if not(self._db.check({"_id": "task"})):
-            self._db.insert({"_id": "task", "next": 0})
+        if not(self._db.check({"_id": "issue"})):
+            self._db.insert({"_id": "issue", "next": 0})
+        if not(self._db.check({"_id": "subissue"})):
+            self._db.insert({"_id": "subissue", "next": 0})
         if not(self._db.check({"_id": "comment"})):
             self._db.insert({"_id": "comment", "next": 0})
 
@@ -32,11 +32,11 @@ class Counter(object):
     def backlog(self):
         return self._next("backlog")
 	
-    def story(self):
-        return self._next("story")
+    def issue(self):
+        return self._next("issue")
 
-    def task(self):
-        return self._next("task")
+    def subissue(self):
+        return self._next("subissue")
 
     def comment(self):
         return self._next("comment")

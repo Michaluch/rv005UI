@@ -1,15 +1,15 @@
 import json
 
 from flask import Flask
-from flask import render_template
+from flask import render_template, request
 
 from helper import error, write
 from controllers.users import Users
 from controllers.backlogs import Backlogs
-from controllers.stories import Stories
-from controllers.tasks import Tasks
+from controllers.issues import Issues
+from controllers.subissues import Subissues
 from controllers.comments import Comments
-from models.issues import Issues
+from models.issues import IssuesModel
 
 
 app = Flask("Bugtrack")
@@ -60,15 +60,26 @@ def index(path=None):
     return render_template("index1.html")
 
 @app.route("/api/issues", methods=["GET", "POST"])
-def showissue():
-	issue = Issues()
-	return write(issue.get_all_issue(166))
+def show_issue():
+    issue = IssuesModel()
+    if request.method == "GET":
+        return write(issue.get_all_issues(166))
+    if request.method == "POST":
+        issue_data = {
+            "name": request.values.get("name", ""),
+            "description": request.values.get("description", ""),
+            "subissues": request.values.get("subissues", []),
+            "status": request.values.get("status", ""),
+            "comments": request.values.get("comments", []),
+            "sprint": request.values.get("sprint", "")
+        }
+        issue.create_issue(166, issue_data)
 
 @app.route("/api/issues/<int:issue_id>")
-def showissuebyid(issue_id):
-	issue = Issues()
-	print issue.get_issue_by_id(backlog_id=166, issue_id=issue_id)
-	return write(issue.get_issue_by_id(backlog_id=166, issue_id=issue_id))
+def show_issue_by_id(issue_id):
+    issue = IssuesModel()
+    print issue.get_issue_by_id(backlog_id=166, issue_id=issue_id)
+    return write(issue.get_issue_by_id(backlog_id=166, issue_id=issue_id))
 
 
 

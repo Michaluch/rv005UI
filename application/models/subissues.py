@@ -1,8 +1,8 @@
 from model import Model
 
 
-class CommentsModel(Model):
+class SubissuesModel(Model):
     def __init__(self, ):
-        super(CommentsModel, self).__init__()
+        super(SubissuesModel, self).__init__()
         self._db.collection("backlog")
     

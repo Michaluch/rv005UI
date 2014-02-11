@@ -5,14 +5,14 @@ from helper import error
 from helper import write
 
 from controllers.controller import Controller
-from models.stories import StoriesModel
+from models.issues import IssuesModel
 
 
-class Stories(Controller):
+class Issues(Controller):
     # constructor
     def __init__(self):
-        super(Stories, self).__init__()
-        self._data = StoriesModel()
+        super(Issues, self).__init__()
+        self._data = Issues()
 
     def fetch(self, **kwargs):
         action = kwargs.get("action")

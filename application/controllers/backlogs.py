@@ -30,7 +30,7 @@ class Backlogs(Controller):
         data = {
             "name": request.values.get('name', ''),
             "members": request.values.get("members", []),
-            "stories": request.values.get("stories", []),
+            "issues": request.values.get("issues", []),
             "status": request.values.get("status", "To do")
         }
 
@@ -66,7 +66,7 @@ class Backlogs(Controller):
         data = {
             "name": request.values.get('name', ''),
             "members": request.values.get("members", []),
-            "stories": request.values.get("stories", []),
+            "issues": request.values.get("issues", []),
             "status": request.values.get("status", "To do")
         }
 

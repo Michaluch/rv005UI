@@ -1,18 +1,18 @@
-from models.model import Model
+from model import Model
 import json
 
 
 class BacklogsModel(Model):
     _fields = {"_id": 1,
                "name": "",
-               "stories": [],
+               "issues": [],
                "members": [],
                "status": "To do",
                }
     def __init__(self):
     	"""
         backlog dictionaty must have "name" key
-        "members" and "stories" are not required
+        "members" and "issues" are not required
         """       
         super(BacklogsModel, self).__init__()
         self._db.collection("backlog")
@@ -21,7 +21,7 @@ class BacklogsModel(Model):
     def add(self, backlog):
         self._db.insert({"_id": self._counter.backlog(),
                          "name": backlog.get("name"),
-                          "stories": backlog.get("stories", []),
+                          "issues": backlog.get("issues", []),
                           "members": backlog.get("members", []),
                           "status": backlog.get("status", 'To do'),
                            })
@@ -45,7 +45,7 @@ class BacklogsModel(Model):
         where = {"_id": id}
 
         data = {"name": backlog.get("name"),
-                "stories": backlog.get("stories", []),
+                "issues": backlog.get("issues", []),
                 "members": backlog.get("members", []),
                 "status": backlog.get("status", 'To do'),
                 }
