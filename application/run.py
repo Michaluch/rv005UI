@@ -3,12 +3,13 @@ import json
 from flask import Flask
 from flask import render_template
 
-from helper import error
+from helper import error, write
 from controllers.users import Users
 from controllers.backlogs import Backlogs
 from controllers.stories import Stories
 from controllers.tasks import Tasks
 from controllers.comments import Comments
+from models.issues import Issues
 
 
 app = Flask("Bugtrack")
@@ -57,6 +58,19 @@ def comment(action=None, param=None):
 @app.route("/<path:path>")
 def index(path=None):
     return render_template("index1.html")
+
+@app.route("/api/issues", methods=["GET", "POST"])
+def showissue():
+	issue = Issues()
+	return write(issue.get_all_issue(166))
+
+@app.route("/api/issues/<int:issue_id>")
+def showissuebyid(issue_id):
+	issue = Issues()
+	print issue.get_issue_by_id(backlog_id=166, issue_id=issue_id)
+	return write(issue.get_issue_by_id(backlog_id=166, issue_id=issue_id))
+
+
 
 
 if __name__ == "__main__":

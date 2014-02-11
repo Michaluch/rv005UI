@@ -50,15 +50,16 @@ define(["text!pages/ScrumBoard/templates/SubissueView.html"],
                    var ulDrop = selectDiv.find(".drop");
                    if ( ulDrop.is(":hidden") ) {
                        ulDrop.slideDown();
-                       $selectTitle.addClass("active");
                        $(selectDiv).find("input").val($selectTitle.text());
+                       $selectTitle.addClass("active");
                    }
 
                    ulDrop.find("li").click(function(event){
                       var selected = $(event.currentTarget).html();
                       selectDiv.find(".select-input").val($(selected).text());
-                      $selectTitle.removeClass("active").html(selected);
                       ulDrop.slideUp();
+                      $selectTitle.removeClass("active").html(selected);
+                      
 
                       return false;
                    })
