@@ -45,8 +45,6 @@ class IssuesModel(Model):
                                                       "sprint": issue.get("sprint")
                                                       })
 
-
-
 if __name__ == "__main__":
     newissue = IssuesModel()
     newissue.create_issue(166, {"name": "IssueName", "description": "any other description", "status": "doing"})
