@@ -53,12 +53,12 @@ class DB(object):
         return self._collection.update(where, what)
 
     # Update an existing issue in backlog 
-    def set(self, where, field, what):
+    def set(self, where, what):
         """
         usage: db.backlog.update(
                                  {backlog_id:1},
                                  {$set: {status: "To Do"}
                                  )
         """
-        what = {"$set": {field: what}}
-        return self._collection.update({where, what})
+        what = {"$set": what}
+        return self._collection.update(where, what)

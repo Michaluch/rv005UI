@@ -38,18 +38,39 @@ class Issues(Controller):
         }
         self._data.create_issue(166, new_issue)
 
+    def update_specific_issue(self, param=None, issue_id=None):
+        if not self.logged():
+            return error("You not logged")
+        new_issue = {}
+        if param.get("name"):
+            new_issue["issues.$.name"] = param.get("name")
+        if param.get("description"):
+            new_issue["issues.$.description"] = param.get("description")
+        if param.get("subissues"):
+            new_issue["issues.$.subissues"] = param.get("subissues")
+        if param.get("status"):
+            new_issue["issues.$.status"] = param.get("status")
+        if param.get("comments"):
+            new_issue["issues.$.comments"] = param.get("comments")
+        if param.get("sprint"):
+            new_issue["issues.$.sprint"] = param.get("sprint")
+        self._data.update_issue(backlog_id=166, issue_id=issue_id, new_issue=new_issue)
+        #return write(new_issue)
+
 
     def fetch(self, **kwargs):
-        action = kwargs.get("action")
+        cid = kwargs.get("cid")
         param = kwargs.get("param")
         method = kwargs.get("method")
 
-        if action is None and method == "GET":
+        if cid is None and method == "GET":
         	return self.get_issues()
-        if action and method == "GET":
-        	return self.get_specific_issue(action)
-        if action is None and method == "POST":
+        if cid and method == "GET":
+        	return self.get_specific_issue(cid)
+        if cid is None and method == "POST":
         	return self.add_issue(param)
+        if cid and method == "POST":
+            return self.update_specific_issue(param, cid)
 
 
         return error("Invalid request")

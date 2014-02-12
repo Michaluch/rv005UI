@@ -10,7 +10,7 @@ from controllers.issues import Issues
 from controllers.subissues import Subissues
 from controllers.comments import Comments
 from models.issues import IssuesModel
-
+import pdb
 
 app = Flask("Bugtrack")
 app.secret_key = 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RT'
@@ -61,14 +61,15 @@ def index(path=None):
 
 @app.route("/api/issues/")
 @app.route("/api/issues/", methods=["POST"])
-@app.route("/api/issues/<int:action>", methods=["GET", "POST"])
-def issue(action=None, param=None):
+@app.route("/api/issues/<int:cid>", methods=["GET", "POST"])
+def issue(cid=None, param=None):
+    #pdb.set_trace()
+    print cid
     if request.method != "GET":
         param = request.form
-        #redirect(url_for('issue')
-    #return Issues().fetch(action=action, param=param, method=request.method)
-    data_return=Issues().fetch(action=action, param=param, method=request.method)
-    return render_template("form.html", data=data_return)
+    #action = action or request.args.get('action')
+    data_return=Issues().fetch(cid=cid, param=param, method=request.method)
+    return render_template("form.html", data=data_return, cid=cid)
 
 
 if __name__ == "__main__":

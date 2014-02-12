@@ -36,6 +36,9 @@ class IssuesModel(Model):
                 return item
 
     def create_issue(self, backlog_id, issue):
+        """
+        parametre issue is a dictionary
+        """
         self._db.push({"_id": backlog_id}, "issues", {"_id": self._counter.issue(),
                                                       "name": issue.get("name"),
                                                       "description": issue.get("description"),
@@ -44,6 +47,11 @@ class IssuesModel(Model):
                                                       "comments": issue.get("comments", []),
                                                       "sprint": issue.get("sprint")
                                                       })
+
+    def update_issue(self, backlog_id, issue_id, new_issue):
+        where = {"_id": backlog_id, "issues._id": issue_id}
+        self._db.set(where, new_issue)
+
 
 if __name__ == "__main__":
     newissue = IssuesModel()
