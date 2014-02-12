@@ -40,6 +40,7 @@ class DB(object):
     def update_and_select(self, where, what):
         return self._collection.find_and_modify(where, what, new=True)
 
+    # Add issue to backlog
     def push(self, where, field, what):
         """
         usage: db.backlog.update(
@@ -51,5 +52,13 @@ class DB(object):
         what = {"$push": {field: what}}
         return self._collection.update(where, what)
 
-
-
+    # Update an existing issue in backlog 
+    def set(self, where, field, what):
+        """
+        usage: db.backlog.update(
+                                 {backlog_id:1},
+                                 {$set: {status: "To Do"}
+                                 )
+        """
+        what = {"$set": {field: what}}
+        return self._collection.update({where, what})
