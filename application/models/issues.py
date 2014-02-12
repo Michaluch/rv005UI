@@ -1,6 +1,6 @@
-from model import Model
+from models.model import Model
 from pprint import pprint
-from backlogs import BacklogsModel
+from models.backlogs import BacklogsModel
 
 
 class IssuesModel(Model):

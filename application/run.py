@@ -59,29 +59,16 @@ def comment(action=None, param=None):
 def index(path=None):
     return render_template("index1.html")
 
-@app.route("/api/issues", methods=["GET", "POST"])
-def show_issue():
-    issue = IssuesModel()
-    if request.method == "GET":
-        return write(issue.get_all_issues(166))
-    if request.method == "POST":
-        issue_data = {
-            "name": request.values.get("name", ""),
-            "description": request.values.get("description", ""),
-            "subissues": request.values.get("subissues", []),
-            "status": request.values.get("status", ""),
-            "comments": request.values.get("comments", []),
-            "sprint": request.values.get("sprint", "")
-        }
-        issue.create_issue(166, issue_data)
-
-@app.route("/api/issues/<int:issue_id>")
-def show_issue_by_id(issue_id):
-    issue = IssuesModel()
-    print issue.get_issue_by_id(backlog_id=166, issue_id=issue_id)
-    return write(issue.get_issue_by_id(backlog_id=166, issue_id=issue_id))
-
-
+@app.route("/api/issues/")
+@app.route("/api/issues/", methods=["POST"])
+@app.route("/api/issues/<int:action>", methods=["GET", "POST"])
+def issue(action=None, param=None):
+    if request.method != "GET":
+        param = request.form
+        #redirect(url_for('issue')
+    #return Issues().fetch(action=action, param=param, method=request.method)
+    data_return=Issues().fetch(action=action, param=param, method=request.method)
+    return render_template("form.html", data=data_return)
 
 
 if __name__ == "__main__":
