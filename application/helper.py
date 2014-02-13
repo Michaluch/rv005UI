@@ -3,7 +3,7 @@ import hashlib
 
 
 def write(text):
-    return json.dumps({"result": "ok", "data": text})
+    return json.dumps(text)
 
 
 def error(text, code=0):

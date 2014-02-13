@@ -39,14 +39,16 @@ class IssuesModel(Model):
         """
         parametre issue is a dictionary
         """
-        self._db.push({"_id": backlog_id}, "issues", {"_id": self._counter.issue(),
+        push_dict = {"_id": self._counter.issue(),
                                                       "name": issue.get("name"),
                                                       "description": issue.get("description"),
                                                       "status": issue.get("status"),
                                                       "subissues": issue.get("subissues", []),
                                                       "comments": issue.get("comments", []),
                                                       "sprint": issue.get("sprint")
-                                                      })
+                                                      }
+        self._db.push({"_id": backlog_id}, "issues", push_dict)
+        return push_dict["_id"]
 
     def update_issue(self, backlog_id, issue_id, new_issue):
         where = {"_id": backlog_id, "issues._id": issue_id}

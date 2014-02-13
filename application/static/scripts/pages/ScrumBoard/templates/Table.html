@@ -1,0 +1,54 @@
+<style>
+#table {
+	margin: auto;
+}
+</style>
+
+<!--script language="JavaScript" type="text/javascript">
+function addRowDom(tableID,rowCnt,cellCnt,szText){
+    var hObj=document.getElementById(tableID);
+    if(!hObj || hObj.nodeType!=1 || hObj.nodeName.toLowerCase()!="table") return;
+    for(var i=0;i<hObj.childNodes.length;i++)
+        if(hObj.childNodes[i].nodeType==1 && hObj.childNodes[i].nodeName.toLowerCase()=="tbody"){hObj=hObj.childNodes[i];break;}
+    if(hObj.nodeType!=1 || hObj.nodeName.toLowerCase()!="tbody") return;
+    
+    for(var i=0;i<((rowCnt==null || rowCnt==undefined)?1:rowCnt);i++){
+        var oRow=document.createElement("TR");
+        for(var j=0;j<((cellCnt==null || cellCnt==undefined)?1:cellCnt);j++){
+            var oCell=document.createElement("TD");
+            oCell.appendChild(document.createTextNode((szText==null || szText==undefined)?"test":szText));
+            oRow.appendChild(oCell);
+        }
+        hObj.appendChild(oRow);
+    }
+}
+
+</script-->
+
+<table id="table" border=1 cellspacing=0 cellpadding=5>
+	<caption><h2>Issues</h2></caption>
+	<tr>
+		<th>Id</th>
+		<th>Name</th>
+		<th>Description</th>
+		<th>Status</th>
+		<th>Subissues</th>
+		<th>Sprint</th>
+		<th colspan=2>Actions</th>
+	</tr>
+	<tr>
+		<td>dfd</td>
+		<td>dd</td>
+		<td>dfd</td>
+		<td>dd</td>
+		<td>dfd</td>
+		<td>dd</td>
+		<td>sfsdf</td>
+		<td>sfsdf</td>
+	</tr>
+</table>
+<form name="form1">
+    <p>Name:<input name="name" type="text" /></p>
+    <p>Description:<textarea name="description" rows=4 cols=90></textarea></p>
+
+</form>

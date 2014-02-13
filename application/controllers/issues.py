@@ -29,14 +29,28 @@ class Issues(Controller):
     def add_issue(self, param=None):
         if not self.logged():
             return error("You not logged")
+        """
         new_issue = {"name": param.get("name", ""),
                      "description": param.get("description", ""),
                      "subissues": param.get("subissues", []),
                      "status": param.get("status", ""),
                      "comments": param.get("comments", []),
                      "sprint": param.get("sprint", "")
-        }
-        self._data.create_issue(166, new_issue)
+        }"""
+        new_issue = dict(
+                name = param.get("name") if param.get("name") else "",
+                description = param.get("description") if param.get("description") else "",
+                subissues = param.get("subissues") if param.get("subissues") else list(),
+                status = param.get("status") if param.get("status") else "",
+                comments = param.get("comments") if param.get("comments") else list(),
+                sprint = param.get("sprint") if param.get("sprint") else None
+
+
+            )
+        
+        _issue_id = self._data.create_issue(166, new_issue)
+        return self.get_specific_issue(_issue_id)
+
 
     def update_specific_issue(self, param=None, issue_id=None):
         if not self.logged():
@@ -55,7 +69,18 @@ class Issues(Controller):
         if param.get("sprint"):
             new_issue["issues.$.sprint"] = param.get("sprint")
         self._data.update_issue(backlog_id=166, issue_id=issue_id, new_issue=new_issue)
-        #return write(new_issue)
+        return self.get_specific_issue(issue_id)
+
+    def delete_specific_issue(self, issue_id=None):
+        if not self.logged():
+            return error("You not logged")
+        new_issue = {}
+        new_issue["issues.$.status"] = "removed"
+        self._data.update_issue(backlog_id=166, issue_id=issue_id, new_issue=new_issue)
+        return self.get_specific_issue(issue_id)
+
+
+
 
 
     def fetch(self, **kwargs):
@@ -69,8 +94,10 @@ class Issues(Controller):
         	return self.get_specific_issue(cid)
         if cid is None and method == "POST":
         	return self.add_issue(param)
-        if cid and method == "POST":
+        if cid and method == "PUT":
             return self.update_specific_issue(param, cid)
+        if cid and method == "DELETE":
+            return self.delete_specific_issue(cid)
 
 
         return error("Invalid request")

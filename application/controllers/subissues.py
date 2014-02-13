@@ -1,4 +1,4 @@
-from flask import session
+'''from flask import session
 from flask import request
 
 from helper import error
@@ -19,3 +19,4 @@ class Subissues(Controller):
         param = kwargs.get("param")
 
         return error("Invalid request")
+'''
