@@ -1,54 +1,76 @@
 <style>
 #table {
 	margin: auto;
+
+}
+
+#add_issue {
+	float: left;
+	margin-top: 40px;
+	background-color: #FAFFFA;
+}
+
+legend {
+	border: 1px solid darkgrey;
 }
 </style>
 
-<!--script language="JavaScript" type="text/javascript">
-function addRowDom(tableID,rowCnt,cellCnt,szText){
-    var hObj=document.getElementById(tableID);
-    if(!hObj || hObj.nodeType!=1 || hObj.nodeName.toLowerCase()!="table") return;
-    for(var i=0;i<hObj.childNodes.length;i++)
-        if(hObj.childNodes[i].nodeType==1 && hObj.childNodes[i].nodeName.toLowerCase()=="tbody"){hObj=hObj.childNodes[i];break;}
-    if(hObj.nodeType!=1 || hObj.nodeName.toLowerCase()!="tbody") return;
-    
-    for(var i=0;i<((rowCnt==null || rowCnt==undefined)?1:rowCnt);i++){
-        var oRow=document.createElement("TR");
-        for(var j=0;j<((cellCnt==null || cellCnt==undefined)?1:cellCnt);j++){
-            var oCell=document.createElement("TD");
-            oCell.appendChild(document.createTextNode((szText==null || szText==undefined)?"test":szText));
-            oRow.appendChild(oCell);
-        }
-        hObj.appendChild(oRow);
-    }
-}
-
-</script-->
-
-<table id="table" border=1 cellspacing=0 cellpadding=5>
+<table id="table" border=1 cellspacing=0 cellpadding=5 bgcolor="#FAFFFA">
 	<caption><h2>Issues</h2></caption>
 	<tr>
 		<th>Id</th>
 		<th>Name</th>
 		<th>Description</th>
+		<th>Type</th>
 		<th>Status</th>
-		<th>Subissues</th>
 		<th>Sprint</th>
 		<th colspan=2>Actions</th>
 	</tr>
-	<tr>
-		<td>dfd</td>
-		<td>dd</td>
-		<td>dfd</td>
-		<td>dd</td>
-		<td>dfd</td>
-		<td>dd</td>
-		<td>sfsdf</td>
-		<td>sfsdf</td>
-	</tr>
 </table>
-<form name="form1">
-    <p>Name:<input name="name" type="text" /></p>
-    <p>Description:<textarea name="description" rows=4 cols=90></textarea></p>
-
+<form id="add_issue" name="form1">
+  <fieldset> 
+   <legend>Add new issue</legend>
+    <table border=0 cellpadding="5" cellspacing="5">
+	    <tr>
+	      <td align="right" valign="top">Name:</td>
+	      <td><input type="text" name="name" size="25" /></td>
+	    </tr>
+	    <tr>
+	      <td align="right" valign="top">Description:</td>
+	      <td>
+		    <textarea name="description" rows="3" cols="24" wrap="virtual">
+		    </textarea>
+	      </td>
+	    </tr>
+	    <tr>
+	      <td align="right" valign="top">Type:</td>
+	      <td>
+	        <select name="type" size="1">
+	          <option value="story">story</option>
+	          <option value="technical task">technical task</option>
+	          <option value="bug">bug</option>
+	        </select>
+	      </td>
+	    </tr>
+	    <tr>
+	      <td align="right" valign="top">Status:</td>
+	      <td>
+	        <select name="status" size="1">
+	          <option value="to do">to do</option>
+	          <option value="doing">doing</option>
+	          <option value="done">done</option>
+	        </select>
+	      </td>
+	    </tr>
+	    <tr>
+	      <td align="right" valign="top">Sprint:</td>
+	      <td><input type="text" name="sprint" size="25" /></td>
+	    </tr>
+	    <tr>
+	      <td colspan="2" align="right">
+	      	<input id="add" type="submit" name="add" value="Add issue">
+	      </td>
+	    </tr>
+    </table>
+  </fieldset>
 </form>
