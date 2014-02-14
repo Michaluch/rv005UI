@@ -30,7 +30,7 @@ define(["text!pages/ScrumBoard/templates/Table.html",
             },
 
             renderRow: function(model, collection) {
-            	var rowView = new RowView({model: model});
+            	var rowView = new RowView({model: model});                
             	rowView.render();
             },
              

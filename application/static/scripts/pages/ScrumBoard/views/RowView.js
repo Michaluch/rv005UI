@@ -10,9 +10,13 @@ define(["text!pages/ScrumBoard/templates/Row.html",
             initialize: function(options){
             },
                            
-            render: function () {
+            render: function () {                
+                var status = this.model.attributes.status;
+                if (status != "removed"){
                 this.$el.append(this.template(this.model.attributes));
+                console.log(this.model.attributes.status);
                 return this;
+                }
             }
         });
     }
