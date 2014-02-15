@@ -7,6 +7,7 @@ class IssuesModel(Model):
     _fields = {"_id": 1,
                "name": "",
                "description": "",
+               "kind": "",
                "status": "",
                "comments": [],
                "subissues": [],
@@ -40,13 +41,14 @@ class IssuesModel(Model):
         parametre issue is a dictionary
         """
         push_dict = {"_id": self._counter.issue(),
-                                                      "name": issue.get("name"),
-                                                      "description": issue.get("description"),
-                                                      "status": issue.get("status"),
-                                                      "subissues": issue.get("subissues", []),
-                                                      "comments": issue.get("comments", []),
-                                                      "sprint": issue.get("sprint")
-                                                      }
+                     "name": issue.get("name"),
+                     "description": issue.get("description"),
+                     "kind": issue.get("kind"),
+                     "status": issue.get("status"),
+                     "subissues": issue.get("subissues", []),
+                     "comments": issue.get("comments", []),
+                     "sprint": issue.get("sprint")
+                     }
         self._db.push({"_id": backlog_id}, "issues", push_dict)
         return push_dict["_id"]
 

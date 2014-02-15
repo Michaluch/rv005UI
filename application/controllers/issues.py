@@ -29,17 +29,10 @@ class Issues(Controller):
     def add_issue(self, param=None):
         if not self.logged():
             return error("You not logged")
-        """
-        new_issue = {"name": param.get("name", ""),
-                     "description": param.get("description", ""),
-                     "subissues": param.get("subissues", []),
-                     "status": param.get("status", ""),
-                     "comments": param.get("comments", []),
-                     "sprint": param.get("sprint", "")
-        }"""
         new_issue = dict(
                 name = param.get("name") if param.get("name") else "",
                 description = param.get("description") if param.get("description") else "",
+                kind = param.get("kind") if param.get("kind") else "",
                 subissues = param.get("subissues") if param.get("subissues") else list(),
                 status = param.get("status") if param.get("status") else "",
                 comments = param.get("comments") if param.get("comments") else list(),
@@ -60,6 +53,8 @@ class Issues(Controller):
             new_issue["issues.$.name"] = param.get("name")
         if param.get("description"):
             new_issue["issues.$.description"] = param.get("description")
+        if param.get("kind"):
+            new_issue["issues.$.kind"] = param.get("kind")
         if param.get("subissues"):
             new_issue["issues.$.subissues"] = param.get("subissues")
         if param.get("status"):
@@ -80,9 +75,6 @@ class Issues(Controller):
         return self.get_specific_issue(issue_id)
 
 
-
-
-
     def fetch(self, **kwargs):
         cid = kwargs.get("cid")
         param = kwargs.get("param")
@@ -101,13 +93,3 @@ class Issues(Controller):
 
 
         return error("Invalid request")
-
-
-
-
-    
-    
-
-
-
-        
