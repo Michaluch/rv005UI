@@ -10,12 +10,18 @@ from helper import error, write
 from controllers.users import Users
 from controllers.backlogs import Backlogs
 from controllers.issues import Issues
-#from controllers.subissues import Subissues
+from controllers.subissues import Subissues
 from controllers.comments import Comments
 from models.issues import IssuesModel
 
 app = Flask("Bugtrack")
 app.secret_key = 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RT'
+
+
+@app.route("/")
+@app.route("/<path:path>")
+def index(path=None):
+    return render_template("index1.html")
 
 
 @app.errorhandler(404)
@@ -38,23 +44,11 @@ def backlog(action=None, param=None):
     return Backlogs().fetch(action=action, param=None)
 
 
-
-@app.route("/api/task/")
-@app.route("/api/task/<string:action>/", methods=["GET", "POST"])
-def task(action=None, param=None):
-    return Tasks().fetch(action=action, param=None)
-
-
 @app.route("/api/comment/")
 @app.route("/api/comment/<string:action>/", methods=["GET", "POST"])
 def comment(action=None, param=None):
     return Comments().fetch(action=action, param=None)
 
-
-@app.route("/")
-@app.route("/<path:path>")
-def index(path=None):
-    return render_template("form.html")
 
 @app.route("/api/issues/")
 @app.route("/api/issues/", methods=["POST"])
@@ -63,6 +57,15 @@ def issue(cid=None, param=None):
     if request.method != "GET":
         param = request.json
     data_return = Issues().fetch(cid=cid, param=param, method=request.method)
+    return Response(data_return)
+
+@app.route("/api/subissues/<int:cid>/")
+@app.route("/api/subissues/<int:cid>/", method=["POST"])
+@app.route("/api/subissues/<int:cid>/<int:subcid>/")
+def subissue(cid=None, subcid=None, param=None):
+    if request.method != "GET":
+        param = request.json
+    data_return = Subissues().fetch(cid=cid, subcid=subcid, param=param, method=request.method)
     return Response(data_return)
 
 
