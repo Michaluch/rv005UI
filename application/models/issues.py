@@ -4,14 +4,15 @@ from models.backlogs import BacklogsModel
 
 
 class IssuesModel(Model):
-    _fields = {"_id": 1,
+    _fields = {"_id": None,
                "name": "",
                "description": "",
                "kind": "",
                "status": "",
                "comments": [],
                "subissues": [],
-               "sprint": 1
+               "sprint": None,
+               "estimate": None
                }
     backlog = BacklogsModel()
 
@@ -47,7 +48,8 @@ class IssuesModel(Model):
                      "status": issue.get("status"),
                      "subissues": issue.get("subissues", []),
                      "comments": issue.get("comments", []),
-                     "sprint": issue.get("sprint")
+                     "sprint": issue.get("sprint"),
+                     "estimate": issue.get("estimate")
                      }
         self._db.push({"_id": backlog_id}, "issues", push_dict)
         return push_dict["_id"]

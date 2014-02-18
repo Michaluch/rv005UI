@@ -60,13 +60,14 @@ def issue(cid=None, param=None):
     return Response(data_return)
 
 @app.route("/api/subissues/<int:cid>/")
-@app.route("/api/subissues/<int:cid>/", method=["POST"])
-@app.route("/api/subissues/<int:cid>/<int:subcid>/")
+@app.route("/api/subissues/<int:cid>/", methods=["POST"])
+@app.route("/api/subissues/<int:cid>/<int:subcid>/", methods=["GET", "POST", "PUT", "DELETE"])
 def subissue(cid=None, subcid=None, param=None):
     if request.method != "GET":
-        param = request.json
+        param = request.form
     data_return = Subissues().fetch(cid=cid, subcid=subcid, param=param, method=request.method)
-    return Response(data_return)
+    return render_template("test.html", cid=cid)
+    #return Response(data_return)
 
 
 if __name__ == "__main__":

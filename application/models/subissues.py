@@ -1,12 +1,13 @@
 from models.model import Model
 from models.backlogs import BacklogsModel
+from pprint import pprint
 
 
 class SubissuesModel(Model):
     _fields = {"_id": 1,
                "name": "",
                "description": "",
-               "assign to": "",
+               "assign_to": "",
                "kind": "",
                "status": "",
                "comments": [],
@@ -36,17 +37,19 @@ class SubissuesModel(Model):
         """
         parametre subissue is a dictionary
         """
+        push_dict = {"_id": self._counter.subissue(),
+                     "name": subissue.get("name"),
+                     "description": subissue.get("description"),
+                     "assign_to": subissue.get("assign_to"),
+                     "kind": subissue.get("kind",),
+                     "status": subissue.get("status"),
+                     "comments": subissue.get("comments", []),
+                     "estimate": subissue.get("estimate")
+                    }
         self._db.push({"_id": backlog_id, "issues._id": issue_id},
-                       "issues.$.subissues",
-                           {"_id": self._counter.subissue(),
-                            "name": subissue.get("name"),
-                            "description": subissue.get("description"),
-                            "assign to": subissue.get("assign to"),
-                            "status": issue.get("status"),
-                            "subissues": issue.get("subissues", []),
-                            "comments": issue.get("comments", []),
-                            "sprint": issue.get("sprint")
-                            })
+                       "issues.$.subissues", push_dict)
+        return push_dict["_id"]
+
 
     def update_issue(self, backlog_id, issue_id, new_issue):
         where = {"_id": backlog_id, "issues._id": issue_id}
@@ -54,7 +57,8 @@ class SubissuesModel(Model):
 
 
 if __name__ == "__main__":
-    newissue = IssuesModel()
-    newissue.create_issue(166, {"name": "IssueName", "description": "any other description", "status": "doing"})
-    pprint(newissue.get_all_issues(166))
+    newsubissue = SubissuesModel()
+    newsubissue.create_subissue(166, 6, {"name": "SubIssue", "description": "description of subissue",
+                                         "status": "doing", "kind": "subbug"})
+    pprint(newsubissue.get_all_subissues(166, 6))
     #pprint(newissue.get_issue_by_id(166, 1))

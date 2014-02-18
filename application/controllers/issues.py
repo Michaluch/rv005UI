@@ -36,10 +36,9 @@ class Issues(Controller):
                 subissues = param.get("subissues") if param.get("subissues") else list(),
                 status = param.get("status") if param.get("status") else "",
                 comments = param.get("comments") if param.get("comments") else list(),
-                sprint = param.get("sprint") if param.get("sprint") else None
-
-
-            )
+                sprint = param.get("sprint") if param.get("sprint") else None,
+                estimate = param.get("estimate") if param.get("estimate") else None
+                )
         
         _issue_id = self._data.create_issue(166, new_issue)
         return self.get_specific_issue(_issue_id)
@@ -63,6 +62,8 @@ class Issues(Controller):
             new_issue["issues.$.comments"] = param.get("comments")
         if param.get("sprint"):
             new_issue["issues.$.sprint"] = param.get("sprint")
+        if param.get("estimate"):
+            new_issue["issues.$.estimate"] = param.get("estimate")
         self._data.update_issue(backlog_id=166, issue_id=issue_id, new_issue=new_issue)
         return self.get_specific_issue(issue_id)
 
