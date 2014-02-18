@@ -55,6 +55,7 @@ class IssuesModel(Model):
         return push_dict["_id"]
 
     def update_issue(self, backlog_id, issue_id, new_issue):
+        pprint(new_issue)
         where = {"_id": backlog_id, "issues._id": issue_id}
         self._db.set(where, new_issue)
 

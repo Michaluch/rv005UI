@@ -51,7 +51,8 @@ class SubissuesModel(Model):
         return push_dict["_id"]
 
 
-    def update_issue(self, backlog_id, issue_id, new_issue):
+    def update_subissue(self, backlog_id, issue_id, subissue_is, new_subissue):
+        
         where = {"_id": backlog_id, "issues._id": issue_id}
         self._db.set(where, new_issue)
 

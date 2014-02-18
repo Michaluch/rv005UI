@@ -1,10 +1,13 @@
 from flask import session
 from flask import request
+from pprint import pprint
 
 from helper import error
 from helper import write
+import json
 
 from controllers.controller import Controller
+from controllers.issues import Issues
 from models.subissues import SubissuesModel
 
 
@@ -45,6 +48,46 @@ class Subissues(Controller):
         return self.get_specific_subissue(issue_id, _subissue_id)
 
 
+    def update_specific_subissue(self, param=None, issue_id=None, subissue_id=None):
+        if not self.logged():
+            return error("You not logged")
+        issue_controller = Issues()
+        new_subissue = {}
+        if param.get("name"):
+            new_subissue["name"] = param.get("name")
+        if param.get("description"):
+            new_subissue["description"] = param.get("description")
+        if param.get("assign_to"):
+            new_subissue["assign_to"] = param.get("assign_to")
+        if param.get("kind"):
+            new_subissue["kind"] = param.get("kind")
+        if param.get("status"):
+            new_subissue["status"] = param.get("status")
+        if param.get("comments"):
+            new_subissue["comments"] = param.get("comments")
+        if param.get("estimate"):
+            new_subissue["estimate"] = param.get("estimate")
+        new_subissue["_id"] = subissue_id
+
+        new_issue = {}
+
+        new_issue["issues.$.subissues"] = new_subissue
+        document = json.loads(issue_controller.get_specific_issue(issue_id))
+        #del(document["_id"])
+       
+        list_of_subissues = list()
+        list_of_subissues = document["subissues"] if len(document["subissues"])>0 else list_of_subissues.append(document["subissues"])
+        key = 0
+        for item in list_of_subissues:
+            
+            if item["_id"] == subissue_id:
+                list_of_subissues[key] = new_subissue
+            key += 1
+        document["subissues"] = list_of_subissues
+        issue_controller.update_specific_issue(issue_id=issue_id, param=document)
+
+
+
     def fetch(self, **kwargs):
         cid = kwargs.get("cid")
         subcid = kwargs.get("subcid")
@@ -57,9 +100,9 @@ class Subissues(Controller):
         	return self.get_specific_subissue(cid, subcid)
         if cid and subcid is None and method == "POST":
         	return self.add_subissue(cid, param)
-        '''if cid and method == "PUT":
-            return self.update_specific_issue(param, cid)
-        if cid and method == "DELETE":
+        if cid and subcid and method == "POST":
+            return self.update_specific_subissue(param, cid, subcid)
+        '''if cid and method == "DELETE":
             return self.delete_specific_issue(cid)
 
 

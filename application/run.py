@@ -66,7 +66,7 @@ def subissue(cid=None, subcid=None, param=None):
     if request.method != "GET":
         param = request.form
     data_return = Subissues().fetch(cid=cid, subcid=subcid, param=param, method=request.method)
-    return render_template("test.html", cid=cid)
+    return render_template("test.html", cid=cid, subcid=subcid)
     #return Response(data_return)
 
 
