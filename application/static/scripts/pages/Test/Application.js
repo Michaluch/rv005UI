@@ -22,12 +22,6 @@ define(["pages/ScrumBoard/models/Issue", "pages/ScrumBoard/collections/Issues"],
     		})
         };
 
-        <div issue>
-            <div subisues>
-                <div subisues>
-                </div>
-            </div>
-        </dib>
 
         _private.createNewIssue = function() {
                 

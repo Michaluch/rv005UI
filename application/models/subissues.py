@@ -1,5 +1,4 @@
 from models.model import Model
-from models.backlogs import BacklogsModel
 from pprint import pprint
 
 
@@ -25,8 +24,14 @@ class SubissuesModel(Model):
 
 
     def get_by_id(self, subissue_id):
-        cursor = self._db.select_one
+        cursor = self._db.select_one({"_id": subissue_id})
+        return cursor[0] if cursor.count() > 0 else None #??
 
+    def get_by_parent(issue_id):
+        cursor = self._db.select({"parent": issue_id})
+        return [item for item in cursor]
+
+        
     def add(self, subissue):
         self._db.insert({"_id": self.counter.subissue(),
                          "name": subissue.get("name", ""),
@@ -37,7 +42,16 @@ class SubissuesModel(Model):
                          "estimate": subissue.get("estimate", None),
                          "parent": subissue.get("parent", None)  #????
                          })
-        
+        #return ?
+
+    def edit(self, subissue_id, new_subissue):
+        self._db.set({"_id": subissue_id}, new_subissue)
+        #return ?
+
+    """def delete(self, subissue_id):
+        self._db.set({"id": subissue_id}, {"status": "removed"})
+    """
+
 
 
 

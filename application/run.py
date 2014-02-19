@@ -59,16 +59,15 @@ def issue(cid=None, param=None):
     data_return = Issues().fetch(cid=cid, param=param, method=request.method)
     return Response(data_return)
 
-@app.route("/api/subissues/<int:cid>/")
-@app.route("/api/subissues/<int:cid>/", methods=["POST"])
-@app.route("/api/subissues/<int:cid>/<int:subcid>/", methods=["GET", "POST", "PUT", "DELETE"])
-def subissue(cid=None, subcid=None, param=None):
+@app.route("/api/subissues/")
+@app.route("/api/subissues/", methods=["POST"])
+@app.route("/api/subissues/<int:cid>/", methods=["GET", "POST", "PUT", "DELETE"])
+def subissue(cid=None, param=None):
     if request.method != "GET":
         param = request.json
-    data_return = Subissues().fetch(cid=cid, subcid=subcid, param=param, method=request.method)
+    data_return = Subissues().fetch(cid=cid, param=param, method=request.method)
     return Response(data_return)
 
 
 if __name__ == "__main__":
-    # shop.run(host="0.0.0.0", port=8080)
     app.run(port=8080, debug=True)
