@@ -6,7 +6,7 @@ from helper import write
 
 from controllers.controller import Controller
 from models.issues import IssuesModel
-from controllers.subissues import Subissues
+#from controllers.subissues import Subissues
 
 
 class Issues(Controller):
