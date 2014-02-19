@@ -1,7 +1,8 @@
 define([], 
 	function() {
 	    return Backbone.Model.extend({
-		    idAttribute : "_id"
+		    idAttribute : "_id",
+		    urlRoot : "/api/subissues/id"
 	    })
 	}
 )

@@ -1,7 +1,7 @@
-define(["pages/ScrumBoard/models/Task"], 
-	function(Task) {
+define(["pages/ScrumBoard/models/Issue"], 
+	function(Issue) {
 	    return Backbone.Collection.extend({
-		    model : Task,
+		    model : Issue,
 		    url : "/api/issues/"
 	    });
     }

@@ -21,7 +21,7 @@ app.secret_key = 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RT'
 @app.route("/")
 @app.route("/<path:path>")
 def index(path=None):
-    return render_template("index1.html")
+    return render_template("form.html")
 
 
 @app.errorhandler(404)
@@ -64,10 +64,9 @@ def issue(cid=None, param=None):
 @app.route("/api/subissues/<int:cid>/<int:subcid>/", methods=["GET", "POST", "PUT", "DELETE"])
 def subissue(cid=None, subcid=None, param=None):
     if request.method != "GET":
-        param = request.form
+        param = request.json
     data_return = Subissues().fetch(cid=cid, subcid=subcid, param=param, method=request.method)
-    return render_template("test.html", cid=cid, subcid=subcid)
-    #return Response(data_return)
+    return Response(data_return)
 
 
 if __name__ == "__main__":

@@ -6,6 +6,7 @@ from helper import write
 
 from controllers.controller import Controller
 from models.issues import IssuesModel
+from controllers.subissues import Subissues
 
 
 class Issues(Controller):
@@ -17,6 +18,7 @@ class Issues(Controller):
     def get_issues(self):
         if not self.logged():
             return error("You not logged")
+        subissue_controller = Subissues()
         data = self._data.get_all_issues(backlog_id=166)
         return write(data)
 

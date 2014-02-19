@@ -9,11 +9,10 @@ class IssuesModel(Model):
                "description": "",
                "kind": "",
                "status": "",
-               "comments": [],
-               "subissues": [],
                "sprint": None,
                "estimate": None
                }
+
     backlog = BacklogsModel()
 
     def __init__(self):
@@ -46,8 +45,6 @@ class IssuesModel(Model):
                      "description": issue.get("description"),
                      "kind": issue.get("kind"),
                      "status": issue.get("status"),
-                     "subissues": issue.get("subissues", []),
-                     "comments": issue.get("comments", []),
                      "sprint": issue.get("sprint"),
                      "estimate": issue.get("estimate")
                      }

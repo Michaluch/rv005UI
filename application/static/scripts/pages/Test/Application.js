@@ -1,67 +1,76 @@
-define(["pages/ScrumBoard/models/Task", "pages/ScrumBoard/collections/Tasks"],         
-    function(Task, Tasks) {
+define(["pages/ScrumBoard/models/Issue", "pages/ScrumBoard/collections/Issues"],         
+    function(Issue, Issues) {
         var _public = {};
         var _private = {};
 
         _private.testGetAll = function () {
-        	_public.tasks = new Tasks();
-        	_public.tasks.fetch({
+        	_public.issues = new Issues();
+        	_public.issues.fetch({
         		success: function() {
-        			alert("Tasks have been fetched");
+        			alert("Issues have been fetched");
         		}
         	});
         };
 
         _private.testGetById = function(id) {
-    		var task = new Task();
-    		task.set("_id", id);
-    		task.fetch({
+    		var issue = new Issue();
+    		issue.set("_id", id);
+    		issue.fetch({
     			success: function() {
-    				alert("Task has been fetched: " + task.get("name"));	
+    				alert("Issue has been fetched: " + issue.get("name"));	
     			}
     		})
         };
 
-        _private.createNewTask = function() {
+        <div issue>
+            <div subisues>
+                <div subisues>
+                </div>
+            </div>
+        </dib>
 
-        	var task = new Task();
-        	task.set("name", "new task");
-        	task.set("description", "new description");
-        	task.set("status", "doing");
-        	task.set("sprint", 5);
-            task.set("kind", "story");
-        	task.save();
+        _private.createNewIssue = function() {
+                
+        	var issue = new Issue();
+        	issue.set("name", "one more new issue");
+        	issue.set("description", "one more new description");
+        	issue.set("status", "doing");
+        	issue.set("sprint", 6);
+            issue.set("kind", "story");
+        	issue.save();
 
         	setTimeout(function() {
-    			alert("Created task id: " + task.id);
+    			alert("Created issue id: " + issue.id);
         	}, 10000)
 
         };
 
-        _private.updateTask = function(id) {
-        	var task = new Task();
-        	task.set("_id", id);
-    		task.fetch({
+        _private.updateIssue = function(id) {
+        	var issue = new Issue();
+        	issue.set("_id", id);
+    		issue.fetch({
     			success: function() {
-					task.set("name", task.get("name") + " updated");
-                    task.set("description", "other description");
-					task.save({
+					issue.set("name", issue.get("name") + " updated");
+                    issue.set("description", "other description");
+                    issue.set("status", "new status");
+                    alert("Issue has been updated");
+					issue.save({
 						success: function() {
-							alert("Task has been updated");
+							alert("Issue has been updated"); //do not get here
 						}
 					});
     			}
     		});
     	};
 
-    	_private.deleteTask = function(id) {
-    		var task = new Task();
-        	task.set("_id", id);
-        	task.destroy();
+    	_private.deleteIssue = function(id) {
+    		var issue = new Issue();
+        	issue.set("_id", id);
+        	issue.destroy();
     	};
 
         _public.start = function() {
-            _private.testGetAll();
+            _private.deleteIssue(49);
         };
 
         return _public;

@@ -17,10 +17,10 @@ class Subissues(Controller):
         self._data = SubissuesModel()
 
 
-    def get_subissues(self, issue_id):
+    def get_all(self):
         if not self.logged():
             return error("You not logged")
-        data = self._data.get_all_subissues(backlog_id=166, issue_id=issue_id)
+        data = self._data.get_all()
         return write(data)
 
 
@@ -85,7 +85,37 @@ class Subissues(Controller):
             key += 1
         document["subissues"] = list_of_subissues
         issue_controller.update_specific_issue(issue_id=issue_id, param=document)
+        return self.get_specific_subissue(issue_id, _subissue_id)
 
+
+
+    def delete_specific_subissue(self, issue_id=None, subissue_id=None):
+        if not self.logged():
+            return error("You not logged")
+
+        issue_controller = Issues()
+
+        new_subissue = {}
+        new_subissue["_id"] = subissue_id
+        new_subissue["status"] = "removed"
+
+        new_issue = {}
+        new_issue["issues.$.subissues"] = new_subissue
+
+        document = json.loads(issue_controller.get_specific_issue(issue_id))
+        #del(document["_id"])
+       
+        list_of_subissues = list()
+        list_of_subissues = document["subissues"] if len(document["subissues"])>0 else list_of_subissues.append(document["subissues"])
+        key = 0
+        for item in list_of_subissues:
+            
+            if item["_id"] == subissue_id:
+                list_of_subissues[key] = new_subissue
+            key += 1
+        document["subissues"] = list_of_subissues
+        issue_controller.update_specific_issue(issue_id=issue_id, param=document)
+        return self.get_specific_subissue(issue_id, _subissue_id)
 
 
     def fetch(self, **kwargs):
@@ -100,11 +130,11 @@ class Subissues(Controller):
         	return self.get_specific_subissue(cid, subcid)
         if cid and subcid is None and method == "POST":
         	return self.add_subissue(cid, param)
-        if cid and subcid and method == "POST":
+        if cid and subcid and method == "PUT":
             return self.update_specific_subissue(param, cid, subcid)
-        '''if cid and method == "DELETE":
-            return self.delete_specific_issue(cid)
+        if cid and subcid and method == "DELETE":
+            return self.delete_specific_subissue(cid, subcid)
 
 
         return error("Invalid request")
-        '''
+        
