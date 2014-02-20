@@ -37,11 +37,11 @@ class Subissues(Controller):
         new_subissue = dict(
                 name = param.get("name") if param.get("name") else "",
                 description = param.get("description") if param.get("description") else "",
-                assign_to = param.get("assign_to") if param.get("assign_to") else "", #??
+                assign_to = param.get("assign_to") if param.get("assign_to") else None, 
                 kind = param.get("kind") if param.get("kind") else "",
                 status = param.get("status") if param.get("status") else "",
-                estimate = param.get("estimate") if param.get("estimate") else None
-                #parent ??
+                estimate = param.get("estimate") if param.get("estimate") else None,
+                parent = param.get("parent") if param.get("parent") else None
                 )
         
         _subissue_id = self._data.add(new_subissue)
@@ -51,7 +51,6 @@ class Subissues(Controller):
     def edit(self, param=None, subissue_id=None): #???
         if not self.logged():
             return error("You not logged")
-        issue_controller = Issues()
         new_subissue = {}
         if param.get("name"):
             new_subissue["name"] = param.get("name")
@@ -65,22 +64,20 @@ class Subissues(Controller):
             new_subissue["status"] = param.get("status")
         if param.get("estimate"):
             new_subissue["estimate"] = param.get("estimate")
-        new_subissue["_id"] = subissue_id
-        _subissue_id = self._data.edit(subissue_id=subissue_id, new_subissue)
-        return self.get_by_id(_subissue_id)
-
-
+        if param.get("parent"):
+            new_subissue["parent"] = param.get("parent")
+        
+        self._data.edit(subissue_id, new_subissue)
+        return self.get_by_id(subissue_id)
 
     def delete(self, subissue_id=None):
         if not self.logged():
             return error("You not logged")
-        _subissue_id = self._data.edit(subissue_id=subissue_id, {"status": "removed"}):
-        return self.get_by_id(_subissue_id)
-
+        self._data.edit(subissue_id, {"status": "removed"})
+        return self.get_by_id(subissue_id)
 
     def fetch(self, **kwargs):
         cid = kwargs.get("cid")
-        subcid = kwargs.get("subcid")
         param = kwargs.get("param")
         method = kwargs.get("method")
 
@@ -89,12 +86,9 @@ class Subissues(Controller):
         if cid and method == "GET":
         	return self.get_by_id(cid)
         if cid is None and method == "POST":
-        	return self.add_subissue(cid, param)
-        if cid and subcid and method == "PUT":
-            return self.update_specific_subissue(param, cid, subcid)
-        if cid and subcid and method == "DELETE":
-            return self.delete_specific_subissue(cid, subcid)
-
-
+        	return self.add(param)
+        if cid and method == "PUT":
+            return self.edit(param, cid)
+        if cid and method == "DELETE":
+            return self.delete(cid)
         return error("Invalid request")
-        

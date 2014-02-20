@@ -33,16 +33,16 @@ class SubissuesModel(Model):
 
         
     def add(self, subissue):
-        self._db.insert({"_id": self.counter.subissue(),
+        return self._db.insert({"_id": self.counter.subissue(),
                          "name": subissue.get("name", ""),
                          "description": subissue.get("description", ""),
-                         "assign_to": subissue.get("assign_to", ""), #????
+                         "assign_to": subissue.get("assign_to", ""),
                          "kind": subissue.get("kind", ""),
                          "status": subissue.get("status", ""),
                          "estimate": subissue.get("estimate", None),
-                         "parent": subissue.get("parent", None)  #????
+                         "parent": subissue.get("parent", None)
                          })
-        #return ?
+        
 
     def edit(self, subissue_id, new_subissue):
         self._db.set({"_id": subissue_id}, new_subissue)
