@@ -40,7 +40,8 @@ define(["text!pages/ScrumBoard/templates/SubissueView.html"],
                    var data = this.$(".select-input").map(function(){
                        return $(this).serialize();
                    }).get().join("&");
-                   $.post("/api/task/", data);
+                   
+                   //$.post("/api/subissues/", data);
                },
 
                drop: function(event) {

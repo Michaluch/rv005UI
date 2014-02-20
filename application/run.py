@@ -14,14 +14,14 @@ from controllers.subissues import Subissues
 from controllers.comments import Comments
 from models.issues import IssuesModel
 
-app = Flask("Bugtrack")
+app = Flask("Issuetrack")
 app.secret_key = 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RT'
 
 
 @app.route("/")
 @app.route("/<path:path>")
 def index(path=None):
-    return render_template("form.html")
+    return render_template("index1.html")
 
 
 @app.errorhandler(404)

@@ -1,12 +1,12 @@
 define(["text!pages/ScrumBoard/templates/TaskBoardView.html",
-        "pages/ScrumBoard/collections/Tasks",
-        "pages/ScrumBoard/models/Task",
+        "pages/ScrumBoard/collections/Issues",
+        "pages/ScrumBoard/models/Issue",
         "pages/ScrumBoard/views/IssueView",
         "pages/ScrumBoard/collections/Subissues",
         "pages/ScrumBoard/models/Subissue",
         "pages/ScrumBoard/views/SubissueView"],
 
-	function(taskBoardTemplate, Tasks, Task, IssueView, Subissues, Subissue, SubissueView){
+	function(taskBoardTemplate, Issues, Issue, IssueView, Subissues, Subissue, SubissueView){
 
         return some = Backbone.View.extend({ 
             name: "TaskBoardView",
@@ -14,7 +14,7 @@ define(["text!pages/ScrumBoard/templates/TaskBoardView.html",
             template: _.template(taskBoardTemplate), 
 
             initialize: function(options){
-                this.tasks = new Tasks();
+                this.issues = new Issues();
                 this.subissues = new Subissues();
             },
 
@@ -23,9 +23,9 @@ define(["text!pages/ScrumBoard/templates/TaskBoardView.html",
 
                 this.$el.html('');
 
-                that.tasks.fetch({
+                that.issues.fetch({
                     success: function (data, response, options) {
-                        that.renderTasks();
+                        that.renderIssues();
                         that.subissues.fetch({
                             success: function(collection, response, options) {
                                 that.renderSubissues();
@@ -36,13 +36,13 @@ define(["text!pages/ScrumBoard/templates/TaskBoardView.html",
                 return this;
 			},
 
-			renderTasks: function() {
+			renderIssues: function() {
 			    var that = this;
-			    that.tasks.each(function(task) {
-			        var issue = new IssueView({
-			            model: task
+			    that.issues.each(function(issue) {
+			        var issueView = new IssueView({
+			            model: issue
 		            });
-                    that.$el.append(issue.render().el);
+                    that.$el.append(issueView.render().el);
 			    });
 
 			},

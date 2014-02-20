@@ -8,7 +8,7 @@ define(["text!pages/ScrumBoard/templates/IssueView.html"],
             },
                            
             render: function () {
-                this.$el.html(this.template({name: this.model.get('name')}));
+                this.$el.html(this.template({name: this.model.get("description")}));
                 return this;
             }
         });
