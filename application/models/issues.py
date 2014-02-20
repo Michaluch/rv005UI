@@ -24,8 +24,8 @@ class IssuesModel(Model):
         find backlog by id with all it's fields and return only field "issues"
         field "issues" is a list of dictionaries
         """
-        document = self._db.select_one({"_id":backlog_id}, self.backlog._fields) #{"issues": true} or {"issues": 1}
-        return document[0]["issues"]  #return document[0]
+        document = self._db.select_one({"_id":backlog_id}, self.backlog._fields)  #{"issues": true} or {"issues": 1}
+        return document[0]["issues"]                                              #return document[0]
 
     def get_issue_by_id(self, backlog_id, issue_id):
         """
@@ -58,7 +58,4 @@ class IssuesModel(Model):
 
 
 if __name__ == "__main__":
-    newissue = IssuesModel()
-    newissue.create_issue(166, {"name": "IssueName", "description": "any other description", "status": "doing"})
-    pprint(newissue.get_all_issues(166))
-    #pprint(newissue.get_issue_by_id(166, 1))
+    pass

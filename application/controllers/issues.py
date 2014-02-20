@@ -18,14 +18,13 @@ class Issues(Controller):
     def get_issues(self):
         if not self.logged():
             return error("You not logged")
-        subissue_controller = Subissues()
-        data = self._data.get_all_issues(backlog_id=166)
+        data = self._data.get_all_issues(backlog_id=1)
         return write(data)
 
     def get_specific_issue(self, issue_id):
         if not self.logged():
             return error("You not logged")
-        data = self._data.get_issue_by_id(backlog_id=166, issue_id=issue_id)
+        data = self._data.get_issue_by_id(backlog_id=1, issue_id=issue_id)
         return write(data)
 
     def add_issue(self, param=None):
@@ -42,7 +41,7 @@ class Issues(Controller):
                 estimate = param.get("estimate") if param.get("estimate") else None
                 )
         
-        _issue_id = self._data.create_issue(166, new_issue)
+        _issue_id = self._data.create_issue(1, new_issue)
         return self.get_specific_issue(_issue_id)
 
 
@@ -60,13 +59,11 @@ class Issues(Controller):
             new_issue["issues.$.subissues"] = param.get("subissues")
         if param.get("status"):
             new_issue["issues.$.status"] = param.get("status")
-        if param.get("comments"):
-            new_issue["issues.$.comments"] = param.get("comments")
         if param.get("sprint"):
             new_issue["issues.$.sprint"] = param.get("sprint")
         if param.get("estimate"):
             new_issue["issues.$.estimate"] = param.get("estimate")
-        self._data.update_issue(backlog_id=166, issue_id=issue_id, new_issue=new_issue)
+        self._data.update_issue(backlog_id=1, issue_id=issue_id, new_issue=new_issue)
         return self.get_specific_issue(issue_id)
 
     def delete_specific_issue(self, issue_id=None):
@@ -74,7 +71,7 @@ class Issues(Controller):
             return error("You not logged")
         new_issue = {}
         new_issue["issues.$.status"] = "removed"
-        self._data.update_issue(backlog_id=166, issue_id=issue_id, new_issue=new_issue)
+        self._data.update_issue(backlog_id=1, issue_id=issue_id, new_issue=new_issue)
         return self.get_specific_issue(issue_id)
 
 

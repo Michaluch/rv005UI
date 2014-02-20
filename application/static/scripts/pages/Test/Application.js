@@ -27,10 +27,11 @@ define(["pages/ScrumBoard/models/Issue", "pages/ScrumBoard/collections/Issues",
         _private.createNewIssue = function() {
                 
         	var issue = new Issue();
-        	issue.set("name", "one more new issue");
-        	issue.set("description", "one more new description");
-        	issue.set("status", "doing");
+        	issue.set("name", "issue #1");
+        	issue.set("description", "description for issue # 1");
+        	issue.set("status", "to do");
         	issue.set("sprint", 6);
+            issue.set("estimate", 5);
             issue.set("kind", "story");
         	issue.save();
 
@@ -47,7 +48,8 @@ define(["pages/ScrumBoard/models/Issue", "pages/ScrumBoard/collections/Issues",
     			success: function() {
 					issue.set("name", issue.get("name") + " updated");
                     issue.set("description", "other description");
-                    issue.set("status", "new status");
+                    issue.set("status", "done");
+                    issue.set("estimate", 27);
 					issue.save({
 						success: function() {
 							alert("Issue has been updated"); //do not get here
@@ -121,7 +123,7 @@ define(["pages/ScrumBoard/models/Issue", "pages/ScrumBoard/collections/Issues",
 
 
         _public.start = function() {
-            _private.deleteSub(13);
+            _private.deleteIssue(55);
         };
 
         return _public;
