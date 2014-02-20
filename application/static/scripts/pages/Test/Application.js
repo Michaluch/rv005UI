@@ -1,5 +1,6 @@
-define(["pages/ScrumBoard/models/Issue", "pages/ScrumBoard/collections/Issues"],         
-    function(Issue, Issues) {
+define(["pages/ScrumBoard/models/Issue", "pages/ScrumBoard/collections/Issues",
+        "pages/ScrumBoard/models/Subissue", "pages/ScrumBoard/collections/Subissues"],         
+    function(Issue, Issues, Subissue, Subissues) {
         var _public = {};
         var _private = {};
 
@@ -47,7 +48,6 @@ define(["pages/ScrumBoard/models/Issue", "pages/ScrumBoard/collections/Issues"],
 					issue.set("name", issue.get("name") + " updated");
                     issue.set("description", "other description");
                     issue.set("status", "new status");
-                    alert("Issue has been updated");
 					issue.save({
 						success: function() {
 							alert("Issue has been updated"); //do not get here
@@ -63,8 +63,65 @@ define(["pages/ScrumBoard/models/Issue", "pages/ScrumBoard/collections/Issues"],
         	issue.destroy();
     	};
 
+
+        _private.getAllSub = function () {
+            _public.subissues = new Subissues();
+            _public.subissues.fetch({
+                success: function() {
+                    alert("Subissues have been fetched");
+                }
+            })
+        };
+
+        _private.getSubById = function (id) {
+            var subissue = new Subissue();
+            subissue.set("_id", id);
+            subissue.fetch({
+                success: function() {
+                    alert("Subissue with id " + id + " has been fetched: " + subissue.get("name"));
+                }
+            })
+        }
+
+        _private.createNewSub = function() {
+            var subissue = new Subissue();
+            subissue.set("name", "subissue #2");
+            subissue.set("description", "this description");
+            subissue.set("assign_to", 2);
+            subissue.set("kind", "subbug"),
+            subissue.set("status", "to do");
+            subissue.set("estimate", 6);
+            subissue.set("parent", 3);
+            subissue.save();
+
+            setTimeout(function(){
+                alert("Subissue with id " + subissue.get("_id") + " has been created");
+            }, 7000);
+        }
+
+        _private.updateSub = function(id) {
+            var subissue = new Subissue();
+            subissue.set("_id", id);
+            subissue.fetch({
+                success: function(){
+                    subissue.set("name", subissue.get("name") + " updated");
+                    subissue.set("description", "new description");
+                    subissue.save();
+                }
+            });
+
+        }
+
+        _private.deleteSub = function(id) {
+            var subissue = new Subissue();
+            subissue.set("_id", id);
+            subissue.destroy();
+        }
+
+
+
         _public.start = function() {
-            _private.deleteIssue(49);
+            _private.deleteSub(13);
         };
 
         return _public;

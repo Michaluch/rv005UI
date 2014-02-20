@@ -16,7 +16,7 @@ class SubissuesModel(Model):
 
     def __init__(self):
         super(SubissuesModel, self).__init__()
-        self._db.collection("subissues")
+        self._db.collection("subissue")
     
     def get_all(self):
         cursor = self._db.select()
@@ -33,7 +33,7 @@ class SubissuesModel(Model):
 
         
     def add(self, subissue):
-        return self._db.insert({"_id": self.counter.subissue(),
+        return self._db.insert({"_id": self._counter.subissue(),
                          "name": subissue.get("name", ""),
                          "description": subissue.get("description", ""),
                          "assign_to": subissue.get("assign_to", ""),

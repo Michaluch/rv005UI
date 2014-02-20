@@ -61,7 +61,7 @@ def issue(cid=None, param=None):
 
 @app.route("/api/subissues/")
 @app.route("/api/subissues/", methods=["POST"])
-@app.route("/api/subissues/<int:cid>/", methods=["GET", "POST", "PUT", "DELETE"])
+@app.route("/api/subissues/<int:cid>", methods=["GET", "POST", "PUT", "DELETE"])
 def subissue(cid=None, param=None):
     if request.method != "GET":
         param = request.json
