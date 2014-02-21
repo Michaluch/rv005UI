@@ -14,6 +14,7 @@ define(["text!pages/ScrumBoard/templates/TaskBoardView.html",
             initialize: function(options){
                 this.issues = new Issues();
                 this.subissues = new Subissues();
+                
             },
 
             render: function() {
@@ -23,41 +24,38 @@ define(["text!pages/ScrumBoard/templates/TaskBoardView.html",
 
                 that.issues.fetch({
                     success: function (collection, response, options) {
-                        collection.each(function(model) {)
-                        that.subissues.where({parent: model.id})
-                        }
-
-                        });
-                        that.renderIssues();
                         that.subissues.fetch({
-                            success: function(collection, response, options) {
-                                that.renderSubissues();
+                            success: function(data, response, options) {
+                                collection.each(function(model) {
+                                    that.filteredSub = new Subissues( that.subissues.where({parent: model.id}) );
+                                });
                             }
                         });
-                    }
+                        that.renderAll();
+                    }    
                 });
+                        
                 return this;
 			},
 
-			renderIssues: function() {
+			renderAll: function() {
 			    var that = this;
 			    that.issues.each(function(issue) {
 			        var issueView = new IssueView({
 			            model: issue
 		            });
                     that.$el.append(issueView.render().el);
+                    that.filteredSub.each(function(subissue){
+                        var subissueView = new SubissueView({
+                            model: subissue
+                        });
+                        that.$el.append(subissueView.render().el);
+                    })
 			    });
 
-			},
+			}
 
-            renderSubissues: function() {
-                this.subissues.each(function(subissue) {
-                    var subissueView = new SubissueView({
-                        model: subissue
-                    });
-                    this.$el.append(subissueView.render().el);
-                }, this);
-            }
+            
         });
 
     }
