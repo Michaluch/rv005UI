@@ -8,10 +8,8 @@ define(["text!pages/ScrumBoard/templates/TaskBoardView.html",
 
 	function(taskBoardTemplate, Issues, Issue, IssueView, Subissues, Subissue, SubissueView){
 
-        return some = Backbone.View.extend({ 
+        return Backbone.View.extend({ 
             name: "TaskBoardView",
-
-            template: _.template(taskBoardTemplate), 
 
             initialize: function(options){
                 this.issues = new Issues();
@@ -21,10 +19,15 @@ define(["text!pages/ScrumBoard/templates/TaskBoardView.html",
             render: function() {
                 var that = this;
 
-                this.$el.html('');
+                this.$el.html("");
 
                 that.issues.fetch({
-                    success: function (data, response, options) {
+                    success: function (collection, response, options) {
+                        collection.each(function(model) {)
+                        that.subissues.where({parent: model.id})
+                        }
+
+                        });
                         that.renderIssues();
                         that.subissues.fetch({
                             success: function(collection, response, options) {
