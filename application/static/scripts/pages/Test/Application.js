@@ -87,13 +87,13 @@ define(["pages/ScrumBoard/models/Issue", "pages/ScrumBoard/collections/Issues",
 
         _private.createNewSub = function() {
             var subissue = new Subissue();
-            subissue.set("name", "subissue #2");
-            subissue.set("description", "this description");
+            subissue.set("name", "subissue #3");
+            subissue.set("description", "this third description");
             subissue.set("assign_to", 2);
-            subissue.set("kind", "subbug"),
-            subissue.set("status", "to do");
+            subissue.set("kind", "subtask"),
+            subissue.set("status", "doing");
             subissue.set("estimate", 6);
-            subissue.set("parent", 3);
+            subissue.set("parent", 55);
             subissue.save();
 
             setTimeout(function(){
@@ -123,7 +123,7 @@ define(["pages/ScrumBoard/models/Issue", "pages/ScrumBoard/collections/Issues",
 
 
         _public.start = function() {
-            _private.deleteIssue(55);
+            _private.createNewSub();
         };
 
         return _public;

@@ -1,11 +1,17 @@
-<% for (var i=0; i<count; i++) { %>
-<div class="issue">
-    <%= issueText[i] %>
-</div>
-<%
-for (var j=0;j<subcount; j++) { %>
-<div class="subissue">
-    <%=subIssueText[j]%>
-</div>   
-<% }
-} %>
+ <div class="todo">
+        <h3 class="column-title">To do</h3>
+        <hr /><br />
+    </div>
+
+    <div class="doing">
+        <h3 class="column-title">Doing</h3>
+        <hr /><br />
+    </div>
+
+    <div class="done">
+        <h3 class="column-title">Done</h3>
+        <hr /><br />
+    </div>
+
+    <div class="clear">
+    </div>
