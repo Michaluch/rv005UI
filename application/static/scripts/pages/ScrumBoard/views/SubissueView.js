@@ -15,7 +15,8 @@ define(["text!pages/ScrumBoard/templates/SubissueView.html"],
                },
 
                render: function() {
-                   this.$el.html(this.template({name: this.model.get("name")}));
+                   this.$el.html(this.template({name: this.model.get("name"),
+                                                parent: this.model.get("parent")}));
                    return this;
                },
 
@@ -37,11 +38,6 @@ define(["text!pages/ScrumBoard/templates/SubissueView.html"],
                       $(this).text(defaultTitle);
                     }
                    });
-                   var data = this.$(".select-input").map(function(){
-                       return $(this).serialize();
-                   }).get().join("&");
-                   
-                   //$.post("/api/subissues/", data);
                },
 
                drop: function(event) {

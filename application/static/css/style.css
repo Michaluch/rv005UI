@@ -3,7 +3,8 @@
     margin: 0px;
 }
 
-html, body {
+html,
+body {
     font-family: Tahoma, Verdana, Arial, sans-serif;  
 }
 
@@ -150,20 +151,6 @@ html, body {
             margin: 10px;
         }
 
-        .issue {
-            width: 283px;
-            height: 75px;
-            border: 1px solid #B2C0C0;
-            background-color: #f7faf4;
-            border-left-width: 7px;
-            border-left-color: #4aaff7;
-            border-top-left-radius: 5px;
-            border-bottom-left-radius: 5px;
-            margin-left: 3px;
-            margin-bottom: 2px;
-            padding: 7px;
-        }
-
         .doing {
             float: left;
             width: 310px;
@@ -240,6 +227,41 @@ html, body {
     margin-left: 30px;
 }
 
+ /* issue */
+
+.issue {
+            width: 283px;
+            height: 75px;
+            border: 1px solid #B2C0C0;
+            background-color: #f7faf4;
+            border-left-width: 7px;
+            border-left-color: #4aaff7;
+            border-top-left-radius: 5px;
+            border-bottom-left-radius: 5px;
+            margin-left: 3px;
+            margin-bottom: 2px;
+            padding: 7px;
+        }
+
+.issue p {
+    clear: both;
+}
+
+.minus {
+    display: none;
+}
+
+.addSubissue {
+    width: 289px;
+    height: 75px;
+    border: 1px solid green;
+    margin-left: 3px;
+    margin-bottom: 2px;
+    padding: 7px;
+
+}
+ /* /issue */
+
  /* subissue */
 
  .subissue {
@@ -257,7 +279,7 @@ html, body {
 }
 
 .subissue p {
-    margin-top: 17px;
+    clear: both;
 }
 
 .top-left-corner {
@@ -268,7 +290,12 @@ html, body {
 .top-right-corner {
     float: right;
     height: 15px;
+    font-size: 10px;
 
+}
+
+.top-left-corner img {
+    height: 13px;
 }
 
 .top-right-corner img {
@@ -280,6 +307,7 @@ html, body {
 }
 
 .sprint-line {
+    padding: 0 2px;
     border: 1px solid lightgrey;
 }
 
@@ -301,12 +329,15 @@ html, body {
     text-align: right;
 }
 
-.select-type, .select-estimate, .select-member {
+.select-type,
+.select-estimate,
+.select-member {
     float: left;
     margin: 5px;
 }
 
-.select-title, .select-title a {
+.select-title,
+.select-title a {
     display: block;
     border-radius: 5px;
     border: 1px solid #cecece;

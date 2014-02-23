@@ -1,4 +1,4 @@
-<div class="subissue">
+<div class="subissue" data-parent="<%= parent %>">
     <div class="top-left-corner">
     	<span class="estimate">Estimate</span>
     	<span class="sprint-line">3</span>
@@ -8,7 +8,7 @@
         <img class="image-delete" src="/static/images/delete.png" alt="delete" />
         <img class="image-close" src="/static/images/close_window.png" alt="close" />
     </div>
-    <p class="description"><%=name %></p>
+    <p class="description"><%= name %></p>
     <div class="subissue-hidden-edit">
         <form class="edit">
 	        <textarea>

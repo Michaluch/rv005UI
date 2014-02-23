@@ -12,7 +12,9 @@ define(["text!pages/ScrumBoard/templates/TaskBoardView.html",
             initialize: function(options){
                 this.issues = new Issues();
                 this.subissues = new Subissues();
-                this.filteredSub = {};
+                this.filteredSub = {}; /* the key = issue.id
+                                          the value = array of subissues 
+                                          in which field parent = issue.id */
                 
             },
 
@@ -39,9 +41,19 @@ define(["text!pages/ScrumBoard/templates/TaskBoardView.html",
 			renderAll: function() {
                 //debugger;
 			    this.issues.each(function(issue) {
+                    if ( issue.get("kind") == "story" &&
+                         !_.isEmpty(this.filteredSub[issue.id]) &&
+                         _.every(this.filteredSub[issue.id], function(subissue) {
+                            return subissue.get("status") == "done"
+                         })) {
+                        issue.set("status", "done");
+                        issue.save();
+                    }
+
 			        var issueView = new IssueView({
 			            model: issue
 		            });
+
                     if (issue.get("status") == "to do") {
                         this.$(".todo").append(issueView.render().el);
                     }
@@ -56,7 +68,7 @@ define(["text!pages/ScrumBoard/templates/TaskBoardView.html",
                             model: subissue
                         });
                         if (subissue.get("status") == "to do") {
-                            this.$(".todo").append(subissueView.render().el);
+                            this.$(".todo .subissueWrapper[data-issue-id="+issue.id+"]").append(subissueView.render().el);
                         }
                         if (subissue.get("status") == "doing") {
                             this.$(".doing").append(subissueView.render().el);
