@@ -8,16 +8,15 @@
         <img class="image-delete" src="/static/images/delete.png" alt="delete" />
         <img class="image-close" src="/static/images/close_window.png" alt="close" />
     </div>
-    <p class="description"><%= name %></p>
+    <p class="description"><%= description %></p>
     <div class="subissue-hidden-edit">
         <form class="edit">
-	        <textarea>
-	        </textarea>
+	        <textarea></textarea>
 	    </form>
         <div class="select-wrapper">
             <div class="select-type">
                 <input type="hidden" class="default-title" />
-                <a href="javascript:void(0);" class="select-title">Type</a>     <!--javascript:void(0);-->
+                <a href="javascript:void(0);" class="select-title">Type</a>
                 <ul class="drop">
                     <li><a href="#">task</a></li>
                     <li><a href="#">bug</a></li>
@@ -29,13 +28,13 @@
 
             <div class="select-estimate">
                 <input type="hidden" class="default-title" />
-                <a href="javascript:void(0);" class="select-title">Estimate</a>     <!--javascript:void(0);-->
+                <a href="javascript:void(0);" class="select-title">Estimate</a>   
                 <ul class="drop">
-                    <li><a href="#">0.5 est. point</a></li>
-                    <li><a href="#">3 est. point</a></li>
-                    <li><a href="#">5 est. point</a></li>
-                    <li><a href="#">8 est. point</a></li>
-                    <li><a href="#">13 est. point</a></li>
+                    <li><a href="">0.5 est. point</a></li>
+                    <li><a href="">3 est. point</a></li>
+                    <li><a href="">5 est. point</a></li>
+                    <li><a href="">8 est. point</a></li>
+                    <li><a href="">13 est. point</a></li>
                 </ul>
                 <form name="select-estimate">
                     <input name="estimate" type="hidden" class="select-input" />
@@ -44,7 +43,7 @@
 
             <div class="select-member">
                 <input type="hidden" class="default-title" />
-                <a href="javascript:void(0);" class="select-title">Team Member</a>     <!--javascript:void(0);-->
+                <a href="javascript:void(0);" class="select-title">Team Member</a> 
                 <ul class="drop">
                     <li><a href="#">member 1</a></li>
                     <li><a href="#">member 2</a></li>
@@ -58,4 +57,7 @@
             <input class="save" type="submit" value="Save" />
         </div>
     </div>
+</div>
+<div class="dialog" title="title">
+    <p>Dialog</p>
 </div>

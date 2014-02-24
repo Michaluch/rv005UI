@@ -383,34 +383,13 @@ body {
     background-color: #d1e3c2;
 }
 
-/* /subissue */
-
-/*  =   Select 
-.slct {
-    
-    padding: 4px 15px 4px 10px;
-    color: #444;
-    background-position: 290px -145px;
-
-    /*
-        Супер финт обрезаем текст
-        чтобы не вылезал за рамку
-    
-    overflow: hidden;
-    white-space:nowrap;
-    text-overflow: ellipsis;
-    -o-text-overflow: ellipsis; 
-
-}
-.drop li {
-   
-    
-    padding: 4px 15px 4px 25px;
-    background-position: 10px -119px;
-}
-.drop li:hover {
-    background-color: #e8e8e8;
-    color: #222;
+.dialog {
+    display: none;
 }
 
-*/
+.dialog-class {
+    height: 140px;
+    width: 200px;
+    border: 1px solid red;
+    background-color: white;
+}

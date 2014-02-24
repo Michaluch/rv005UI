@@ -23,7 +23,6 @@ define(["pages/ScrumBoard/models/Issue", "pages/ScrumBoard/collections/Issues",
     		})
         };
 
-
         _private.createNewIssue = function() {
                 
         	var issue = new Issue();
@@ -120,10 +119,8 @@ define(["pages/ScrumBoard/models/Issue", "pages/ScrumBoard/collections/Issues",
             subissue.destroy();
         }
 
-
-
         _public.start = function() {
-            _private.createNewSub();
+            _private.deleteSub(14);
         };
 
         return _public;
