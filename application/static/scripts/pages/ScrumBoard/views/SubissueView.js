@@ -14,27 +14,18 @@ define(["text!pages/ScrumBoard/templates/SubissueView.html"],
             },
 
             render: function() {
-                this.$el.html(this.template({id: this.model.id,
-                                             description: this.model.get("description"),
+                this.$el.html(this.template({description: this.model.get("description"),
                                              parent: this.model.get("parent")}));
                 return this;
             },
 
             edit: function() {
-                $("#dialog-"+this.model.id).dialog( "open" );
+                $("#dialog").dialog( "open" );
             },
 
-            createDialog : function() {
-                $("#dialog-"+this.model.id).dialog({
-                    dialogClass: "dialog-class",
-                    minWidth: 500,
-                    show: "clip",
-                    hide: "clip",
-                    modal: true,
-                    autoOpen: false
-                });
-
-            },
+            //$(".image-edit").on("click", function() {
+              //      $("#dialog").dialog( "open");
+              //  });
 
             /*edit: function() {
                 this.$(".subissue-hidden-edit").css("display", "block");

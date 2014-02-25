@@ -4,9 +4,10 @@ define(["text!pages/ScrumBoard/templates/TaskBoardView.html",
         "pages/ScrumBoard/views/IssueView",
         "pages/ScrumBoard/collections/Subissues",
         "pages/ScrumBoard/models/Subissue",
-        "pages/ScrumBoard/views/SubissueView"],
+        "pages/ScrumBoard/views/SubissueView",
+        "pages/ScrumBoard/views/DialogView"],
 
-	function(taskBoardTemplate, Issues, Issue, IssueView, Subissues, Subissue, SubissueView){
+	function(taskBoardTemplate, Issues, Issue, IssueView, Subissues, Subissue, SubissueView, DialogView){
         return Backbone.View.extend({ 
 
             initialize: function(options){
@@ -34,6 +35,7 @@ define(["text!pages/ScrumBoard/templates/TaskBoardView.html",
                         });
                     }    
                 });
+
                         
                 return this;
 			},
@@ -53,33 +55,42 @@ define(["text!pages/ScrumBoard/templates/TaskBoardView.html",
 			        var issueView = new IssueView({
 			            model: issue
 		            });
+                    issueView.render();
 
                     if (issue.get("status") == "to do") {
-                        this.$(".todo").append(issueView.render().el);
+                        this.$(".todo").append(issueView.el);
                     }
                     if (issue.get("status") == "doing") {
-                        this.$(".doing").append(issueView.render().el);
+                        this.$(".doing").append(issueView.el);
                     }
                     if (issue.get("status") == "done") {
-                        this.$(".done").append(issueView.render().el);
+                        this.$(".done").append(issueView.el);
                     }
                     _.each(this.filteredSub[issue.id], function(subissue){
                         var subissueView = new SubissueView({
                             model: subissue
                         });
+                        subissueView.render();
                         if (subissue.get("status") == "to do") {
-                            this.$(".todo .subissueWrapper[data-issue-id="+issue.id+"]").append(subissueView.render().el);
+                            this.$(".todo .subissueWrapper[data-issue-id="+issue.id+"]").append(subissueView.el);
                         }
                         if (subissue.get("status") == "doing") {
-                            this.$(".doing").append(subissueView.render().el);
+                            this.$(".doing").append(subissueView.el);
                         }
                         if (subissue.get("status") == "done") {
-                            this.$(".done").append(subissueView.render().el);
+                            this.$(".done").append(subissueView.el);
                         }
-                        subissueView.createDialog();
                     }, this);
 			    }, this);
-			}
+                var dialogView = new DialogView({
+                    collection: Subissues
+                });
+                dialogView.render();
+                dialogView.createDialog();
+                
+			},
+
+
         });
     }
 );	
