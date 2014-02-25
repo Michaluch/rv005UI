@@ -7,7 +7,7 @@ define(["text!pages/ScrumBoard/templates/TaskBoardView.html",
         "pages/ScrumBoard/views/SubissueView",
         "pages/ScrumBoard/views/DialogView"],
 
-	function(taskBoardTemplate, Issues, Issue, IssueView, Subissues, Subissue, SubissueView, DialogView){
+    function(taskBoardTemplate, Issues, Issue, IssueView, Subissues, Subissue, SubissueView, DialogView){
         return Backbone.View.extend({ 
 
             initialize: function(options){
@@ -16,7 +16,6 @@ define(["text!pages/ScrumBoard/templates/TaskBoardView.html",
                 this.filteredSub = {}; /* the key = issue.id
                                           the value = array of subissues 
                                           in which field parent = issue.id */
-                
             },
 
             render: function() {
@@ -35,14 +34,11 @@ define(["text!pages/ScrumBoard/templates/TaskBoardView.html",
                         });
                     }    
                 });
-
-                        
                 return this;
-			},
+            },
 
-			renderAll: function() {
-                //debugger;
-			    this.issues.each(function(issue) {
+            renderAll: function() {
+                this.issues.each(function(issue) {
                     if ( issue.get("kind") == "story" &&
                          !_.isEmpty(this.filteredSub[issue.id]) &&
                          _.every(this.filteredSub[issue.id], function(subissue) {
@@ -52,9 +48,9 @@ define(["text!pages/ScrumBoard/templates/TaskBoardView.html",
                         issue.save();
                     }
 
-			        var issueView = new IssueView({
-			            model: issue
-		            });
+                    var issueView = new IssueView({
+                        model: issue
+                    });
                     issueView.render();
 
                     if (issue.get("status") == "to do") {
@@ -81,16 +77,12 @@ define(["text!pages/ScrumBoard/templates/TaskBoardView.html",
                             this.$(".done").append(subissueView.el);
                         }
                     }, this);
-			    }, this);
+                }, this);
                 var dialogView = new DialogView({
-                    collection: Subissues
+                    collection: this.subissues
                 });
                 dialogView.render();
-                dialogView.createDialog();
-                
-			},
-
-
+            },
         });
     }
-);	
+);
