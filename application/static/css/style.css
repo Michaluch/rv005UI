@@ -5,9 +5,22 @@
 
 html,
 body {
-    font-family: Tahoma, Verdana, Arial, sans-serif;  
+    font-family: Tahoma, Verdana, Arial, sans-serif;
 }
 
+.lock {
+    overflow: hidden;
+}
+
+.shim {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.5);
+}
 #loading {
     display: block;
     margin: 0 auto;
@@ -311,14 +324,10 @@ body {
     border: 1px solid lightgrey;
 }
 
-.subissue-hidden-edit {
-    display:none; 
-}
-
 .edit textarea {
     overflow: auto;
     resize: none;
-    width: 265px;
+    width: 400px;
     height: 50px;
     border-radius: 5px;
     border: 1px solid lightgrey;
@@ -341,10 +350,10 @@ body {
     display: block;
     border-radius: 5px;
     border: 1px solid #cecece;
-    width: 80px;
+    width: 100px;
     background-color: #d1e3c2;
     color: #000;
-    font-size: 12px;
+    font-size: 14px;
     text-align: center;
     text-decoration: none;
 }
@@ -383,13 +392,10 @@ body {
     background-color: #d1e3c2;
 }
 
-.dialog {
-    display: none;
+.dialog-class {
+    width: 500px;
 }
 
-.dialog-class {
-    height: 140px;
-    width: 200px;
-    border: 1px solid red;
-    background-color: white;
+.ui-dialog .ui-dialog-titlebar {
+    background: #6e914f;
 }

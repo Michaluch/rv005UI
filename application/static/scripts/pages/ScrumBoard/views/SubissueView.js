@@ -14,32 +14,40 @@ define(["text!pages/ScrumBoard/templates/SubissueView.html"],
             },
 
             render: function() {
-                this.$el.html(this.template({description: this.model.get("description"),
+                this.$el.html(this.template({id: this.model.id,
+                                             description: this.model.get("description"),
                                              parent: this.model.get("parent")}));
                 return this;
             },
 
             edit: function() {
-                this.$(".dialog").dialog({
+                $("#dialog-"+this.model.id).dialog( "open" );
+            },
+
+            createDialog : function() {
+                $("#dialog-"+this.model.id).dialog({
                     dialogClass: "dialog-class",
+                    minWidth: 500,
                     show: "clip",
                     hide: "clip",
-                    modal: true
+                    modal: true,
+                    autoOpen: false
                 });
-            }
+
+            },
 
             /*edit: function() {
                 this.$(".subissue-hidden-edit").css("display", "block");
                 this.$(".subissue").css("height", "auto");
                 this.$(".image-edit, .image-delete").css("display", "none");
                 this.$(".image-close").css("display", "inline");
-            },
+            },*/
 
             save: function() {
-                this.$(".subissue-hidden-edit").css("display", "none");
+               /* this.$(".subissue-hidden-edit").css("display", "none");
                 this.$(".subissue").css("height", "65px");
                 this.$(".image-edit, .image-delete").css("display", "inline");
-                this.$(".image-close").css("display", "none");
+                this.$(".image-close").css("display", "none");*/
 
                 this.$(".select-title").each(function() {
                     var defaultTitle = $(this).prev().val();
@@ -78,7 +86,7 @@ define(["text!pages/ScrumBoard/templates/SubissueView.html"],
                 return false;
             },
 
-            close: function() {
+      /*      close: function() {
                 this.$(".subissue-hidden-edit").css("display", "none");
                 this.$(".subissue").css("height", "65px");
                 this.$(".image-edit, .image-delete").css("display", "inline");

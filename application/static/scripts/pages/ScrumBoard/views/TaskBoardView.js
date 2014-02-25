@@ -76,6 +76,7 @@ define(["text!pages/ScrumBoard/templates/TaskBoardView.html",
                         if (subissue.get("status") == "done") {
                             this.$(".done").append(subissueView.render().el);
                         }
+                        subissueView.createDialog();
                     }, this);
 			    }, this);
 			}
