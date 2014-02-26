@@ -16,6 +16,7 @@ define(["text!pages/ScrumBoard/templates/TaskBoardView.html",
                 this.filteredSub = {}; /* the key = issue.id
                                           the value = array of subissues 
                                           in which field parent = issue.id */
+                
             },
 
             render: function() {
@@ -33,6 +34,34 @@ define(["text!pages/ScrumBoard/templates/TaskBoardView.html",
                             }
                         });
                     }    
+                });   
+                var subissues = this.subissues;
+
+                function handleDrop(event, ui){
+                    var clone = $(ui.helper);
+                    clone.css("left", "0");
+                    clone.css("top", "0");  
+
+                    var id = clone.find('.subissue').attr("data-id");                    
+                    var status = $(this).attr("data-status")
+
+                    var sub = subissues.get(id);
+                    sub.set("status", status);
+                    sub.save();
+                    console.log(sub);
+                    
+
+                    $(this).append(clone);
+                }
+
+                this.$el.find('.todo').droppable({
+                    drop: handleDrop
+                });
+                this.$el.find('.doing').droppable({
+                    drop: handleDrop
+                });
+                this.$el.find('.done').droppable({
+                    drop: handleDrop
                 });
                 return this;
             },
@@ -72,9 +101,10 @@ define(["text!pages/ScrumBoard/templates/TaskBoardView.html",
                         }
                         if (subissue.get("status") == "doing") {
                             this.$(".doing").append(subissueView.el);
+
                         }
-                        if (subissue.get("status") == "done") {
-                            this.$(".done").append(subissueView.el);
+                        if (subissue.get("status") == "done") {                                                        
+                            this.$(".done").append(subissueView.el);                            
                         }
                     }, this);
                 }, this);
@@ -83,6 +113,10 @@ define(["text!pages/ScrumBoard/templates/TaskBoardView.html",
                 });
                 dialogView.render();
             },
+
+            handleDrop: function(event, ui){
+                console.log('111');
+            }
         });
     }
 );
