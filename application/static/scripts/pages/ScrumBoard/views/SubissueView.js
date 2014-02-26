@@ -13,10 +13,13 @@ define(["text!pages/ScrumBoard/templates/SubissueView.html"],
             },
 
             render: function() {
-                this.$el.html(this.template({name: this.model.get("name"),
+                this.$el.html(this.template({_id: this.model.get("_id"),
+                                             name: this.model.get("name"),
                                              description: this.model.get("description"),
                                              estimate: this.model.get("estimate"),
-                                             parent: this.model.get("parent")}));
+                                             parent: this.model.get("parent")})).draggable({
+                                                                                    revert: "invalid"
+                                                                                });                
                 return this;
             },
 
