@@ -15,6 +15,7 @@ define(["text!pages/ScrumBoard/templates/IssueView.html"],
             render: function () {
                 this.$el.html(this.template({name: this.model.get("name"),
                                              description: this.model.get("description"),
+                                             kind: this.model.get("kind"),
                                              sprint: this.model.get("sprint"),
                                              estimate: this.model.get("estimate"),
                                              issueId: this.model.id,

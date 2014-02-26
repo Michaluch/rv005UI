@@ -1,7 +1,9 @@
 <div class="issue" data-issue-id="<%= issueId %>">
     <div class="top-left-corner">
+        <% if (status !== "doing" && kind == "story") { %>
         <span><img class="plus" src="static/images/plus.jpg"/>
         <img class="minus lock" src="static/images/minus.jpg" /></span>
+        <% } %>
         <span class="estimate">Estimate: <%= estimate %>sp</span>
     	<span class="sprint-line"><%= sprint %></span>
     </div>
@@ -13,7 +15,9 @@
     <p><i><small><small>Name: </small></small></i><%= name %></p>
     <p><i><small><small>Description: </small></small></i><%= description %></p>
 </div>
-<% if (status == "to do") { %>
+<% if (status == "to do" && kind == "story") { %>
 <div class="addSubissue lock">
-<input type="text" placeholder="Enter text"/> 
+<input class="name" type="text" placeholder="Enter the name of subissue"/><br />
+<textarea placeholder="Enter the description of subissue"></textarea><br />
+<input class="send" type="submit" value="Add subissue">
 </div>  <%}%>

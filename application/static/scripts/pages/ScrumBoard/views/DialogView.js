@@ -18,6 +18,8 @@ define(["text!pages/ScrumBoard/templates/DialogView.html"],
                 this.$el.html(this.template({}));
                 this.$("#dialog").dialog({
                     minWidth : 500,
+                    show: "clip",
+                    hide: "clip",
                     modal: true,
                     height: "auto",
                     autoOpen : false,
@@ -45,12 +47,13 @@ define(["text!pages/ScrumBoard/templates/DialogView.html"],
                 this.subissue.set("assign_to", $("input[name=member]").val());
                 this.subissue.save();
 
-                this.$(".select-title").each(function() {
+                $("#dialog .select-title").each(function() {
                     var defaultTitle = $(this).prev().val();
                     if (defaultTitle) {
                         $(this).text(defaultTitle);
                     }
                 });
+
                 $("form.edit textarea").val("");
                 $( "#dialog" ).dialog( "close" );
             },

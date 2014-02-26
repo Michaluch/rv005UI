@@ -1,11 +1,16 @@
 * {
-    padding: 0px;
-    margin: 0px;
+    padding: 0;
+    margin: 0;
 }
 
 html,
 body {
     font-family: Tahoma, Verdana, Arial, sans-serif;
+}
+
+textarea {
+    font-family: Tahoma, Verdana, Arial, sans-serif;
+    overflow: hidden;
 }
 
 .lock {
@@ -15,7 +20,7 @@ body {
 #loading {
     display: block;
     margin: 0 auto;
-    border: 0px;
+    border: 0;
 }
 
 .wrapper {
@@ -254,10 +259,25 @@ body {
 .addSubissue {
     width: 289px;
     height: 75px;
-    border: 1px solid green;
+    border: 1px solid #B2C0C0;
     margin-left: 3px;
     margin-bottom: 2px;
     padding: 7px;
+    background-color: #f7faf4;
+
+}
+
+.addSubissue .name {
+    width: 99%;
+    margin-bottom: 0.2em;
+}
+
+.addSubissue textarea {
+    resize: none;
+    width: 100%;
+}
+.addSubissue .send {
+    float: right;
 }
  /* /issue */
 
@@ -311,7 +331,6 @@ body {
 }
 
 .edit textarea {
-    overflow: auto;
     resize: none;
     width: 400px;
     height: 50px;
