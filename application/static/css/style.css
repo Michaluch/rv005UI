@@ -404,3 +404,57 @@ textarea {
 .ui-dialog .ui-dialog-titlebar {
     background: #6e914f;
 }
+
+/* profile page */
+
+.profile-area {
+
+    border: 1px solid #C0CAD5;
+    background-color: #d1e3c2;
+    height: 430px;
+    position: relative;
+    margin: 0 auto;
+    padding: 40px 30px;
+    
+    
+}
+
+#profile-clear {
+    height: 60px;
+}
+
+#profile-image-div {
+    height: 140px;
+    width: 140px;
+    text-align: left;
+}
+
+#profile-image {
+    width: 110px;
+    border-radius: 55px;
+}
+
+#profile-edit-button-corner {
+    float: right;
+}
+
+.profile-edit-button-corner img {
+    height: 40px;
+}
+
+#profile-edit-button {
+        width: 25px;
+    }
+
+#profile-info {
+    width: 450px;
+    height: 320px;
+}
+
+#profile-info .label span {
+    display: block;
+    margin: 10px  0;
+    clear: both;
+}
+
+/* profile page */
