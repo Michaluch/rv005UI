@@ -1,8 +1,8 @@
-define(["text!pages/ScrumBoard/templates/FooterView.html"], 
+define(["text!pages/ScrumBoard/templates/FooterView.html"],
+ 
     function(footerView) {
-
         return Backbone.View.extend({
-	        initialize: function(options){
+	          initialize: function(options){
             },
 
             render: function() {
@@ -10,6 +10,5 @@ define(["text!pages/ScrumBoard/templates/FooterView.html"],
                 return this;
             }
         })
-
-});
-
+    }
+);

@@ -37,7 +37,7 @@ define(["text!pages/ScrumBoard/templates/TaskBoardView.html",
                 });   
                 var subissues = this.subissues;
 
-                function handleDrop(event, ui){
+                var handleDrop = function(event, ui){
                     var clone = $(ui.helper);
                     clone.css("left", "0");
                     clone.css("top", "0");  
@@ -48,7 +48,7 @@ define(["text!pages/ScrumBoard/templates/TaskBoardView.html",
                     var sub = subissues.get(id);
                     sub.set("status", status);
                     sub.save();
-                    console.log(sub);
+                    // console.log(sub);
                     
 
                     $(this).append(clone);

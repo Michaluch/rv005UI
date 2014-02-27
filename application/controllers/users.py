@@ -18,7 +18,7 @@ class Users(Controller):
     # login
     def login(self):
         if self.logged():
-            return error("You are already logged")
+            return write("Well done")
 
         email = request.values.get("email")
         password = request.values.get("password")
@@ -38,6 +38,13 @@ class Users(Controller):
 
         session.pop('email', None)
         return write("Well done")
+
+    # entered
+    def entered(self):
+        if self.logged():
+            return write("Yes")
+        else:
+            return write("No")
 
     # register new user
     def register(self):
@@ -139,6 +146,8 @@ class Users(Controller):
             return self.login()
         elif action == "logout":
             return self.logout()
+        elif action == "entered":
+            return self.entered()
         elif action == "register":
             return self.register()
         elif action == "delete":
