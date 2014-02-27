@@ -7,6 +7,7 @@ define(["text!pages/ScrumBoard/templates/IssueView.html"],
             events: {
                 "click .plus" : "open",
                 "click .minus" : "close"
+                
             },
         
             initialize: function(options){
@@ -14,11 +15,11 @@ define(["text!pages/ScrumBoard/templates/IssueView.html"],
                            
             render: function () {
                 this.$el.html(this.template({name: this.model.get("name"),
+                                             issueId: this.model.id,
                                              description: this.model.get("description"),
                                              kind: this.model.get("kind"),
                                              sprint: this.model.get("sprint"),
                                              estimate: this.model.get("estimate"),
-                                             issueId: this.model.id,
                                              status: this.model.get("status")}));
                 return this;
             },
@@ -34,8 +35,7 @@ define(["text!pages/ScrumBoard/templates/IssueView.html"],
                 this.$(".plus").removeClass("lock");
                 this.$(".addSubissue").addClass("lock");
             }
-
-
+            
         });
     }
 );
