@@ -28,5 +28,5 @@ define(["pages/ScrumBoard/views/HeaderView",
             }
         });
     
-});
-
+    }
+);

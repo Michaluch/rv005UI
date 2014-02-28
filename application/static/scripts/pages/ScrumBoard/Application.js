@@ -1,4 +1,5 @@
-define(["pages/ScrumBoard/routers/PageRouter"],         
+define(["pages/ScrumBoard/routers/PageRouter"],
+         
     function(PageRouter) {
         var _public = {};
         var _private = {};

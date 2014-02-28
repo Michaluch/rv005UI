@@ -59,6 +59,7 @@ def issue(cid=None, param=None):
     data_return = Issues().fetch(cid=cid, param=param, method=request.method)
     return Response(data_return)
 
+
 @app.route("/api/subissues/")
 @app.route("/api/subissues/", methods=["POST"])
 @app.route("/api/subissues/<int:cid>", methods=["GET", "POST", "PUT", "DELETE"])

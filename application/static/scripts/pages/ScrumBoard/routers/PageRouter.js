@@ -6,7 +6,11 @@ define(["pages/ScrumBoard/views/PageView",
         return Backbone.Router.extend({
             routes: {
                 "": "start",
+<<<<<<< HEAD
                 "profile": "profile",
+=======
+                "main": "start",
+>>>>>>> d9edf89612096228495514b568d30cdb85fe8dd7
                 "login": "login",
                 "*other": "start"
             },
@@ -17,7 +21,7 @@ define(["pages/ScrumBoard/views/PageView",
             },
             
             login: function () {
-                var loginView = new LoginView();
+                var loginView = new LoginView({router: this});
                 loginView.render();
             },
 
@@ -28,4 +32,3 @@ define(["pages/ScrumBoard/views/PageView",
         })
     }
 );
-

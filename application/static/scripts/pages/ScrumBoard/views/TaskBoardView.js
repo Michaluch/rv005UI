@@ -17,11 +17,34 @@ define(["text!pages/ScrumBoard/templates/TaskBoardView.html",
                                           the value = array of subissues 
                                           in which field parent = issue.id */
                 
+                this.subissues.on("add", this.renderOne, this);
+            },
+
+            events: {
+                "click .add" : "add"
+            },
+
+            add: function (event) {
+                var $currentTarget = $(event.currentTarget);
+                var parent = $currentTarget.data("add-id");
+                var param = {};
+                var $name = $currentTarget.parent().find(".name");
+                var $textarea = $currentTarget.parent().find("textarea");
+                param["name"] = $name.val();
+                $name.val("");
+                param["description"] = $textarea.val();
+                $textarea.val("");
+                param["status"] = "to do";
+                param["parent"] = parent;
+                var subissue = new Subissue(param);
+                this.subissues.add(subissue);
+                this.$(".minus").addClass("lock");
+                this.$(".plus").removeClass("lock");
+                this.$(".addSubissue").addClass("lock");
             },
 
             render: function() {
                 var that = this;
-                this.$el.html(taskBoardTemplate);
                 this.issues.fetch({
                     success: function (collection, response, options) {
                         //debugger;
@@ -31,12 +54,16 @@ define(["text!pages/ScrumBoard/templates/TaskBoardView.html",
                                     that.filteredSub[model.id] = data.where({"parent": model.id});
                                 });
                                 that.renderAll();
-                            }
+                            },
                         });
-                    }    
+                    },
                 });   
-                var subissues = this.subissues;
+                return this;
+            },
 
+            renderAll: function() {
+                this.$el.html(taskBoardTemplate);
+                var subissues = this.subissues;
                 function handleDrop(event, ui){
                     var clone = $(ui.helper);
                     clone.css("left", "0");
@@ -63,10 +90,7 @@ define(["text!pages/ScrumBoard/templates/TaskBoardView.html",
                 this.$el.find('.done').droppable({
                     drop: handleDrop
                 });
-                return this;
-            },
 
-            renderAll: function() {
                 this.issues.each(function(issue) {
                     if ( issue.get("kind") == "story" &&
                          !_.isEmpty(this.filteredSub[issue.id]) &&
@@ -97,7 +121,7 @@ define(["text!pages/ScrumBoard/templates/TaskBoardView.html",
                         });
                         subissueView.render();
                         if (subissue.get("status") == "to do") {
-                            this.$(".todo .subissueWrapper[data-issue-id="+issue.id+"]").append(subissueView.el);
+                            this.$(".todo").append(subissueView.el);
                         }
                         if (subissue.get("status") == "doing") {
                             this.$(".doing").append(subissueView.el);
@@ -112,6 +136,14 @@ define(["text!pages/ScrumBoard/templates/TaskBoardView.html",
                     collection: this.subissues
                 });
                 dialogView.render();
+            },
+
+            renderOne: function (subissue) {
+                var subissueView = new SubissueView({
+                    model: subissue
+                });
+                subissueView.render();
+                this.$(".todo").append(subissueView.el);
             },
 
             handleDrop: function(event, ui){

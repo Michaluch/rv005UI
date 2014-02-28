@@ -1,0 +1,10 @@
+LoginView
+    FooterView
+PageView
+    HeaderView
+    FooterView
+    MainContentView
+        TaskBoarView
+            IssueView
+            SubissueView
+            ?DialogView
