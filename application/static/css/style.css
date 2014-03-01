@@ -178,6 +178,19 @@ textarea {
             border-top-right-radius: 10px;
         }
 
+        /*hover edit and delete link*/
+        .sprint .image-edit,
+        .sprint .image-delete,
+        .sprint .image-close {
+            opacity: 0.5;
+            cursor: pointer;
+        }
+
+        .sprint .image-edit:hover,
+        .sprint .image-delete:hover,
+        .sprint .image-close:hover {
+            opacity: 1;
+        }
         
     /* /sprint */
 
@@ -452,9 +465,14 @@ textarea {
 }
 
 #profile-info .label span {
-    display: block;
+    display: inline-block;
     margin: 10px  0;
-    clear: both;
+    width: 100px;
 }
 
-/* profile page */
+#profile-info .label strong {
+    color: #4c4c4c;    
+}
+
+/* end profile page */
+ 
