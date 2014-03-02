@@ -1,19 +1,30 @@
-<div class="issue" data-issue-id="<%= issueId %>">
+<% if (kind == "story") {
+    var kindColor = "story-color";
+    }
+   if (kind == "technical task") {
+    kindColor = "tech-color";
+    }
+   if (kind == "bug") {
+    kindColor = "bug-color";
+    }%>
+
+<div class="issue <%=kindColor%>" data-issue-id="<%= issueId %>">
     <div class="top-left-corner">
         <% if (status !== "doing" && kind == "story") { %>
         <span><img class="plus" src="static/images/plus.jpg"/>
         <img class="minus lock" src="static/images/minus.jpg" /></span>
         <% } %>
         <span class="estimate">Estimate: <%= estimate %>sp</span>
-    	<span class="sprint-line"><%= sprint %></span>
     </div>
+    <% if (status == "to do") { %>
     <div class="top-right-corner">
         <img class="image-edit" src="/static/images/edit.png" alt="edit" />
         <img class="image-delete" src="/static/images/delete.png" alt="delete" />
         <img class="image-close" src="/static/images/close_window.png" alt="close" />
     </div>
-    <p><i><small><small>Name: </small></small></i><%= name %></p>
-    <p><i><small><small>Description: </small></small></i><%= description %></p>
+    <% } %>
+    <p><b><%= name %></b></p>
+    <p><%= description %></p>
 </div>
 <% if (status == "to do" && kind == "story") { %>
 <div class="addSubissue lock">

@@ -53,10 +53,12 @@ textarea {
     #userpick {
         height: 30px;
         border-radius: 15px;
+        vertical-align: middle;
     }
 
     #logout {
         height: 30px;
+        vertical-align: middle;
     }
 
     #a-team-member {
@@ -243,14 +245,25 @@ textarea {
             height: 75px;
             border: 1px solid #B2C0C0;
             background-color: #f7faf4;
-            border-left-width: 7px;
-            border-left-color: #4aaff7;
+            border-left-width: 10px;
             border-top-left-radius: 5px;
             border-bottom-left-radius: 5px;
             margin-left: 3px;
             margin-bottom: 2px;
             padding: 7px;
         }
+
+.story-color {
+    border-left-color: #003366 ;
+}
+
+.tech-color {
+    border-left-color: #666633 ;
+}
+
+.bug-color {
+    border-left-color: #993333 ;
+}
 
 .issue p {
     clear: both;
@@ -288,13 +301,20 @@ textarea {
     height: 65px;
     border: 1px solid #B2C0C0;
     background-color: #f7faf4;
-    border-left-width: 7px;
-    border-left-color: #4aaff7;
+    border-left-width: 10px;
     border-top-left-radius: 5px;
     border-bottom-left-radius: 5px;
     margin-left: 10px;
     margin-bottom: 2px;
     padding: 7px;
+}
+
+.subtask-color {
+    border-left-color: #009966;
+}
+
+.subbug-color {
+    border-left-color: #993333;
 }
 
 .subissue p {
