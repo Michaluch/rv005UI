@@ -148,6 +148,17 @@ textarea {
     .sprint {
         padding: 0px 15px;
     }
+        
+        hr {
+            margin-bottom: 10px;
+            border: 0;
+            height: 1px;
+            background-image: -webkit-linear-gradient(left, rgb(197,211,184),  rgb(110,145,79), rgb(197,211,184));
+            /*background-image: -webkit-linear-gradient(left, rgba(110,145,79,1),  rgba(110,145,79,0.7),rgba(110,145,79,0.5), rgba(110,145,79,0.3), rgba(110,145,79,0)); 
+            background-image:    -moz-linear-gradient(left, rgba(110,145,79,0),  rgba(110,145,79,0.7),rgba(110,145,79,1), rgba(110,145,79,0.7), rgba(110,145,79,0));; 
+            background-image:     -ms-linear-gradient(left, rgba(110,145,79,0),  rgba(110,145,79,0.7),rgba(110,145,79,1), rgba(110,145,79,0.7), rgba(110,145,79,0));; 
+            background-image:      -o-linear-gradient(left, rgba(110,145,79,0),  rgba(110,145,79,0.7),rgba(110,145,79,1), rgba(110,145,79,0.7), rgba(110,145,79,0));;*/
+        }
 
         .todo {
             float: left;
@@ -254,7 +265,7 @@ textarea {
  /* issue */
 
 .issue {
-            width: 283px;
+            width: 280px;
             height: 75px;
             border: 1px solid #B2C0C0;
             background-color: #f7faf4;
@@ -310,7 +321,7 @@ textarea {
  /* subissue */
 
  .subissue {
-    width: 276px;
+    width: 273px;
     height: 65px;
     border: 1px solid #B2C0C0;
     background-color: #f7faf4;

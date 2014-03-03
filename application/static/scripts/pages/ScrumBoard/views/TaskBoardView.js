@@ -54,6 +54,7 @@ define(["text!pages/ScrumBoard/templates/TaskBoardView.html",
                                     that.filteredSub[model.id] = data.where({"parent": model.id});
                                 });
                                 that.renderAll();
+                                that.equalColumns ($(".sprint .column"));
                             },
                         });
                     },
@@ -136,6 +137,18 @@ define(["text!pages/ScrumBoard/templates/TaskBoardView.html",
                     collection: this.subissues
                 });
                 dialogView.render();
+                
+
+            },
+
+            equalColumns: function (columns) {
+                var tallestcolumn = 0;
+                columns.each(function() {
+                    var $currentHeight = $(this).height();
+                    if ($currentHeight > tallestcolumn) {
+                        tallestcolumn = $currentHeight;
+                    }
+                });
             },
 
             renderOne: function (subissue) {
