@@ -15,8 +15,6 @@ define(["text!pages/ScrumBoard/templates/ProfileView.html",
                 var that = this;
                  this.user.fetch({
                     success: function (model, response, options) {
-                        alert(model.get('email'));
-                        //this.$el.html()
                         that.renderProfile();
                     },
 
