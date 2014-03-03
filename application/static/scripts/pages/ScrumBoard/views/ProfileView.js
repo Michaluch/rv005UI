@@ -13,7 +13,7 @@ define(["text!pages/ScrumBoard/templates/ProfileView.html",
                            
             render: function () {
                 var that = this;
-                 this.user.fetch({
+                this.user.fetch({
                     success: function (model, response, options) {
                         that.renderProfile();
                     },
@@ -21,11 +21,8 @@ define(["text!pages/ScrumBoard/templates/ProfileView.html",
                     error: function () {
                         alert("Error");
                     }
-                });
-
-                
+                });            
                
-
                 return this;
             },
 
