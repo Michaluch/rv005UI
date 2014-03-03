@@ -42,7 +42,7 @@ define(["text!pages/ScrumBoard/templates/DialogView.html"],
 
             save: function() {
                 this.subissue.set("description", $("form.edit textarea").val());
-                this.subissue.set("kind", $("input[name=type]").val());
+                this.subissue.set("kind", "sub" + $("input[name=type]").val());
                 this.subissue.set("estimate", $("input[name=estimate]").val());
                 this.subissue.set("assign_to", $("input[name=member]").val());
                 this.subissue.save();

@@ -54,11 +54,12 @@ define(["text!pages/ScrumBoard/templates/TaskBoardView.html",
                                     that.filteredSub[model.id] = data.where({"parent": model.id});
                                 });
                                 that.renderAll();
-                                that.equalColumns ($(".sprint .column"));
+                                that.equalColumns(); 
+                                
                             },
                         });
                     },
-                });   
+                });
                 return this;
             },
 
@@ -70,7 +71,7 @@ define(["text!pages/ScrumBoard/templates/TaskBoardView.html",
                     clone.css("left", "0");
                     clone.css("top", "0");  
 
-                    var id = clone.find('.subissue').attr("data-id");                    
+                    var id = clone.find('.subissue').attr("data-id"); 
                     var status = $(this).attr("data-status")
 
                     var sub = subissues.get(id);
@@ -141,14 +142,15 @@ define(["text!pages/ScrumBoard/templates/TaskBoardView.html",
 
             },
 
-            equalColumns: function (columns) {
-                var tallestcolumn = 0;
-                columns.each(function() {
-                    var $currentHeight = $(this).height();
-                    if ($currentHeight > tallestcolumn) {
-                        tallestcolumn = $currentHeight;
+            equalColumns: function () {
+                var tallestColumn = 0;
+                _.each($(".sprint .column"), function(column) {
+                    var $currentHeight = $(column).height();
+                    if ($currentHeight > tallestColumn) {
+                        tallestColumn = $currentHeight;
                     }
                 });
+                $(".sprint .column").height(tallestColumn);
             },
 
             renderOne: function (subissue) {

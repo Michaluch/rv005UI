@@ -7,8 +7,8 @@ define(["text!pages/ScrumBoard/templates/SubissueView.html"],
                 "click .image-edit": "edit"
             },
 
-            initialize: function(options) {
-                options.model.on("change", this.render, this);
+            initialize: function() {
+                this.model.on("change", this.render, this);
             },
 
             render: function() {
