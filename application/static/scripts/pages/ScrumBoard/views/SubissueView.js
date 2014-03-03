@@ -9,7 +9,6 @@ define(["text!pages/ScrumBoard/templates/SubissueView.html"],
 
             initialize: function(options) {
                 options.model.on("change", this.render, this);
-                
             },
 
             render: function() {
