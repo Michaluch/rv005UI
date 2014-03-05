@@ -149,15 +149,12 @@ textarea {
         padding: 0px 15px;
     }
         
-        hr {
-            margin-bottom: 10px;
+        .sprint hr {
+            margin: 0 10px 10px;
             border: 0;
-            height: 1px;
-            background-image: -webkit-linear-gradient(left, rgb(197,211,184),  rgb(110,145,79), rgb(197,211,184));
-            /*background-image: -webkit-linear-gradient(left, rgba(110,145,79,1),  rgba(110,145,79,0.7),rgba(110,145,79,0.5), rgba(110,145,79,0.3), rgba(110,145,79,0)); 
-            background-image:    -moz-linear-gradient(left, rgba(110,145,79,0),  rgba(110,145,79,0.7),rgba(110,145,79,1), rgba(110,145,79,0.7), rgba(110,145,79,0));; 
-            background-image:     -ms-linear-gradient(left, rgba(110,145,79,0),  rgba(110,145,79,0.7),rgba(110,145,79,1), rgba(110,145,79,0.7), rgba(110,145,79,0));; 
-            background-image:      -o-linear-gradient(left, rgba(110,145,79,0),  rgba(110,145,79,0.7),rgba(110,145,79,1), rgba(110,145,79,0.7), rgba(110,145,79,0));;*/
+            height: 0;
+            border-top: 1px solid rgba(110, 145, 79, 1);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
         }
         
         .todo {
@@ -278,11 +275,11 @@ textarea {
         }
 
 .story-color {
-    border-left-color: #003366 ;
+    border-left-color: #133944 ;
 }
 
 .tech-color {
-    border-left-color: #666633 ;
+    border-left-color: #454720 ;
 }
 
 .bug-color {
@@ -334,7 +331,7 @@ textarea {
 }
 
 .subtask-color {
-    border-left-color: #009966;
+    border-left-color: #33856E;
 }
 
 .subbug-color {
