@@ -1,7 +1,14 @@
 define(["text!pages/ScrumBoard/templates/HeaderView.html"], 
     function(headerView) {
         return Backbone.View.extend({
-            className: "wrapper",
+            
+            tagName: "div",
+            
+            attributes: {
+                id: "header"
+            },
+        
+//            className: "wrapper",
 
             initialize: function(options){
             },

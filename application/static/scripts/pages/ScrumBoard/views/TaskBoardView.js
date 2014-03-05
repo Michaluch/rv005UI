@@ -64,9 +64,10 @@ define(["text!pages/ScrumBoard/templates/TaskBoardView.html",
             },
 
             renderAll: function() {
+                var that = this;
                 this.$el.html(taskBoardTemplate);
                 var subissues = this.subissues;
-                function handleDrop(event, ui){
+                var handleDrop = function(event, ui){
                     var clone = $(ui.helper);
                     clone.css("left", "0");
                     clone.css("top", "0");  
@@ -76,20 +77,14 @@ define(["text!pages/ScrumBoard/templates/TaskBoardView.html",
 
                     var sub = subissues.get(id);
                     sub.set("status", status);
-                    sub.save();
-                    console.log(sub);
-                    
+                    sub.save();                   
 
                     $(this).append(clone);
+                                       
+                    that.equalColumns();
                 }
 
-                this.$el.find('.todo').droppable({
-                    drop: handleDrop
-                });
-                this.$el.find('.doing').droppable({
-                    drop: handleDrop
-                });
-                this.$el.find('.done').droppable({
+                this.$el.find('.todo, .doing, .done').droppable({
                     drop: handleDrop
                 });
 
@@ -134,16 +129,15 @@ define(["text!pages/ScrumBoard/templates/TaskBoardView.html",
                         }
                     }, this);
                 }, this);
+                
                 var dialogView = new DialogView({
                     collection: this.subissues
                 });
-                dialogView.render();
-                
-
             },
 
             equalColumns: function () {
                 var tallestColumn = 0;
+                $(".sprint .column").height('100%');
                 _.each($(".sprint .column"), function(column) {
                     var $currentHeight = $(column).height();
                     if ($currentHeight > tallestColumn) {
@@ -160,10 +154,6 @@ define(["text!pages/ScrumBoard/templates/TaskBoardView.html",
                 subissueView.render();
                 this.$(".todo").append(subissueView.el);
             },
-
-            handleDrop: function(event, ui){
-                console.log('111');
-            }
         });
     }
 );

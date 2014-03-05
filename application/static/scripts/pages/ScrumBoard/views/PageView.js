@@ -11,6 +11,11 @@ define(["pages/ScrumBoard/views/HeaderView",
 
             render: function() {
                 var headerView = new HeaderView();
+                
+                var $wrapper = this.$(".wrapper");
+                
+                //headerView.setElement($wrapper[0]);
+                
                 headerView.render();
 
                 var mainContentView = new MainContentView();
@@ -18,11 +23,12 @@ define(["pages/ScrumBoard/views/HeaderView",
                     
                 var footerView = new FooterView();
             	footerView.render();
-
-                this.$(".wrapper")
-                .html(headerView.el)
-                .append(mainContentView.el)
-                .append(footerView.el);
+                
+                $wrapper
+                    .html(headerView.el)
+                    .append(mainContentView.el)
+                    .append(footerView.el);
+                //.html(headerView.el)                
  
                 return this;
             }

@@ -19,7 +19,7 @@ define(["text!pages/ScrumBoard/templates/ProfileView.html",
                     },
 
                     error: function () {
-                        alert("Error");
+                        //
                     }
                 });            
                
@@ -33,7 +33,6 @@ define(["text!pages/ScrumBoard/templates/ProfileView.html",
                                     email: this.user.get("email"),
                                     role: this.user.get("role")}))
                 .append(footerView);
-
             }
         })
 });

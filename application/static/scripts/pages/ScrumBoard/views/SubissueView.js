@@ -21,6 +21,7 @@ define(["text!pages/ScrumBoard/templates/SubissueView.html"],
                                              parent: this.model.get("parent")})).draggable({
                                                                                     revert: "invalid"
                                                                                 });                
+                console.log("subissueView - render()");
                 return this;
             },
 

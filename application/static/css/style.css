@@ -159,7 +159,7 @@ textarea {
             background-image:     -ms-linear-gradient(left, rgba(110,145,79,0),  rgba(110,145,79,0.7),rgba(110,145,79,1), rgba(110,145,79,0.7), rgba(110,145,79,0));; 
             background-image:      -o-linear-gradient(left, rgba(110,145,79,0),  rgba(110,145,79,0.7),rgba(110,145,79,1), rgba(110,145,79,0.7), rgba(110,145,79,0));;*/
         }
-
+        
         .todo {
             float: left;
             width: 310px;
