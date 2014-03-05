@@ -2,7 +2,8 @@ define(["text!pages/ScrumBoard/templates/FooterView.html"],
  
     function(footerView) {
         return Backbone.View.extend({
-	          initialize: function(options){
+            id : "footer",
+            initialize: function(options){
             },
 
             render: function() {

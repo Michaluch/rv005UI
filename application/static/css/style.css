@@ -132,9 +132,10 @@ textarea {
 .content {
     background-color: #FAFFFA;
     padding: 0 0 70px;
+    float:left;/*because of "float" begins to contain float columns, they do not fall through the .content block*/
 
 }
-
+ 
      #filter {
         width: 960px;
         height: 60px;
@@ -147,6 +148,7 @@ textarea {
     /* sprint */
     .sprint {
         padding: 0px 15px;
+
     }
         
         hr {
@@ -225,10 +227,11 @@ textarea {
 
 /* /content */    
 
-.footer {
+#footer {
     border-top: 1px solid #C0CAD5;
     padding: 20px 10px 10px;
     background-color: #ffffff;
+    clear: both;
 }
 
 #footer-right-corner {
@@ -278,11 +281,11 @@ textarea {
         }
 
 .story-color {
-    border-left-color: #003366 ;
+    border-left-color: #133944 ;
 }
 
 .tech-color {
-    border-left-color: #666633 ;
+    border-left-color: #454720 ;
 }
 
 .bug-color {
@@ -334,7 +337,7 @@ textarea {
 }
 
 .subtask-color {
-    border-left-color: #009966;
+    border-left-color: #33856E;
 }
 
 .subbug-color {

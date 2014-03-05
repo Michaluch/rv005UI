@@ -9,6 +9,7 @@ define(["text!pages/ScrumBoard/templates/TaskBoardView.html",
 
     function(taskBoardTemplate, Issues, Issue, IssueView, Subissues, Subissue, SubissueView, DialogView){
         return Backbone.View.extend({ 
+            className: "sprint",
 
             initialize: function(options){
                 this.issues = new Issues();
@@ -18,6 +19,7 @@ define(["text!pages/ScrumBoard/templates/TaskBoardView.html",
                                           in which field parent = issue.id */
                 
                 this.subissues.on("add", this.renderOne, this);
+                //????this.subissues.on("change", this.render, this);
             },
 
             events: {
@@ -60,11 +62,12 @@ define(["text!pages/ScrumBoard/templates/TaskBoardView.html",
                         });
                     },
                 });
+                //this.$el.append("<p> It's working!</p>");
                 return this;
             },
 
             renderAll: function() {
-                this.$el.html(taskBoardTemplate);
+                //this.$el.html(taskBoardTemplate);
                 var subissues = this.subissues;
                 function handleDrop(event, ui){
                     var clone = $(ui.helper);

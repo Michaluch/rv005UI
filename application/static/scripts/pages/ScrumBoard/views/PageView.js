@@ -17,10 +17,9 @@ define(["pages/ScrumBoard/views/HeaderView",
                 mainContentView.render();
                     
                 var footerView = new FooterView();
-            	footerView.render();
+                footerView.render();
 
-                this.$(".wrapper")
-                .html(headerView.el)
+                this.$(".wrapper").html(headerView.el)
                 .append(mainContentView.el)
                 .append(footerView.el);
  
