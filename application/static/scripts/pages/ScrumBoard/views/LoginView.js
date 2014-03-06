@@ -25,7 +25,7 @@ define(["text!pages/ScrumBoard/templates/LoginView.html",
             login: function () {
                 var that = this;
                 $.ajax({
-                    url: "/api/user/login",
+                    url: "/api/user/login/",
                     data: {"email": this.$el.find("#email").val(),
                            "password": this.$el.find("#password").val()},
 

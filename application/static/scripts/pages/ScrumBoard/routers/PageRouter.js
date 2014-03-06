@@ -47,11 +47,11 @@ define(["pages/ScrumBoard/views/PageView",
             entered: function () {
                 if (!this._checked) {
                     var result = $.ajax({
-                        url: "/api/user/entered",
+                        url: "/api/user/entered/",
                         async: false
                     }).responseText;
                     this._checked = true;
-                    this._entered = (result == "Yes");
+                    this._entered = (result == '"Yes"');
                 }
 
                 return this._entered;
