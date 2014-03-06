@@ -5,9 +5,11 @@ define(["text!pages/ScrumBoard/templates/TaskBoardView.html",
         "pages/ScrumBoard/collections/Subissues",
         "pages/ScrumBoard/models/Subissue",
         "pages/ScrumBoard/views/SubissueView",
-        "pages/ScrumBoard/views/DialogView"],
+        "pages/ScrumBoard/views/DialogView",
+        "pages/ScrumBoard/views/DialogDeleteView"],
 
-    function(taskBoardTemplate, Issues, Issue, IssueView, Subissues, Subissue, SubissueView, DialogView){
+    function(taskBoardTemplate, Issues, Issue, IssueView, Subissues,
+             Subissue, SubissueView, DialogView, DialogDeleteView){
         return Backbone.View.extend({ 
 
             initialize: function(options){
@@ -28,8 +30,8 @@ define(["text!pages/ScrumBoard/templates/TaskBoardView.html",
                 var $currentTarget = $(event.currentTarget);
                 var parent = $currentTarget.data("add-id");
                 var param = {};
-                var $name = $currentTarget.parent().find(".name");
-                var $textarea = $currentTarget.parent().find("textarea");
+                var $name = $currentTarget.parent().parent().find(".name");
+                var $textarea = $currentTarget.parent().parent().find("textarea");
                 param["name"] = $name.val();
                 $name.val("");
                 param["description"] = $textarea.val();
@@ -50,6 +52,7 @@ define(["text!pages/ScrumBoard/templates/TaskBoardView.html",
                     success: function (collection, response, options) {
                         //debugger;
                         that.subissues.fetch({
+                            fetch: true,
                             success: function(data, response, options) {
                                 collection.each(function(model) {
                                     that.filteredSub[model.id] = data.where({"parent": model.id});
@@ -135,6 +138,11 @@ define(["text!pages/ScrumBoard/templates/TaskBoardView.html",
                     collection: this.subissues
                 });
                 dialogView.render();
+
+                var dialogDeleteView = new DialogDeleteView({
+                    collection: this.subissues
+                });
+                dialogDeleteView.render();
             },
 
             equalColumns: function () {
@@ -149,13 +157,15 @@ define(["text!pages/ScrumBoard/templates/TaskBoardView.html",
                 $(".sprint .column").height(tallestColumn);
             },
 
-            renderOne: function (subissue) {
-                var subissueView = new SubissueView({
-                    model: subissue
-                });
-                subissueView.model.save();
-                subissueView.render();
-                this.$(".todo").append(subissueView.el);
+            renderOne: function (subissue, collection, options) {
+                if (!options.fetch) {
+                    var subissueView = new SubissueView({
+                        model: subissue
+                    });
+                    subissueView.model.save();
+                    subissueView.render();
+                    this.$(".todo").append(subissueView.el);
+                }
             },
         });
     }

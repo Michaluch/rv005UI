@@ -4,7 +4,8 @@ define(["text!pages/ScrumBoard/templates/SubissueView.html"],
             template: _.template(subissueView),
 
             events: {
-                "click .image-edit": "edit"
+                "click .image-edit": "edit",
+                "click .image-delete": "delete"
             },
 
             initialize: function() {
@@ -28,6 +29,12 @@ define(["text!pages/ScrumBoard/templates/SubissueView.html"],
             edit: function() {
                 $('#dialog').data('edit-id', this.model.id);
                 $("#dialog").dialog( "open" );
+            },
+
+            delete: function() {
+                $("#dialog-delete").data("edit-id", this.model.id);
+                $("#dialog-delete").data("view", this);
+                $("#dialog-delete").dialog( "open" );
             }
         });
     }

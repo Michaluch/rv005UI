@@ -291,27 +291,34 @@ textarea {
 }
 
 .addSubissue {
-    width: 289px;
-    height: 75px;
+    width: auto;
+    /*height: 75px;*/
     border: 1px solid #B2C0C0;
-    margin-left: 3px;
-    margin-bottom: 2px;
-    padding: 7px;
+    margin: 0 2px 2px;
+    padding: 10px;
     background-color: #f7faf4;
 
 }
 
 .addSubissue .name {
     width: 100%;
-    margin-bottom: 0.2em;
+    margin-bottom: 3px;
+    font-size: 14px;
 }
 
 .addSubissue textarea {
     resize: none;
     width: 100%;
+    font-size: 14px;
+}
+
+.add-wrapper {
+    margin-top: 3px;
+    width: 100px;
+    margin-left: auto;
 }
 .add {
-    float: right;
+    width: 100%;
 }
  /* /issue */
 
