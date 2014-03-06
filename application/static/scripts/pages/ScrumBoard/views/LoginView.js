@@ -19,29 +19,15 @@ define(["text!pages/ScrumBoard/templates/LoginView.html",
                 .html(loginView)
                 .append(footerView);
 
-                $.ajax({
-                    url: "/api/user/entered",
-
-                    success: function (text) {
-                        if (text == '"Yes"') {
-                            setTimeout(function (){
-                                that.router.navigate("", {trigger: true});
-                            }, 0);
-                        }
-                    }
-                });
-
                 return this;
             },
 
             login: function () {
-                //this.router.navigate("", true);
-
                 var that = this;
                 $.ajax({
                     url: "/api/user/login",
-                    "data": {"email": this.$el.find("#email").val(),
-                             "password": this.$el.find("#password").val()},
+                    data: {"email": this.$el.find("#email").val(),
+                           "password": this.$el.find("#password").val()},
 
                     success: function (text) {
                         var data = JSON.parse(text);

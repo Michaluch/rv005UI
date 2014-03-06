@@ -1,11 +1,14 @@
-<% if (kind == "subtask") {
-    var kindColor = "subtask-color";
+<% 
+    var kindColor = "";
+    if (kind == "subtask") {
+        kindColor = "subtask-color";
     }
-   if (kind == "subbug") {
-    kindColor = "subbug-color";
-    } %>
+    if (kind == "subbug") {
+        kindColor = "subbug-color";
+    }
+%>
 
-<div class="subissue <%=kindColor%>" data-parent="<%= parent %>" data-id="<%= _id %>">
+<div class="subissue <%= kindColor %>" data-parent="<%= parent %>" data-id="<%= _id %>">
     <div class="top-left-corner">
     	<span class="estimate">Estimate: <%=estimate%>sp</span>
     </div>

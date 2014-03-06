@@ -4,28 +4,58 @@ define(["pages/ScrumBoard/views/PageView",
 
     function(PageView, LoginView, ProfileView) {
         return Backbone.Router.extend({
+            _checked: false,
+            _entered: false,
+
             routes: {
-                "": "start",
-                "profile": "profile",
-                "main": "start",
+                "": "sprint",
                 "login": "login",
+                "profile": "profile",
                 "*other": "start"
             },
             
-            start: function () {
-                var pageView = new PageView();
-                pageView.render();
+            sprint: function () {
+                if (this.entered()) {
+                    var pageView = new PageView();
+                    pageView.render();
+                    this.checked = false;
+                } else {
+                    this.login();
+                }
             },
-            
+
             login: function () {
-                var loginView = new LoginView({router: this});
-                loginView.render();
+                if (!this.entered()) {
+                    var loginView = new LoginView({router: this});
+                    loginView.render();
+                    this.checked = false;
+                } else {
+                    this.sprint();
+                }
             },
 
             profile: function () {
-                var profileView = new ProfileView();
-                profileView.render();
-            }
+                if (this.entered()) {
+                    var profileView = new ProfileView();
+                    profileView.render();
+                    this.checked = false;
+                } else {
+                    this.login();
+                }
+            },
+
+            entered: function () {
+                if (!this._checked) {
+                    var result = $.ajax({
+                        url: "/api/user/entered",
+                        async: false
+                    }).responseText;
+                    this._checked = true;
+                    this._entered = (result == "Yes");
+                }
+
+                return this._entered;
+            }            
         })
     }
 );
