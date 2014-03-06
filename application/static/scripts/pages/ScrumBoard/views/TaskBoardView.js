@@ -35,6 +35,7 @@ define(["text!pages/ScrumBoard/templates/TaskBoardView.html",
                 param["description"] = $textarea.val();
                 $textarea.val("");
                 param["status"] = "to do";
+                param["kind"] = "subtask";
                 param["parent"] = parent;
                 var subissue = new Subissue(param);
                 this.subissues.add(subissue);
@@ -133,6 +134,7 @@ define(["text!pages/ScrumBoard/templates/TaskBoardView.html",
                 var dialogView = new DialogView({
                     collection: this.subissues
                 });
+                dialogView.render();
             },
 
             equalColumns: function () {
@@ -151,6 +153,7 @@ define(["text!pages/ScrumBoard/templates/TaskBoardView.html",
                 var subissueView = new SubissueView({
                     model: subissue
                 });
+                subissueView.model.save();
                 subissueView.render();
                 this.$(".todo").append(subissueView.el);
             },
