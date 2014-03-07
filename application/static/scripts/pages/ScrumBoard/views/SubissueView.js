@@ -8,7 +8,8 @@ define(["text!pages/ScrumBoard/templates/SubissueView.html"],
                 "click .image-delete": "delete"
             },
 
-            initialize: function() {
+            initialize: function(options) {
+                this.deleteDialog = options.deleteDialog;
                 this.model.on("change", this.render, this);
             },
 
@@ -32,9 +33,21 @@ define(["text!pages/ScrumBoard/templates/SubissueView.html"],
             },
 
             delete: function() {
-                $("#dialog-delete").data("edit-id", this.model.id);
-                $("#dialog-delete").data("view", this);
-                $("#dialog-delete").dialog( "open" );
+                var that = this;
+                // show delete confirmation dialog with view's function (not direct jQuery execution)
+
+                this.deleteDialog.show({
+                    subissue: that.model,
+                    onDelete: function(e) {
+                        that.model.set("status", "removed");
+                        that.model.save();
+                        that.trigger("subissue-removed", { subissueView : that });
+                    }
+                });
+
+                //$("#dialog-delete").data("edit-id", this.model.id);
+                //$("#dialog-delete").data("view", this);
+                //$("#dialog-delete").dialog( "open" );
             }
         });
     }

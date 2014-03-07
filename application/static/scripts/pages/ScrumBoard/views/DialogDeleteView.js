@@ -9,14 +9,14 @@ define(["text!pages/ScrumBoard/templates/DialogDeleteView.html"],
             }, */
 
             initialize: function(options) {
-
+                
             },
 
 
             render: function () {
                 var that = this;
                 this.$el.html(this.template({}));
-                this.$("#dialog-delete").dialog({
+                this.$dialog = this.$("#dialog-delete").dialog({
                     minWidth : 500,
                     show: "clip",
                     hide: "clip",
@@ -25,28 +25,43 @@ define(["text!pages/ScrumBoard/templates/DialogDeleteView.html"],
                     autoOpen : false,
                     buttons: {
                         "Delete": function() {
-                            that.delete();
+                            if (typeof(that.onDelete) === "function") {
+                                that.onDelete();    
+                                that.onDelete = undefined;
+                            }
+                            that.$dialog.dialog("close");
                         },
                         Cancel: function() {
+                            that.onDelete = undefined;
                           $( this ).dialog( "close" );
                         }
                     },
-                    open: function( event, ui ) {
+                    close: function() {
+                        console.log("Delete subissue dialog closed");
+                        that.onDelete = undefined;
+                    }
+                    /*open: function( event, ui ) {
                         var $dialog = $(event.target);
                         var id = $dialog.data('edit-id');
                         that.subissue = that.collection.findWhere({"_id": id});
                         that.view = $dialog.data('view');
-                    }
+                    }*/
                 });
                 return this;
             },
 
-            delete: function () {
-                this.subissue.set("status", "removed");
+            show: function(params) {
+                this.$dialog.dialog("open");
+                this.onDelete = params.onDelete;
+            }
+
+            /*delete: function () {
+                this.trigger("subissue-deleted", { subissue: this.subissue });
+                /*this.subissue.set("status", "removed");
                 this.subissue.save();
                 this.view.remove();
                 $("#dialog-delete").dialog( "close" );
-            }
+            }*/
         });
     }
 );

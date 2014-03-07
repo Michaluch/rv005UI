@@ -6,11 +6,13 @@ define(["text!pages/ScrumBoard/templates/IssueView.html"],
 
             events: {
                 "click .plus" : "open",
-                "click .minus" : "close"
+                "click .minus" : "close",
+                "click .image-edit" : "edit"
                 
             },
         
             initialize: function(options){
+                this.model.on("change", this.render, this);
             },
                            
             render: function () {
@@ -48,6 +50,11 @@ define(["text!pages/ScrumBoard/templates/IssueView.html"],
                 this.$(".plus").removeClass("lock");
                 this.$(".addSubissue").addClass("lock");
                 this.equalColumns();
+            },
+
+            edit: function () {
+                $("#dialog-issue").data("edit-id", this.model.id);
+                $("#dialog-issue").dialog("open");
             }
             
         });
