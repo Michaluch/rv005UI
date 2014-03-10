@@ -459,7 +459,7 @@ textarea {
 
     border: 1px solid #C0CAD5;
     background-color: #d1e3c2;
-    height: 430px;
+    height: 200px;
     position: relative;
     margin: 0 auto;
     padding: 40px 30px;
@@ -472,8 +472,9 @@ textarea {
 }
 
 #profile-image-div {
-    height: 140px;
-    width: 140px;
+    height: 150px;
+    width: 150px;
+    float:left;
     text-align: left;
 }
 
@@ -491,12 +492,12 @@ textarea {
 }
 
 #profile-edit-button {
-        width: 25px;
-    }
+    width: 25px;
+}
 
 #profile-info {
-    width: 450px;
-    height: 320px;
+    /*width: 450px;
+    height: 320px;*/
 }
 
 #profile-info .label span {
