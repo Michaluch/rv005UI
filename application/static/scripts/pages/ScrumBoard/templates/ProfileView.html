@@ -2,17 +2,17 @@
     <a href="/"><img id="header-logo" src="/static/images/logo.png" alt="BugTrack logo" /></a>
     <span id="header-right-corner">
         <a href="#profile"><img id="userpick" src="/static/images/userpick.png" alt="Avatar"></a>
-        <a id="a-team-member" href="#profile">Team Member</a>
-        <img id="logout" src="/static/images/logout.png" alt="Logout">
+        <a id="a-team-member" href="#profile"><%= fname %> <%= lname %></a>
+        <a href="/api/user/logout"><img id="logout" src="/static/images/logout.png" alt="Logout"></a>
     </span>
 </div>
 <div class="content">
     <div id="profile-clear"></div>
     <div class="profile-area">
-        <div id="profile-edit-button-corner">
+<!--         <div id="profile-edit-button-corner">
             <div class="label">Edit profile</div>
             <img id="profile-edit-button" src="/static/images/edit.png" alt="Edit profile">
-        </div>
+        </div> -->
         <div id="profile-image-div">
             <img id="profile-image" src="/static/images/userpick.png" alt="Avatar" />
             <p>
@@ -20,7 +20,7 @@
             <div class="label"><%= fname %> <%= lname %></div>
         </div>
 
-        <hr>
+        <!-- <hr> -->
         <div id="profile-info">
             <div class="label">
                 <div class="item">
