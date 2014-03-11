@@ -3,88 +3,92 @@ define(["text!pages/ScrumBoard/templates/DialogView.html"],
         return Backbone.View.extend({
             template: _.template(dialogView),
 
-        /*    events: {
-                "click .save": "save",
-                "click .select-title": "drop"
-            }, */
-
             initialize: function(options) {
 
             },
 
-
             render: function () {
                 var that = this;
                 this.$el.html(this.template({}));
-                this.$("#dialog").dialog({
-                    minWidth : 500,
+                this.$dialog = this.$("#dialog-edit").dialog({
+                    modal: true,
+                    autoOpen : false,
+                    resizable : false,
+                    draggable : false,
+                    minWidth : 650,
+                    height: "auto",
                     show: "clip",
                     hide: "clip",
-                    modal: true,
-                    height: "auto",
-                    autoOpen : false,
-                    open: function( event, ui ) {
-                        var $dialog = $(event.target);
-                        var id = $dialog.data('edit-id');
-                        that.subissue = that.collection.findWhere({"_id": id});
+                    buttons : [
+                        {
+                        text : "Save",
+                        "class" : "my",
+                        click : function () {
+                             if (typeof(that.onEdit) === "function") {
+                                that.onEdit();
+                                that.onEdit = undefined;
+                                that.checkHidden();
+                            }
+                            that.$dialog.dialog("close");
+                          },
+                        },
+                        {
+                        text : "Cancel",
+                        "class" : "my",
+                        click : function () {
+                                that.onEdit = undefined;
+                                that.checkHidden();
+                                that.$dialog.dialog( "close" );
+                            }
+                        }
+                    ],
+                    beforeClose: function() {
+                        that.onEdit = undefined;
+                        that.checkHidden();
                     }
                 });
-                $("#dialog .save").on("click",
-                    function() {
-                        that.save();
-                    });
-                $("#dialog .select-title").on("click",
-                    function(event) {
-                        that.drop(event);
+                $("#dialog-edit .slct").on("click",
+                    function(e) {
+                        that.drop(e);
                     });
                 return this;
             },
 
-            save: function() {
-                this.subissue.set("description", $("form.edit textarea").val());
-                this.subissue.set("kind", "sub" + $("input[name=type]").val());
-                this.subissue.set("estimate", $("input[name=estimate]").val());
-                this.subissue.set("assign_to", $("input[name=member]").val());
-                this.subissue.save();
-
-                $("#dialog .select-title").each(function() {
-                    var defaultTitle = $(this).prev().val();
-                    if (defaultTitle) {
-                        $(this).text(defaultTitle);
-                    }
-                });
-
-                $("form.edit textarea").val("");
-                $( "#dialog" ).dialog( "close" );
+            show : function (params) {
+                this.$dialog.dialog( "open");
+                this.onEdit = params.onEdit;
             },
 
-            drop: function(event) {
-                event.preventDefault();
+            drop: function(e) {
+                var $slct = $(e.currentTarget);
+                var dropBlock = $slct.parent().find(".drop");
 
-                var $selectTitle = $(event.currentTarget);
-                var selectDiv = $(event.currentTarget).parent();
-                var ulDrop = selectDiv.find(".drop");
-                if ( ulDrop.is(":hidden") ) {
-                    ulDrop.slideDown();
-                    $selectTitle.addClass("active");
+                if ( dropBlock.is(":hidden") ) {
+                    dropBlock.slideDown();
+                    $slct.addClass("active");
 
-                    $(selectDiv).find("input").val($selectTitle.text());
+                    dropBlock.find("li").click(function() {
+                        var selectResult = $(this).html();
+                        $(this).parent().parent().find(".slct").removeClass("active").html(selectResult);
+                        dropBlock.slideUp();
+                    });
                 } else {
-                    var selected = $(event.currentTarget).html();
-                    ulDrop.slideUp();
-                    $selectTitle.removeClass("active").html(selected);
-                }
-
-                ulDrop.find("li").click(function(event){
-                    var selected = $(event.currentTarget).html();
-                    selectDiv.find(".select-input").val($(selected).text());
-                    ulDrop.slideUp();
-                    $selectTitle.removeClass("active").html(selected);
-
-                    return false;
-                })
-
+                    $slct.removeClass("active");
+                    dropBlock.slideUp();
+                } 
                 return false;
+            },
+
+            checkHidden: function () {
+                _.each($(".drop"), function(dropBlock) {
+                if (!$(dropBlock).is(":hidden")) {
+                    $(dropBlock).slideUp();
+                    $(dropBlock).prev().removeClass("active");
+                }
+            })
             }
+
+
         })
-});
+    }
+);

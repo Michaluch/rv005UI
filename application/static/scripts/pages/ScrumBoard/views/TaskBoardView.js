@@ -7,10 +7,12 @@ define(["text!pages/ScrumBoard/templates/TaskBoardView.html",
         "pages/ScrumBoard/views/SubissueView",
         "pages/ScrumBoard/views/DialogView",
         "pages/ScrumBoard/views/DialogDeleteView",
-        "pages/ScrumBoard/views/DialogIssueView"],
+        "pages/ScrumBoard/views/DialogIssueView",
+        "pages/ScrumBoard/views/DialogDeleteIssueView"],
 
     function(taskBoardTemplate, Issues, Issue, IssueView, Subissues,
-             Subissue, SubissueView, DialogView, DialogDeleteView, DialogIssueView){
+             Subissue, SubissueView, DialogView, DialogDeleteView,
+             DialogIssueView, DialogDeleteIssueView){
         return Backbone.View.extend({ 
 
             initialize: function(options){
@@ -93,14 +95,27 @@ define(["text!pages/ScrumBoard/templates/TaskBoardView.html",
                     drop: handleDrop
                 });
 
-                var dialogDeleteView = new DialogDeleteView({
+                var dialogDeleteView = new DialogDeleteView();
+                dialogDeleteView.render();
+                this.dialogDeleteView = dialogDeleteView;
+
+                var dialogDeleteIssueView = new DialogDeleteIssueView();
+                dialogDeleteIssueView.render();
+                this.dialogDeleteIssueView = dialogDeleteIssueView; 
+
+
+                var dialogView = new DialogView({
                     collection: this.subissues
                 });
-                dialogDeleteView.render();
+                dialogView.render();
+                this.dialogView = dialogView;
 
-                that.dialogDeleteView = dialogDeleteView;
-
-
+                
+                var dialogIssueView = new DialogIssueView({
+                    collection: this.issues
+                });
+                dialogIssueView.render();
+                
                 this.issues.each(function(issue) {
                     if ( issue.get("kind") == "story" &&
                          !_.isEmpty(this.filteredSub[issue.id]) &&
@@ -112,8 +127,10 @@ define(["text!pages/ScrumBoard/templates/TaskBoardView.html",
                     }
 
                     var issueView = new IssueView({
-                        model: issue
+                        model : issue,
+                        deleteIssueDialog : that.dialogDeleteIssueView
                     });
+                    issueView.on("issue-removed", that.onIssueRemoved, that);
                     issueView.render();
 
                     if (issue.get("status") == "to do") {
@@ -128,10 +145,10 @@ define(["text!pages/ScrumBoard/templates/TaskBoardView.html",
                     _.each(this.filteredSub[issue.id], function(subissue){
                         var subissueView = new SubissueView({
                             model: subissue,
-                            deleteDialog: that.dialogDeleteView
+                            deleteDialog: that.dialogDeleteView,
+                            editDialog: that.dialogView
                         });
                         subissueView.on("subissue-removed", that.onSubissueRemoved, that);
-
                         subissueView.render();
                         
                         if (subissue.get("status") == "to do") {
@@ -141,26 +158,21 @@ define(["text!pages/ScrumBoard/templates/TaskBoardView.html",
                             this.$(".doing").append(subissueView.el);
 
                         }
-                        if (subissue.get("status") == "done") {                                                        
-                            this.$(".done").append(subissueView.el);                            
+                        if (subissue.get("status") == "done") {
+                            this.$(".done").append(subissueView.el);
                         }
                     }, this);
                 }, this);
                 
-                var dialogView = new DialogView({
-                    collection: this.subissues
-                });
-                dialogView.render();
-
-                
-                var dialogIssueView = new DialogIssueView({
-                    collection: this.issues
-                });
-                dialogIssueView.render();
             },
 
             onSubissueRemoved: function(e) {
                 e.subissueView.remove();
+                this.equalColumns();
+            },
+
+            onIssueRemoved: function(e) {
+                e.issueView.remove();
                 this.equalColumns();
             },
 

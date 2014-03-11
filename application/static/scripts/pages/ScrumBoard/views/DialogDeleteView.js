@@ -3,49 +3,44 @@ define(["text!pages/ScrumBoard/templates/DialogDeleteView.html"],
         return Backbone.View.extend({
             template: _.template(dialogDeleteView),
 
-        /*    events: {
-                "click .save": "save",
-                "click .select-title": "drop"
-            }, */
-
             initialize: function(options) {
                 
             },
-
 
             render: function () {
                 var that = this;
                 this.$el.html(this.template({}));
                 this.$dialog = this.$("#dialog-delete").dialog({
-                    minWidth : 500,
+                    modal: true,
+                    autoOpen : false,
+                    resizable : false,
+                    draggable : false,
+                    minWidth : 400,
+                    height: "auto",
                     show: "clip",
                     hide: "clip",
-                    modal: true,
-                    height: "auto",
-                    autoOpen : false,
-                    buttons: {
-                        "Delete": function() {
+                    buttons: [{
+                        text : "Delete",
+                        "class" : "my",
+                        click: function() {
                             if (typeof(that.onDelete) === "function") {
                                 that.onDelete();    
                                 that.onDelete = undefined;
                             }
                             that.$dialog.dialog("close");
-                        },
-                        Cancel: function() {
-                            that.onDelete = undefined;
-                          $( this ).dialog( "close" );
                         }
-                    },
+                    }, 
+                    {
+                        text : "Cancel",
+                        "class" : "my",
+                        click : function() {
+                            that.onDelete = undefined;
+                            that.$dialog.dialog( "close" );
+                        }
+                    }],
                     close: function() {
-                        console.log("Delete subissue dialog closed");
                         that.onDelete = undefined;
                     }
-                    /*open: function( event, ui ) {
-                        var $dialog = $(event.target);
-                        var id = $dialog.data('edit-id');
-                        that.subissue = that.collection.findWhere({"_id": id});
-                        that.view = $dialog.data('view');
-                    }*/
                 });
                 return this;
             },
@@ -54,14 +49,6 @@ define(["text!pages/ScrumBoard/templates/DialogDeleteView.html"],
                 this.$dialog.dialog("open");
                 this.onDelete = params.onDelete;
             }
-
-            /*delete: function () {
-                this.trigger("subissue-deleted", { subissue: this.subissue });
-                /*this.subissue.set("status", "removed");
-                this.subissue.save();
-                this.view.remove();
-                $("#dialog-delete").dialog( "close" );
-            }*/
         });
     }
 );

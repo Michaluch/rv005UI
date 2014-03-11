@@ -1,5 +1,4 @@
 define(["text!pages/ScrumBoard/templates/IssueView.html"],
-
     function(issueView) {
         return Backbone.View.extend({
             template: _.template(issueView),
@@ -7,11 +6,13 @@ define(["text!pages/ScrumBoard/templates/IssueView.html"],
             events: {
                 "click .plus" : "open",
                 "click .minus" : "close",
-                "click .image-edit" : "edit"
+                "click .image-edit" : "edit",
+                "click .image-delete" : "delete"
                 
             },
         
             initialize: function(options){
+                this.deleteIssueDialog = options.deleteIssueDialog;
                 this.model.on("change", this.render, this);
             },
                            
@@ -55,6 +56,17 @@ define(["text!pages/ScrumBoard/templates/IssueView.html"],
             edit: function () {
                 $("#dialog-issue").data("edit-id", this.model.id);
                 $("#dialog-issue").dialog("open");
+            }, 
+
+            delete: function () {
+                var that = this;
+                this.deleteIssueDialog.show({
+                    onDelete: function(e) {
+                        that.model.set("status", "removed");
+                        that.model.save();
+                        that.trigger("issue-removed", { issueView : that });
+                    }
+                });
             }
             
         });

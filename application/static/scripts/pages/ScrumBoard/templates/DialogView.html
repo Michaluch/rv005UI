@@ -1,48 +1,42 @@
-<div id="dialog" title="Edit subissue:">
-        <form class="edit">
-            <textarea></textarea>
-        </form>
-        <div class="select-wrapper">
-            <div class="select-type">
-                <input type="hidden" class="default-title" />
-                <a href="javascript:void(0);" class="select-title">Type</a>
-                <ul class="drop">
-                    <li><a href="#">task</a></li>
-                    <li><a href="#">bug</a></li>
-                </ul>
-                <form name="select-type">
-                    <input name="type" type="hidden" class="select-input" />
-                </form>
-            </div>
+<div id="dialog-edit" title="Edit subissue:">
+    <form id="dialog-form">
+    <div class="text">
+        <h3>Enter new name:</h3>
+        <input id="edit-name" type="text" />
+    </div>
+    <div class="text">
+        <h3>Enter new description:</h3>
+        <textarea id="edit-description"></textarea>
+    </div>
+    <div id="select-type">
+        <h3>Select type:</h3>
+        <a href="javascript:void(0);" class="slct">Select type:</a>
+        <ul class="drop">
+            <li>task</li>
+            <li>bug</li>
+        </ul>
+    </div>
 
-            <div class="select-estimate">
-                <input type="hidden" class="default-title" />
-                <a href="javascript:void(0);" class="select-title">Estimate</a>   
-                <ul class="drop">
-                    <li><a href="">0.5</a></li>
-                    <li><a href="">3</a></li>
-                    <li><a href="">5</a></li>
-                    <li><a href="">8</a></li>
-                    <li><a href="">13</a></li>
-                </ul>
-                <form name="select-estimate">
-                    <input name="estimate" type="hidden" class="select-input" />
-                </form>
-            </div>
+    <div id="select-estimate">
+        <h3>Select estimate:</h3>
+        <a href="javascript:void(0);" class="slct">Select estimate:</a>
+        <ul class="drop">
+            <li>0.5</li>
+            <li>3</li>
+            <li>5</li>
+            <li>8</li>
+            <li>13</li>
+        </ul>
+    </div>
 
-            <div class="select-member">
-                <input type="hidden" class="default-title" />
-                <a href="javascript:void(0);" class="select-title">Team Member</a> 
-                <ul class="drop">
-                    <li><a href="#">member 1</a></li>
-                    <li><a href="#">member 2</a></li>
-                </ul>
-                <form name="select-member">
-                    <input name="member" type="hidden" class="select-input" />
-                </form>
-            </div>
-        </div>
-        <div class="input">
-            <input class="save" type="submit" value="Save" />
-        </div>
+    <div id="select-member">
+        <h3>Assign to:</h3>
+        <a href="javascript:void(0);" class="slct">Assign to:</a>
+        <ul class="drop">
+            <li>member1</li>
+            <li>member2</li>
+        </ul>
+    </div>
+
+    </form>
 </div>
