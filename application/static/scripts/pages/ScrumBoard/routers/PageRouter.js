@@ -11,7 +11,7 @@ define(["pages/ScrumBoard/views/PageView",
                 "": "sprint",
                 "login": "login",
                 "profile": "profile",
-                "*other": "start"
+                "*other": "sprint"
             },
             
             sprint: function () {
