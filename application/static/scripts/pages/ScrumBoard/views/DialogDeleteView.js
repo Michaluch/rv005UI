@@ -16,12 +16,12 @@ define(["text!pages/ScrumBoard/templates/DialogDeleteView.html"],
                     resizable : false,
                     draggable : false,
                     minWidth : 400,
-                    height: "auto",
+                    height: 200,
                     show: "clip",
                     hide: "clip",
                     buttons: [{
                         text : "Delete",
-                        "class" : "my",
+                        "class" : "button",
                         click: function() {
                             if (typeof(that.onDelete) === "function") {
                                 that.onDelete();    
@@ -32,13 +32,13 @@ define(["text!pages/ScrumBoard/templates/DialogDeleteView.html"],
                     }, 
                     {
                         text : "Cancel",
-                        "class" : "my",
+                        "class" : "button",
                         click : function() {
                             that.onDelete = undefined;
                             that.$dialog.dialog( "close" );
                         }
                     }],
-                    close: function() {
+                    beforeClose: function() {
                         that.onDelete = undefined;
                     }
                 });

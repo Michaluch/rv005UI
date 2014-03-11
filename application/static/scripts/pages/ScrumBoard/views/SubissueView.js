@@ -30,21 +30,23 @@ define(["text!pages/ScrumBoard/templates/SubissueView.html"],
 
             edit: function () {
                 var that = this;
-                $("#dialog-edit #edit-name").val(this.model.get("name"));
-                $("#dialog-edit #edit-description").val(this.model.get("description"));
+
+                $("#dialog-edit .edit-name").val(this.model.get("name"));
+                $("#dialog-edit .edit-description").val(this.model.get("description"));
                 var kind = this.model.get("kind") || "no type";
-                $("#dialog-edit #select-type .slct").text(kind.substr(3));
+                $("#dialog-edit .select-type .slct").text(kind.substr(3));
                 var estimate = this.model.get("estimate") || "no estimate";
-                $("#dialog-edit #select-estimate .slct").text(estimate);
+                $("#dialog-edit .select-estimate .slct").text(estimate);
                 var assign_to = this.model.get("assign_to") || "not assigned";
-                $("#dialog-edit #select-member .slct").text(assign_to);
+                $("#dialog-edit .select-member .slct").text(assign_to);
                 this.editDialog.show({
                     onEdit: function(e) {
-                        that.model.set("name", $("#dialog-edit #edit-name").val());
-                        that.model.set("description", $("#dialog-edit #edit-description").val());
-                        that.model.set("kind", "sub" + $("#dialog-edit #select-type .slct").text());
-                        that.model.set("estimate", $("#dialog-edit #select-estimate .slct").text());
-                        that.model.set("assign_to", $("#dialog-edit #select-member .slct").text());
+                        var editedData = that.editDialog.editedData();
+                        that.model.set("name", editedData.name);
+                        that.model.set("description", editedData.description);
+                        that.model.set("kind", editedData.kind);
+                        that.model.set("estimate", editedData.estimate);
+                        that.model.set("assign_to", editedData.assign_to);
                         that.model.save();
                     }
                 })
