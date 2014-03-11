@@ -380,30 +380,33 @@ textarea {
 
 
 /* dialog */
+#dialog-delete {
+    padding-top: 35px;
+}
 
 #dialog {
     background-color: #e8f4dd;
 }
 
-#dialog-form {
+.dialog-form {
     color: #444444;
     font-size: 14px;
 
 }
 
-#dialog-form h3 {
+.dialog-form h3 {
     font-size: 15px;
     font-weight: normal;
     margin: 10px 0 0 0;
     margin-bottom: 5px;
 }
 
-#dialog-form a {
+.dialog-form a {
     text-decoration: none;
 }
 
-#dialog-form input {
-    width: 400px;
+.dialog-form input {
+    width: 550px;
     font-size: 14px;
     padding: 6px 0 4px 10px;
     background: #e8e8e8;
@@ -412,8 +415,8 @@ textarea {
     color: #444444;
 }
 
-#dialog-form textarea {
-    width: 400px;
+.dialog-form textarea {
+    width: 550px;
     height: 50px;
     display: block;
     resize: none;
@@ -425,24 +428,24 @@ textarea {
     color: #444444;
 }
 
-#dialog-form .text {
-    width: 400px;
+.dialog-form .text {
+    width: 550px;
     margin-left: auto;
     margin-right: auto;
 }
 
 
-#select-type,
-#select-estimate,
-#select-member {
+.select-type,
+.select-estimate,
+.select-member {
     width: 200px;
     float: left;
     margin-bottom: 20px;
 }
 
-#select-type h3,
-#select-estimate h3,
-#select-member h3{
+.select-type h3,
+.select-estimate h3,
+.select-member h3{
     color: #444444;
     padding-left: 5px;
 }
@@ -522,7 +525,7 @@ textarea {
     background-color: #e8f4dd;
 }
 
-.ui-dialog .my{
+.ui-dialog .button{
     color: rgb(255, 255, 255);
     background: #6e914f;
     height: 35px;

@@ -22,7 +22,7 @@ define(["text!pages/ScrumBoard/templates/DialogView.html"],
                     buttons : [
                         {
                         text : "Save",
-                        "class" : "my",
+                        "class" : "button",
                         click : function () {
                              if (typeof(that.onEdit) === "function") {
                                 that.onEdit();
@@ -34,7 +34,7 @@ define(["text!pages/ScrumBoard/templates/DialogView.html"],
                         },
                         {
                         text : "Cancel",
-                        "class" : "my",
+                        "class" : "button",
                         click : function () {
                                 that.onEdit = undefined;
                                 that.checkHidden();
@@ -57,6 +57,17 @@ define(["text!pages/ScrumBoard/templates/DialogView.html"],
             show : function (params) {
                 this.$dialog.dialog( "open");
                 this.onEdit = params.onEdit;
+            },
+
+            editedData : function () {
+                var data = {
+                    name: this.$(".edit-name").val(),
+                    description: this.$(".edit-description").val(),
+                    kind: "sub" + this.$(".select-type .slct").text(),
+                    estimate: this.$(".select-estimate .slct").text(),
+                    assign_to: this.$(".select-member .slct").text()
+                };
+                return data;
             },
 
             drop: function(e) {
