@@ -34,5 +34,15 @@ define(["text!pages/ScrumBoard/templates/ProfileView.html",
                                     role: this.user.get("role")}))
                 .append(footerView);
             }
+        
+            /*$('.editable').editable(function(value, settings) {
+                 console.log(this);
+                 console.log(value);
+                 console.log(settings);
+                 return(value);
+              }, {
+                 type    : 'textarea',
+                 submit  : 'OK',
+             })*/
         })
-});
+})
