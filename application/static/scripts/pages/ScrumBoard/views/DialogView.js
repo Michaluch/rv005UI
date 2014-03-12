@@ -57,15 +57,23 @@ define(["text!pages/ScrumBoard/templates/DialogView.html"],
             show : function (params) {
                 this.$dialog.dialog( "open");
                 this.onEdit = params.onEdit;
+                this.$dialog.find(".edit-name").val(params.data.name);
+                this.$dialog.find(".edit-description").val(params.data.description);
+                this.$dialog.find(".select-type .slct").text(params.data.kind);
+                this.$dialog.find(".select-estimate .slct").text(params.data.estimate);
+                this.$dialog.find(".select-member .slct").text(params.data.assign_to);
             },
 
             editedData : function () {
+                var kind = this.$dialog.find(".select-type .slct").text();
+                var estimate = this.$dialog.find(".select-estimate .slct").text();
+                var assign_to = this.$dialog.find(".select-member .slct").text();
                 var data = {
-                    name: this.$(".edit-name").val(),
-                    description: this.$(".edit-description").val(),
-                    kind: "sub" + this.$(".select-type .slct").text(),
-                    estimate: this.$(".select-estimate .slct").text(),
-                    assign_to: this.$(".select-member .slct").text()
+                    name: this.$dialog.find(".edit-name").val() ,
+                    description: this.$dialog.find(".edit-description").val(),
+                    kind: kind == "no type" ? "" : "sub" + kind,
+                    estimate: estimate == "no estimate" ? 0 : estimate,
+                    assign_to: assign_to == "not assigned" ? "" : assign_to 
                 };
                 return data;
             },
