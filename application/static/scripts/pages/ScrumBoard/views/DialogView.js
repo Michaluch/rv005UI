@@ -72,7 +72,7 @@ define(["text!pages/ScrumBoard/templates/DialogView.html"],
                     name: this.$dialog.find(".edit-name").val() ,
                     description: this.$dialog.find(".edit-description").val(),
                     kind: kind == "no type" ? "" : "sub" + kind,
-                    estimate: estimate == "no estimate" ? 0 : estimate,
+                    estimate: estimate == "no estimate" ? "" : estimate,
                     assign_to: assign_to == "not assigned" ? "" : assign_to 
                 };
                 return data;

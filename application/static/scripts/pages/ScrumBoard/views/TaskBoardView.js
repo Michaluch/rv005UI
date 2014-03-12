@@ -40,7 +40,6 @@ define(["text!pages/ScrumBoard/templates/TaskBoardView.html",
                 param["description"] = $textarea.val();
                 $textarea.val("");
                 param["status"] = "to do";
-                param["kind"] = "subtask";
                 param["parent"] = parent;
                 var subissue = new Subissue(param);
                 this.subissues.add(subissue);

@@ -10,7 +10,7 @@
 
 <div class="subissue <%= kindColor %>" data-parent="<%= parent %>" data-id="<%= _id %>">
     <div class="top-left-corner">
-    	<span class="estimate">Estimate: <%=estimate%>sp</span>
+    	<span class="estimate">Estimate: <% if (estimate) {%> <%=estimate%> sp <%} else {%> no estimate <%}%></span>
     </div>
     <% if (status == "to do") { %>
     <div class="top-right-corner">

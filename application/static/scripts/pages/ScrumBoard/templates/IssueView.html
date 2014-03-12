@@ -14,7 +14,7 @@
         <span><img class="plus" src="static/images/plus.jpg"/>
         <img class="minus lock" src="static/images/minus.jpg" /></span>
         <% } %>
-        <span class="estimate">Estimate: <%= estimate %>sp</span>
+        <span class="estimate">Estimate: <% if (estimate) {%> <%=estimate%> sp <%} else {%> no estimate <%}%></span>
     </div>
     <% if (status == "to do") { %>
     <div class="top-right-corner">
