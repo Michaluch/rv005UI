@@ -1,7 +1,7 @@
-define(["text!pages/ScrumBoard/templates/DialogView.html"], 
-    function(dialogView) {
+define(["text!pages/ScrumBoard/templates/EditSubissueView.html"], 
+    function(editSubissueView) {
         return Backbone.View.extend({
-            template: _.template(dialogView),
+            template: _.template(editSubissueView),
 
             initialize: function(options) {
 
@@ -16,7 +16,7 @@ define(["text!pages/ScrumBoard/templates/DialogView.html"],
                     resizable : false,
                     draggable : false,
                     minWidth : 650,
-                    height: "auto",
+              /*      minHeight: "auto",*/
                     show: "clip",
                     hide: "clip",
                     buttons : [
@@ -47,7 +47,7 @@ define(["text!pages/ScrumBoard/templates/DialogView.html"],
                         that.checkHidden();
                     }
                 });
-                $("#dialog-edit .slct").on("click",
+                this.$dialog.find(".slct").on("click",
                     function(e) {
                         that.drop(e);
                     });
@@ -57,15 +57,23 @@ define(["text!pages/ScrumBoard/templates/DialogView.html"],
             show : function (params) {
                 this.$dialog.dialog( "open");
                 this.onEdit = params.onEdit;
+                this.$dialog.find(".edit-name").val(params.data.name);
+                this.$dialog.find(".edit-description").val(params.data.description);
+                this.$dialog.find(".select-type .slct").text(params.data.kind);
+                this.$dialog.find(".select-estimate .slct").text(params.data.estimate);
+                this.$dialog.find(".select-member .slct").text(params.data.assign_to);
             },
 
             editedData : function () {
+                var kind = this.$dialog.find(".select-type .slct").text();
+                var estimate = this.$dialog.find(".select-estimate .slct").text();
+                var assign_to = this.$dialog.find(".select-member .slct").text();
                 var data = {
-                    name: this.$(".edit-name").val(),
-                    description: this.$(".edit-description").val(),
-                    kind: "sub" + this.$(".select-type .slct").text(),
-                    estimate: this.$(".select-estimate .slct").text(),
-                    assign_to: this.$(".select-member .slct").text()
+                    name: this.$dialog.find(".edit-name").val() ,
+                    description: this.$dialog.find(".edit-description").val(),
+                    kind: kind == "no type" ? "" : "sub" + kind,
+                    estimate: estimate == "no estimate" ? "" : estimate,
+                    assign_to: assign_to == "not assigned" ? "" : assign_to 
                 };
                 return data;
             },

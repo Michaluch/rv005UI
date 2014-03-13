@@ -28,18 +28,23 @@ define(["text!pages/ScrumBoard/templates/SubissueView.html"],
                 return this;
             },
 
-            edit: function () {
+            edit: function (e) {
+                e.stopPropagation();
                 var that = this;
 
-                $("#dialog-edit .edit-name").val(this.model.get("name"));
-                $("#dialog-edit .edit-description").val(this.model.get("description"));
-                var kind = this.model.get("kind") || "no type";
-                $("#dialog-edit .select-type .slct").text(kind.substr(3));
+                var kind = this.model.get("kind").substr(3) || "no type";
                 var estimate = this.model.get("estimate") || "no estimate";
-                $("#dialog-edit .select-estimate .slct").text(estimate);
                 var assign_to = this.model.get("assign_to") || "not assigned";
-                $("#dialog-edit .select-member .slct").text(assign_to);
+
+                var data = {
+                        name : this.model.get("name"),
+                        description : this.model.get("description"),
+                        kind : kind,
+                        estimate : estimate,
+                        assign_to : assign_to
+                    }
                 this.editDialog.show({
+                    data : data,
                     onEdit: function(e) {
                         var editedData = that.editDialog.editedData();
                         that.model.set("name", editedData.name);
@@ -52,7 +57,8 @@ define(["text!pages/ScrumBoard/templates/SubissueView.html"],
                 })
             },
 
-            delete: function() {
+            delete: function(e) {
+                e.stopPropagation();
                 var that = this;
                 this.deleteDialog.show({
                     onDelete: function(e) {

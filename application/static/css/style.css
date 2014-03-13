@@ -290,9 +290,14 @@ textarea {
     clear: both;
 }
 
+/*.name,
+.description {
+    overflow: hidden;
+    text-overflow: ellipsis;
+}*/
+
 .addSubissue {
     width: auto;
-    /*height: 75px;*/
     border: 1px solid #B2C0C0;
     margin: 0 2px 2px;
     padding: 10px;
@@ -380,18 +385,21 @@ textarea {
 
 
 /* dialog */
-#dialog-delete {
+#dialog-delete,
+#dialog-delete-issue {
     padding-top: 35px;
+    color: #444444;
+    font-size: 15px;
 }
 
-#dialog {
-    background-color: #e8f4dd;
+#dialog-edit,
+#dialog-issue-edit {
+    overflow: visible;
 }
 
 .dialog-form {
     color: #444444;
     font-size: 14px;
-
 }
 
 .dialog-form h3 {
@@ -482,8 +490,11 @@ textarea {
     border: 1px solid #cecece;
     border-top: none;
     background-color: #f6f6f6;
+    border-radius: 0 0 5px 5px;
     font-size: 14px;
     display: none;
+    position: absolute;
+    z-index: 1;
 }
 
 .drop li {
@@ -499,9 +510,9 @@ textarea {
     background-color: #d0d0d0;
     color: #222;
 }
-*/
-.dialog-class {
-    width: 600px;
+
+.clear {
+    clear: both;
 }
 
 .ui-dialog .ui-dialog-titlebar {
@@ -518,6 +529,10 @@ textarea {
 
 .ui-widget-content a {
     color: #444444;
+}
+
+.ui-dialog {
+    overflow: visible;
 }
 
 .ui-dialog .ui-dialog-buttonpane {
