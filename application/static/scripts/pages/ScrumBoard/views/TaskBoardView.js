@@ -5,14 +5,14 @@ define(["text!pages/ScrumBoard/templates/TaskBoardView.html",
         "pages/ScrumBoard/collections/Subissues",
         "pages/ScrumBoard/models/Subissue",
         "pages/ScrumBoard/views/SubissueView",
-        "pages/ScrumBoard/views/DialogView",
-        "pages/ScrumBoard/views/DialogDeleteView",
-        "pages/ScrumBoard/views/DialogIssueView",
-        "pages/ScrumBoard/views/DialogDeleteIssueView"],
+        "pages/ScrumBoard/views/EditSubissueView",
+        "pages/ScrumBoard/views/DeleteSubissueView",
+        "pages/ScrumBoard/views/EditIssueView",
+        "pages/ScrumBoard/views/DeleteIssueView"],
 
     function(taskBoardTemplate, Issues, Issue, IssueView, Subissues,
-             Subissue, SubissueView, DialogView, DialogDeleteView,
-             DialogIssueView, DialogDeleteIssueView){
+             Subissue, SubissueView, EditSubissueView, DeleteSubissueView,
+             EditIssueView, DeleteIssueView){
         return Backbone.View.extend({ 
 
             initialize: function(options){
@@ -94,26 +94,27 @@ define(["text!pages/ScrumBoard/templates/TaskBoardView.html",
                     drop: handleDrop
                 });
 
-                var dialogDeleteView = new DialogDeleteView();
-                dialogDeleteView.render();
-                this.dialogDeleteView = dialogDeleteView;
+                var deleteSubissueView = new DeleteSubissueView();
+                deleteSubissueView.render();
+                this.deleteSubissueView = deleteSubissueView;
 
-                var dialogDeleteIssueView = new DialogDeleteIssueView();
-                dialogDeleteIssueView.render();
-                this.dialogDeleteIssueView = dialogDeleteIssueView; 
+                var deleteIssueView = new DeleteIssueView();
+                deleteIssueView.render();
+                this.deleteIssueView = deleteIssueView; 
 
 
-                var dialogView = new DialogView({
+                var editSubissueView = new EditSubissueView({
                     collection: this.subissues
                 });
-                dialogView.render();
-                this.dialogView = dialogView;
+                editSubissueView.render();
+                this.editSubissueView = editSubissueView;
 
                 
-                var dialogIssueView = new DialogIssueView({
+                var editIssueView = new EditIssueView({
                     collection: this.issues
                 });
-                dialogIssueView.render();
+                editIssueView.render();
+                this.editIssueView = editIssueView;
                 
                 this.issues.each(function(issue) {
                     if ( issue.get("kind") == "story" &&
@@ -127,13 +128,14 @@ define(["text!pages/ScrumBoard/templates/TaskBoardView.html",
 
                     var issueView = new IssueView({
                         model : issue,
-                        deleteIssueDialog : that.dialogDeleteIssueView
+                        deleteIssueDialog : that.deleteIssueView,
+                        editIssueDialog : that.editIssueView
                     });
                     issueView.on("issue-removed", that.onIssueRemoved, that);
                     issueView.render();
 
                     if (issue.get("status") == "to do") {
-                        this.$(".todo").append(issueView.el);
+                        this.$(".todo ").append(issueView.el);
                     }
                     if (issue.get("status") == "doing") {
                         this.$(".doing").append(issueView.el);
@@ -144,14 +146,14 @@ define(["text!pages/ScrumBoard/templates/TaskBoardView.html",
                     _.each(this.filteredSub[issue.id], function(subissue){
                         var subissueView = new SubissueView({
                             model: subissue,
-                            deleteDialog: that.dialogDeleteView,
-                            editDialog: that.dialogView
+                            deleteDialog: that.deleteSubissueView,
+                            editDialog: that.editSubissueView
                         });
                         subissueView.on("subissue-removed", that.onSubissueRemoved, that);
                         subissueView.render();
                         
                         if (subissue.get("status") == "to do") {
-                            this.$(".todo").append(subissueView.el);
+                            this.$(".todo .subissue-container").append(subissueView.el);
                         }
                         if (subissue.get("status") == "doing") {
                             this.$(".doing").append(subissueView.el);

@@ -1,7 +1,7 @@
-define(["text!pages/ScrumBoard/templates/DialogDeleteView.html"], 
-    function(dialogDeleteView) {
+define(["text!pages/ScrumBoard/templates/DeleteSubissueView.html"], 
+    function(deleteSubissueView) {
         return Backbone.View.extend({
-            template: _.template(dialogDeleteView),
+            template: _.template(deleteSubissueView),
 
             initialize: function(options) {
                 

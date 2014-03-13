@@ -3,6 +3,8 @@ define(["text!pages/ScrumBoard/templates/IssueView.html"],
         return Backbone.View.extend({
             template: _.template(issueView),
 
+            className: "issue-wrapper",
+
             events: {
                 "click .plus" : "open",
                 "click .minus" : "close",
@@ -12,6 +14,7 @@ define(["text!pages/ScrumBoard/templates/IssueView.html"],
             },
         
             initialize: function(options){
+                this.editIssueDialog = options.editIssueDialog;
                 this.deleteIssueDialog = options.deleteIssueDialog;
                 this.model.on("change", this.render, this);
             },
@@ -43,6 +46,7 @@ define(["text!pages/ScrumBoard/templates/IssueView.html"],
                 this.$(".plus").addClass("lock");
                 this.$(".minus").removeClass("lock");
                 this.$(".addSubissue").removeClass("lock");
+                this.$(".subissue-container").removeClass("lock");
                 this.equalColumns();
             },
 
@@ -50,13 +54,38 @@ define(["text!pages/ScrumBoard/templates/IssueView.html"],
                 this.$(".minus").addClass("lock");
                 this.$(".plus").removeClass("lock");
                 this.$(".addSubissue").addClass("lock");
+                this.$(".subissue-container").addClass("lock");
                 this.equalColumns();
             },
 
-            edit: function () {
-                $("#dialog-issue").data("edit-id", this.model.id);
-                $("#dialog-issue").dialog("open");
-            }, 
+            edit: function (e) {
+                e.stopPropagation();
+                var that = this;
+
+                var kind = this.model.get("kind") || "no type";
+                var estimate = this.model.get("estimate") || "no estimate";
+                var assign_to = this.model.get("assign_to") || "not assigned";
+
+                var data = {
+                        name : this.model.get("name"),
+                        description : this.model.get("description"),
+                        kind : kind,
+                        estimate : estimate,
+                        assign_to : assign_to
+                    }
+                this.editIssueDialog.show({
+                    data : data,
+                    onEdit: function(e) {
+                        var editedData = that.editIssueDialog.editedData();
+                        that.model.set("name", editedData.name);
+                        that.model.set("description", editedData.description);
+                        that.model.set("kind", editedData.kind);
+                        that.model.set("estimate", editedData.estimate);
+                        that.model.set("assign_to", editedData.assign_to);
+                        that.model.save();
+                    }
+                })
+            },
 
             delete: function () {
                 var that = this;

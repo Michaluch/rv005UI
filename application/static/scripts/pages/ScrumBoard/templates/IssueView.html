@@ -1,3 +1,4 @@
+
 <% if (kind == "story") {
     var kindColor = "story-color";
     }
@@ -23,8 +24,10 @@
         <img class="image-close" src="/static/images/close_window.png" alt="close" />
     </div>
     <% } %>
-    <p><b><%= name %></b></p>
-    <p><%= description %></p>
+    <p class="name"><b><%= name %></b></p>
+    <p class="description"><%= description %></p>
+</div>
+<div class="subissue-container lock">
 </div>
 <% if (status == "to do" && kind == "story") { %>
 <div class="addSubissue lock">
@@ -34,3 +37,4 @@
 <input class="add" data-add-id="<%= issueId %>" type="submit" value="Add subissue">
 </div>
 </div>  <%}%>
+

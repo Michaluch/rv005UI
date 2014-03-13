@@ -28,7 +28,8 @@ define(["text!pages/ScrumBoard/templates/SubissueView.html"],
                 return this;
             },
 
-            edit: function () {
+            edit: function (e) {
+                e.stopPropagation();
                 var that = this;
 
                 var kind = this.model.get("kind").substr(3) || "no type";
@@ -56,7 +57,8 @@ define(["text!pages/ScrumBoard/templates/SubissueView.html"],
                 })
             },
 
-            delete: function() {
+            delete: function(e) {
+                e.stopPropagation();
                 var that = this;
                 this.deleteDialog.show({
                     onDelete: function(e) {

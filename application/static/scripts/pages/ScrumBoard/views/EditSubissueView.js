@@ -1,7 +1,7 @@
-define(["text!pages/ScrumBoard/templates/DialogView.html"], 
-    function(dialogView) {
+define(["text!pages/ScrumBoard/templates/EditSubissueView.html"], 
+    function(editSubissueView) {
         return Backbone.View.extend({
-            template: _.template(dialogView),
+            template: _.template(editSubissueView),
 
             initialize: function(options) {
 
@@ -16,7 +16,7 @@ define(["text!pages/ScrumBoard/templates/DialogView.html"],
                     resizable : false,
                     draggable : false,
                     minWidth : 650,
-                    height: "auto",
+              /*      minHeight: "auto",*/
                     show: "clip",
                     hide: "clip",
                     buttons : [
@@ -47,7 +47,7 @@ define(["text!pages/ScrumBoard/templates/DialogView.html"],
                         that.checkHidden();
                     }
                 });
-                $("#dialog-edit .slct").on("click",
+                this.$dialog.find(".slct").on("click",
                     function(e) {
                         that.drop(e);
                     });
