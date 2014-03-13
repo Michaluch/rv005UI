@@ -400,6 +400,7 @@ textarea {
 .dialog-form {
     color: #444444;
     font-size: 14px;
+    padding-left: 12px;
 }
 
 .dialog-form h3 {
@@ -414,7 +415,7 @@ textarea {
 }
 
 .dialog-form input {
-    width: 550px;
+    width: 575px;
     font-size: 14px;
     padding: 6px 0 4px 10px;
     background: #e8e8e8;
@@ -424,7 +425,7 @@ textarea {
 }
 
 .dialog-form textarea {
-    width: 550px;
+    width: 575px;
     height: 50px;
     display: block;
     resize: none;
@@ -435,12 +436,12 @@ textarea {
     padding: 8px 0 8px 10px;
     color: #444444;
 }
-
+/*
 .dialog-form .text {
     width: 550px;
     margin-left: auto;
     margin-right: auto;
-}
+}*/
 
 
 .select-type,
