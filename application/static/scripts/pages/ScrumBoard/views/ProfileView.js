@@ -16,12 +16,27 @@ define(["text!pages/ScrumBoard/templates/ProfileView.html",
                 this.user.fetch({
                     success: function (model, response, options) {
                         that.renderProfile();
+
+
+                        that.$('.editable').editable(function(value, settings) {
+                             console.log(this);
+                             console.log(value);
+                             console.log(settings);
+                             return(value);
+                              }, {
+                                 // type    : 'textarea',
+                                 // submit  : 'OK',
+                         });
+
                     },
 
                     error: function () {
                         //
                     }
                 });            
+
+
+
                
                 return this;
             },
@@ -33,16 +48,6 @@ define(["text!pages/ScrumBoard/templates/ProfileView.html",
                                     email: this.user.get("email"),
                                     role: this.user.get("role")}))
                 .append(footerView);
-            }
-        
-            /*$('.editable').editable(function(value, settings) {
-                 console.log(this);
-                 console.log(value);
-                 console.log(settings);
-                 return(value);
-              }, {
-                 type    : 'textarea',
-                 submit  : 'OK',
-             })*/
+            }                  
         })
 })
