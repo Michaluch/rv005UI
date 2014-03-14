@@ -5,6 +5,12 @@ define(["text!pages/ScrumBoard/templates/FooterView.html"],
 	          initialize: function(options){
             },
 
+            tagName : "div",
+
+            attributes : {
+                id : "footer"
+            },
+
             render: function() {
                 this.$el.html(footerView);
                 return this;

@@ -8,8 +8,6 @@ define(["text!pages/ScrumBoard/templates/HeaderView.html"],
                 id: "header"
             },
         
-//            className: "wrapper",
-
             initialize: function(options){
             },
                            

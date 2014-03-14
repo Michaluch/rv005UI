@@ -134,8 +134,9 @@ textarea {
     padding: 0 0 70px;
 
 }
-
-     #filter {
+    /* filter */
+    #filter {
+        position: relative;
         width: 960px;
         height: 60px;
         background-color: #d1e3c2;
@@ -144,48 +145,78 @@ textarea {
         color: grey;
     }
 
-    /* sprint */
-    .sprint {
-        padding: 0px 15px;
+    #filter ul {
+        position: absolute;
+        top: 0;
+        right: 20px;
+
     }
-        
-        .sprint hr {
+
+    #filter li {
+        display: inline-block;
+        width: 45px;
+        padding: 2px 25px;
+        margin-right: 3px;
+        font-size: 13px;
+        color: #33856E;
+        background: #FAFFFA;
+        -webkit-transform: skewX(-30deg);
+        -moz-transform: skewX(-30deg);
+        -o-transform: skewX(-30deg);
+        -ms-transform: skewX(-30deg);
+        transform: skewX(-30deg); 
+    }
+
+    #filter span {
+        display: block;
+        -webkit-transform: skewX(30deg);
+        -moz-transform: skewX(30deg);
+        -o-transform: skewX(30deg);
+        -ms-transform: skewX(30deg);
+        transform: skewX(30deg);
+    }
+
+    #filter li:hover {
+        background: #6E914F;
+        color: #FAFFFA;
+        font-weight: bold;
+    }
+
+    .column-title {
+        color: #6e914f;
+        margin: 10px;
+    }
+
+    .sprint hr,
+    .work hr {
             margin: 0 10px 10px;
             border: 0;
             height: 0;
             border-top: 1px solid rgba(110, 145, 79, 1);
             border-bottom: 1px solid rgba(0, 0, 0, 0.1);
         }
+
+
+    /* /filter */
+
+    /* sprint */
+    .sprint {
+        padding: 0px 15px;
+    }
         
-        .todo {
-            float: left;
-            width: 310px;
-            background-color: #d1e3c2;
-            border-top-left-radius: 7px;
-            border-top-right-radius: 7px;
-        }
-
-        .column-title {
-            color: #6e914f;
-            margin: 10px;
-        }
-
-        .doing {
-            float: left;
-            width: 310px;
-            background-color: #d1e3c2;
-            margin-left: 10px;
-            border-top-left-radius: 10px;
-            border-top-right-radius: 10px;
-        }
-
+        .todo,
+        .doing,
         .done {
             float: left;
             width: 310px;
             background-color: #d1e3c2;
-            margin-left: 10px;
             border-top-left-radius: 10px;
             border-top-right-radius: 10px;
+        }
+
+        .doing,
+        .done {
+            margin-left: 10px;
         }
 
         /*hover edit and delete link*/
@@ -207,22 +238,28 @@ textarea {
     /* work */
 
     .work {
-        display: none;
+        padding: 0 15px;
+    }
+
+    #product-backlog,
+    #sprint-backlog {
+        float: left;
+        width: 470px;
+        background-color: #d1e3c2;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+    }
+
+    #sprint-backlog {
+        margin-left: 10px;
     }
 
     /* /work */
 
-    /* chart */
-
-    .chart {
-        display: none;
-    }
-
-    /* /chart */
 
 /* /content */    
 
-.footer {
+#footer {
     border-top: 1px solid #C0CAD5;
     padding: 20px 10px 10px;
     background-color: #ffffff;
