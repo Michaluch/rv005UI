@@ -1,7 +1,7 @@
-define(["text!pages/ScrumBoard/templates/EditIssueView.html"], 
-    function(editIssueView) {
+define(["text!pages/ScrumBoard/templates/EditView.html"], 
+    function(editView) {
         return Backbone.View.extend({
-            template: _.template(editIssueView),
+            template: _.template(editView),
 
             initialize: function(options) {
 
@@ -9,8 +9,8 @@ define(["text!pages/ScrumBoard/templates/EditIssueView.html"],
 
             render: function () {
                 var that = this;
-                this.$el.html(this.template({}));
-                this.$dialog = this.$("#dialog-issue-edit").dialog({
+                this.$el.html(this.template({insert : "issue"}));
+                this.$dialog = this.$("#dialog-edit").dialog({
                     modal: true,
                     autoOpen : false,
                     resizable : false,

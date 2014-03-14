@@ -1,4 +1,5 @@
-<div id="dialog-issue-edit" title="Edit issue:">
+<div id="dialog-edit" title="Edit <% if (insert == "subissue") {%>subissue: <% }
+           if (insert == "issue") { %>issue:<% } %>">
     <form class="dialog-form">
     <div class="text">
         <h3>Enter new name:</h3>
@@ -8,16 +9,23 @@
         <h3>Enter new description:</h3>
         <textarea class="edit-description"></textarea>
     </div>
+    
     <div class="select-type">
         <h3>Select type:</h3>
         <a href="javascript:void(0);" class="slct">Select type:</a>
         <ul class="drop">
+        <% if (insert == "subissue") {%>
+            <li>task</li>
+            <li>bug</li>
+             <% }
+           if (insert == "issue") { %>
             <li>story</li>
             <li>technical task</li>
             <li>bug</li>
+            <% } %>
         </ul>
     </div>
-
+   
     <div class="select-estimate">
         <h3>Select estimate:</h3>
         <a href="javascript:void(0);" class="slct">Select estimate:</a>
