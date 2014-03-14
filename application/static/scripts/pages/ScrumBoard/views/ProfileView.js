@@ -18,13 +18,14 @@ define(["text!pages/ScrumBoard/templates/ProfileView.html",
                         that.renderProfile();
 
 
-                        that.$('.editable').editable(function(value, settings) {
+                        that.$(".editable").editable(function(value, settings) {
                              console.log(this);
                              console.log(value);
                              console.log(settings);
                              return(value);
                               }, {
-                                 // type    : 'textarea',
+                                 event    : "mouseover",
+                                 type    : "text"
                                  // submit  : 'OK',
                          });
 
