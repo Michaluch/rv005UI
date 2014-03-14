@@ -646,5 +646,18 @@ textarea {
     color: #4c4c4c;    
 }
 
+.label .item {
+    clear:both;
+}
+
+.label .item strong,
+.label .item span {
+    float:left;
+}
+
+.label .item strong {
+    margin-top:10px;
+}
+
 /* end profile page */
  
