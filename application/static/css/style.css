@@ -339,7 +339,6 @@ textarea {
     margin: 0 2px 2px;
     padding: 10px;
     background-color: #f7faf4;
-
 }
 
 .addSubissue .name {
@@ -377,6 +376,7 @@ textarea {
     margin-left: 10px;
     margin-bottom: 2px;
     padding: 7px;
+    cursor: pointer;
 }
 
 .subtask-color {
@@ -646,6 +646,8 @@ textarea {
     color: #4c4c4c;    
 }
 
+
+/*editbox style*/ 
 .label .item {
     clear:both;
 }
@@ -659,5 +661,6 @@ textarea {
     margin-top:10px;
 }
 
-/* end profile page */
+
+/* /profile page */
  
