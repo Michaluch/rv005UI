@@ -25,7 +25,8 @@ define(["text!pages/ScrumBoard/templates/ProfileView.html",
                              return(value);
                               }, {
                                  event    : "mouseover",
-                                 type    : "text"
+                                 onblur   : "submit",
+                                 type     : "text"
                                  // submit  : 'OK',
                          });
 
