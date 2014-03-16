@@ -1,17 +1,20 @@
 
 <% if (kind == "story") {
-    var kindColor = "story-color";
+       var kindColor = "story-color";
     }
    if (kind == "technical task") {
-    kindColor = "tech-color";
+       kindColor = "tech-color";
     }
    if (kind == "bug") {
-    kindColor = "bug-color";
-    }%>
+       kindColor = "bug-color";
+    }
+    if (mode == "backlog") {
+        backlogMode = "backlog-mode"
+    } else backlogMode = ""%>
 
-<div class="issue <%=kindColor%>" data-issue-id="<%= issueId %>">
+<div class="issue <%=kindColor%> <%=backlogMode%>" data-issue-id="<%= issueId %>">
     <div class="top-left-corner">
-        <% if (status !== "doing" && kind == "story") { %>
+        <% if (status !== "doing" && kind == "story" && mode !== "backlog") { %>
         <span><img class="plus" src="static/images/plus.jpg"/>
         <img class="minus lock" src="static/images/minus.jpg" /></span>
         <% } %>
@@ -29,7 +32,7 @@
 </div>
 <div class="subissue-container lock">
 </div>
-<% if (status == "to do" && kind == "story") { %>
+<% if (status == "to do" && kind == "story" && mode !== "backlog") { %>
 <div class="addSubissue lock">
 <input class="name" type="text" placeholder="Enter the name of subissue"/><br />
 <textarea placeholder="Enter the description of subissue"></textarea><br />

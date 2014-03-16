@@ -21,7 +21,7 @@ app.secret_key = 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RT'
 @app.route("/")
 @app.route("/<path:path>")
 def index(path=None):
-    return render_template("index1.html")
+    return render_template("index1.html")  #, data = {"name": "Ivan"}
 
 
 @app.errorhandler(404)

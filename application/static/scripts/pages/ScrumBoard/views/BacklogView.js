@@ -14,7 +14,8 @@ define(["text!pages/ScrumBoard/templates/BacklogView.html",
                     success: function (collection, response, options) {
                         collection.each(function(model) {
                             var issueView = new IssueView({
-                                model : model
+                                model : model,
+                                mode : "backlog"
                             });
                             issueView.render();
                             this.$("#product-backlog").append(issueView.el);

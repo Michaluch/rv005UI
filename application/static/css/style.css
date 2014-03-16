@@ -180,6 +180,7 @@ textarea {
         background: #6E914F;
         color: #FAFFFA;
         font-weight: bold;
+        cursor: pointer;
     }
 
     .column-title {
@@ -310,6 +311,10 @@ textarea {
             margin-bottom: 2px;
             padding: 7px;
         }
+
+.backlog-mode {
+    width: 440px;
+}
 
 .story-color {
     border-left-color: #133944 ;

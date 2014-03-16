@@ -17,6 +17,7 @@ define(["text!pages/ScrumBoard/templates/IssueView.html"],
                 this.editIssueDialog = options.editIssueDialog;
                 this.deleteIssueDialog = options.deleteIssueDialog;
                 this.model.on("change", this.render, this);
+                this.mode = options.mode;
             },
                            
             render: function () {
@@ -26,7 +27,8 @@ define(["text!pages/ScrumBoard/templates/IssueView.html"],
                                              kind: this.model.get("kind"),
                                              sprint: this.model.get("sprint"),
                                              estimate: this.model.get("estimate"),
-                                             status: this.model.get("status")}));
+                                             status: this.model.get("status"),
+                                             mode: this.mode}));
                 return this;
             },
 
