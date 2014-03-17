@@ -35,10 +35,8 @@ define(["text!pages/ScrumBoard/templates/ProfileView.html",
                     error: function () {
                         //
                     }
-                });            
 
-
-
+                });        
                
                 return this;
             },
