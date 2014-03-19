@@ -9,7 +9,6 @@ class Model(object):
     def __init__(self):
         self._db = DB("mongodb://rv005UI:pass123@troup.mongohq.com:10012/IssueTracker")
         self._db.database("IssueTracker")
-        print (self._db.database)
 
         self._counter = Counter()
         self._counter.create()

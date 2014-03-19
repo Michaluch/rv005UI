@@ -60,7 +60,7 @@ define(["text!pages/ScrumBoard/templates/TaskBoardView.html",
                                     that.filteredSub[model.id] = data.where({"parent": model.id});
                                 });
                                 that.renderAll();
-                                that.equalColumns(); 
+                                that.equalColumns(".sprint .column"); 
                                 
                             },
                         });
@@ -87,7 +87,7 @@ define(["text!pages/ScrumBoard/templates/TaskBoardView.html",
 
                     $(this).append(clone);
                                        
-                    that.equalColumns();
+                    that.equalColumns(".sprint .column");
                 }
 
                 this.$el.find('.todo, .doing, .done').droppable({
@@ -177,16 +177,16 @@ define(["text!pages/ScrumBoard/templates/TaskBoardView.html",
                 this.equalColumns();
             },
 
-            equalColumns: function () {
+            equalColumns: function (selector) {
                 var tallestColumn = 0;
-                $(".sprint .column").height('100%');
-                _.each($(".sprint .column"), function(column) {
+                $(selector).height('100%');
+                _.each($(selector), function(column) {
                     var $currentHeight = $(column).height();
                     if ($currentHeight > tallestColumn) {
                         tallestColumn = $currentHeight;
                     }
                 });
-                $(".sprint .column").height(tallestColumn);
+                $(selector).height(tallestColumn);
             },
 
             renderOne: function (subissue, collection, options) {
