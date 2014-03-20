@@ -19,23 +19,31 @@ define(["text!pages/ScrumBoard/templates/BacklogView.html",
                                 model : model,
                                 mode : "backlog"
                             });
+
+                            var onDropInIssue = function (event, ui) {
+                                $(ui.helper).css({"top" : 0, "left" : "0"});
+                                $(event.target).after(ui.draggable);
+                            }
                                 issueView.$el.draggable({
                                     revert : "invalid",
                                     opacity : 0.75,
                                     zIndex : 100,
                                     containment : ".content",
                                     cursor : "move"
-                                });
+                                }).droppable({
+                    drop: onDropInIssue
+                });;
                             issueView.render();
                             this.$("#product-backlog").append(issueView.el);
                         }, this);
                     }
                 });
 
+                
+
                 var onDrop = function (event, ui) {
                     $(ui.helper).css({"top" : 0, "left" : "0"});
                     $(this).append(ui.draggable);
-                    
                 }
 
                 this.$(".column").droppable({
