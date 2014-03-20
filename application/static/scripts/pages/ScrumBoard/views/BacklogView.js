@@ -1,17 +1,23 @@
 define(["text!pages/ScrumBoard/templates/BacklogView.html",
         "pages/ScrumBoard/collections/Issues",
         /*"pages/ScrumBoard/models/Issue",*/
-        "pages/ScrumBoard/views/IssueView"], 
-    function(backlogView, Issues, /*Issue,*/ IssueView) {
+        "pages/ScrumBoard/views/IssueView",
+        "pages/ScrumBoard/Mediator"], 
+    function(backlogView, Issues, /*Issue,*/ IssueView, mediator) {
         return Backbone.View.extend({
             initialize: function(options) {
                 this.issues = new Issues ();
+                mediator.on("sprint-selected", function(sprint) {
+                    this.$("#sprint-backlog").data("sprint", sprint);
+                    this.render();
+                }, this);
             },
 
             template : _.template(backlogView),
 
             render: function () {
-                this.$el.html(this.template({sprint : 2}));
+                this.$el.html(this.template());
+
                 this.issues.fetch({
                     success: function (collection, response, options) {
                         collection.each(function(model) {
@@ -34,8 +40,11 @@ define(["text!pages/ScrumBoard/templates/BacklogView.html",
                     drop: onDropInIssue
                 });;
                             issueView.render();
-                            if (issueView.model.get("sprint") == 0) {
+                            var issueSprint = issueView.model.get("sprint");
+                            if ( issueSprint == 0) {
                                 this.$("#product-backlog").append(issueView.el);
+                            } else if (issueSprint == this.$("#sprint-backlog").data("sprint")) {
+                                this.$("#sprint-backlog").append(issueView.el);
                             }
                         }, this);
                     }

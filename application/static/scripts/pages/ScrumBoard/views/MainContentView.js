@@ -1,8 +1,9 @@
 define(["pages/ScrumBoard/views/TaskBoardView",
         "pages/ScrumBoard/views/BacklogView", 
-        "text!pages/ScrumBoard/templates/MainContentView.html"],
+        "text!pages/ScrumBoard/templates/MainContentView.html",
+        "pages/ScrumBoard/Mediator"],
 
-    function(TaskBoardView, BacklogView, mainContent) {
+    function(TaskBoardView, BacklogView, mainContent, mediator) {
         return Backbone.View.extend({
             className: "content",
 
@@ -51,6 +52,7 @@ define(["pages/ScrumBoard/views/TaskBoardView",
 
                     dropBlock.find("li").click(function() {
                         var selectResult = $(this).html();
+                        mediator.trigger("sprint-selected", selectResult);
                         $(this).parent().parent().find(".slct").removeClass("active").html(selectResult);
                         dropBlock.slideUp();
                     });
