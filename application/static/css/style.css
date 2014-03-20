@@ -145,14 +145,42 @@ textarea {
         color: grey;
     }
 
-    #filter ul {
-        position: absolute;
+    #filter #overlay {
+        position : fixed;
         top: 0;
-        right: 20px;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: #000000;
+        opacity: 0.75;
 
     }
 
-    #filter li {
+    #filter #select-sprint {
+        margin: 10px 0 0 20px;
+    }
+
+    #filter .slct {
+        background-color: #FAFFFA;
+        color: #33856E;
+        text-decoration: none;
+        font-size: 14px;
+    }
+
+    #filter h4 {
+        margin-left: 30px;
+        color: #33856E;
+        font-weight: normal;
+    }
+
+
+    #filter #inset {
+        position: absolute;
+        top: 0;
+        right: 20px;
+    }
+
+    #filter #inset li {
         display: inline-block;
         width: 45px;
         padding: 2px 25px;

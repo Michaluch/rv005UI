@@ -19,7 +19,7 @@ define(["text!pages/ScrumBoard/templates/BacklogView.html",
                                 model : model,
                                 mode : "backlog"
                             });
-
+                            
                             var onDropInIssue = function (event, ui) {
                                 $(ui.helper).css({"top" : 0, "left" : "0"});
                                 $(event.target).after(ui.draggable);
@@ -34,7 +34,9 @@ define(["text!pages/ScrumBoard/templates/BacklogView.html",
                     drop: onDropInIssue
                 });;
                             issueView.render();
-                            this.$("#product-backlog").append(issueView.el);
+                            if (issueView.model.get("sprint") == 0) {
+                                this.$("#product-backlog").append(issueView.el);
+                            }
                         }, this);
                     }
                 });
