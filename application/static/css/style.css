@@ -204,7 +204,7 @@ textarea {
         transform: skewX(30deg);
     }
 
-    #filter li:hover {
+    #filter #inset li:hover {
         background: #6E914F;
         color: #FAFFFA;
         font-weight: bold;

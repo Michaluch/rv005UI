@@ -186,7 +186,7 @@ define(["text!pages/ScrumBoard/templates/TaskBoardView.html",
                         tallestColumn = $currentHeight;
                     }
                 });
-                $(selector).height(tallestColumn);
+                $(selector).height(tallestColumn+50);
             },
 
             renderOne: function (subissue, collection, options) {

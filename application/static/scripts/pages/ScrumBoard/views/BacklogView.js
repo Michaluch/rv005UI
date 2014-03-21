@@ -9,11 +9,13 @@ define(["text!pages/ScrumBoard/templates/BacklogView.html",
                 this.issues = new Issues ();
                 mediator.on("sprint-selected", function(sprint) {
                     this.$("#sprint-backlog").data("sprint", sprint);
+                    console.log(this.$("#sprint-backlog").data("sprint"));
                     this.render();
                 }, this);
             },
 
             template : _.template(backlogView),
+
 
             render: function () {
                 this.$el.html(this.template());
@@ -43,9 +45,11 @@ define(["text!pages/ScrumBoard/templates/BacklogView.html",
                             var issueSprint = issueView.model.get("sprint");
                             if ( issueSprint == 0) {
                                 this.$("#product-backlog").append(issueView.el);
-                            } else if (issueSprint == this.$("#sprint-backlog").data("sprint")) {
+                            } 
+                            if (issueSprint == this.$("#sprint-backlog").data("sprint")) {
                                 this.$("#sprint-backlog").append(issueView.el);
                             }
+                            
                         }, this);
                     }
                 });
@@ -62,6 +66,8 @@ define(["text!pages/ScrumBoard/templates/BacklogView.html",
                 });
                 return this;
             },
+
+            
 
             equalColumns: function (selector) {
                 var tallestColumn = 0;
