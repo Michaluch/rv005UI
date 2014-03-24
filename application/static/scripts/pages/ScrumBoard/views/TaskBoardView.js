@@ -196,7 +196,7 @@ define(["text!pages/ScrumBoard/templates/TaskBoardView.html",
                     });
                     subissueView.model.save();
                     subissueView.render();
-                    this.$(".todo").append(subissueView.el);
+                    this.$(".todo ").append(subissueView.el);
                 }
             },
         });

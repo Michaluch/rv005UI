@@ -20,7 +20,7 @@
         <% } %>
         <span class="estimate">Estimate: <% if (estimate) {%> <%=estimate%> sp <%} else {%> no estimate <%}%></span>
     </div>
-    <% if (status == "to do") { %>
+    <% if (mode == "backlog" || status == "to do") { %>
     <div class="top-right-corner">
         <img class="image-edit" src="/static/images/edit.png" alt="edit" />
         <img class="image-delete" src="/static/images/delete.png" alt="delete" />

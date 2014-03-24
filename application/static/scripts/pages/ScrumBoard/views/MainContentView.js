@@ -10,7 +10,8 @@ define(["pages/ScrumBoard/views/TaskBoardView",
             events : {
                 "click #backlog" : "showBacklog",
                 "click #task-board" : "showTaskBoard",
-                "click #filter .slct" : "drop"
+                "click #filter .slct" : "drop",
+                "click .drop li" : "selectSprint"
             },
 
             initialize: function(options){
@@ -31,36 +32,41 @@ define(["pages/ScrumBoard/views/TaskBoardView",
             },
 
             showBacklog : function () {
-                this.$(".work").removeClass("lock");
-                this.$(".sprint").addClass("lock");
-            },
+                  this.$(".work").removeClass("lock");
+                  this.$(".sprint").addClass("lock");
+              },
 
             showTaskBoard : function () {
-                this.$(".sprint").removeClass("lock");
-                this.$(".work").addClass("lock");
-            },
+                                this.$(".sprint").removeClass("lock");
+                                this.$(".work").addClass("lock");
+                            },
 
             drop : function (e) {
-                var $slct = $(e.currentTarget);
-                var dropBlock = $slct.parent().find(".drop");
+                       var $slct = $(e.currentTarget);
+                       var dropBlock = $slct.parent().find(".drop");
 
-          /*      $("#filter #overlay").removeClass("lock");*/
+                 /*      $("#filter #overlay").removeClass("lock");*/
 
-                if ( dropBlock.is(":hidden") ) {
-                    dropBlock.slideDown();
-                    $slct.addClass("active");
+                       if ( dropBlock.is(":hidden") ) {
+                           dropBlock.slideDown();
+                           $slct.addClass("active");
 
-                    dropBlock.find("li").click(function() {
-                        var selectResult = $(this).html();
-                        mediator.trigger("sprint-selected", selectResult);
-                        $(this).parent().parent().find(".slct").removeClass("active").html(selectResult);
-                        dropBlock.slideUp();
-                    });
-                } else {
-                    $slct.removeClass("active");
-                    dropBlock.slideUp();
-                } 
-                return false;
+                           /*dropBlock.find("li").click(function() {
+                               
+                           });*/
+                       } else {
+                           $slct.removeClass("active");
+                           dropBlock.slideUp();
+                       } 
+                       return false;
+                   },
+
+            selectSprint : function(e) {
+               var $li = $(e.currentTarget);
+               var selectResult = $li.html();
+               mediator.trigger("sprint-selected", selectResult);
+               this.$("#filter .slct").removeClass("active").html(selectResult);
+               this.$("#filter .drop").slideUp();
             }
         })
     }

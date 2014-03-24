@@ -283,6 +283,35 @@ textarea {
         margin-left: 10px;
     }
 
+    #product-backlog #add-issue {
+        width: auto;
+        border: 1px solid #B2C0C0;
+        margin: 0 2px 2px;
+        padding: 10px;
+        background-color: #f7faf4;
+    }
+
+    #product-backlog #add-issue input[type = "text"] {
+        width: 100%;
+        margin-bottom: 3px;
+        font-size: 14px;
+    }
+
+    #product-backlog #add-issue textarea {
+        resize: none;
+        width: 100%;
+        font-size: 14px;
+    }
+
+    #product-backlog #submit {
+        margin-top: 3px;
+        width: 100px;
+        margin-left: auto;
+    }
+    #product-backlog #submit input {
+        width: 100%;
+    }
+
     /* /work */
 
 

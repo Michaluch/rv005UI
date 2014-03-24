@@ -31,14 +31,14 @@ class Issues(Controller):
         if not self.logged():
             return error("You not logged")
         new_issue = dict(
-                name = param.get("name") if param.get("name") else "",
-                description = param.get("description") if param.get("description") else "",
-                kind = param.get("kind") if param.get("kind") else "",
-                subissues = param.get("subissues") if param.get("subissues") else list(),
-                status = param.get("status") if param.get("status") else "",
-                comments = param.get("comments") if param.get("comments") else list(),
-                sprint = param.get("sprint") if param.get("sprint") else None,
-                estimate = param.get("estimate") if param.get("estimate") else None
+                name = param.get("name", ""),
+                description = param.get("description", ""),
+                kind = param.get("kind", ""),
+                subissues = param.get("subissues", list()),
+                status = param.get("status", ""),
+                comments = param.get("comments", list()),
+                sprint = param.get("sprint", None),
+                estimate = param.get("estimate", None)
                 )
         
         _issue_id = self._data.create_issue(1, new_issue)
@@ -49,20 +49,10 @@ class Issues(Controller):
         if not self.logged():
             return error("You not logged")
         new_issue = {}
-        if param.get("name"):
-            new_issue["issues.$.name"] = param.get("name")
-        if param.get("description"):
-            new_issue["issues.$.description"] = param.get("description")
-        if param.get("kind"):
-            new_issue["issues.$.kind"] = param.get("kind")
-        if param.get("subissues"):
-            new_issue["issues.$.subissues"] = param.get("subissues")
-        if param.get("status"):
-            new_issue["issues.$.status"] = param.get("status")
-        if param.get("sprint"):
-            new_issue["issues.$.sprint"] = param.get("sprint")
-        if param.get("estimate"):
-            new_issue["issues.$.estimate"] = param.get("estimate")
+
+        for key, value in param.items():
+            new_issue["issues.$."+key] = value
+
         self._data.update_issue(backlog_id=1, issue_id=issue_id, new_issue=new_issue)
         return self.get_specific_issue(issue_id)
 
