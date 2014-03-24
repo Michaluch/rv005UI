@@ -13,6 +13,11 @@ define(["text!pages/ScrumBoard/templates/BacklogView.html",
                 }, this);
                 _.bindAll(this, "fetchSuccess", "setSprint", "onDrop", "onDropInIssue");
                 this.issues.on("add", this.renderOne, this);
+
+                this.editIssueView = new options.editIssue({collection : this.issues});
+                this.editIssueView.render();
+                this.deleteIssueView = new options.deleteIssue();
+                this.deleteIssueView.render();
             },
 
             events : {
@@ -41,7 +46,8 @@ define(["text!pages/ScrumBoard/templates/BacklogView.html",
                 var issueParams = {
                     name : this.$("#add-issue input[type=text]").val(),
                     description : this.$("#add-issue textarea").val(),
-                    sprint : 0
+                    sprint : 0,
+                    status : "to do"
                 };
                 var issue = new Issue(issueParams);
                 issue.save();
@@ -83,9 +89,12 @@ define(["text!pages/ScrumBoard/templates/BacklogView.html",
                 collection.each(function(model) {
                     var issueView = new IssueView({
                         model : model,
-                        mode : "backlog"
+                        mode : "backlog",
+                        deleteIssueDialog : this.deleteIssueView,
+                        editIssueDialog : this.editIssueView
                     });
                     issueView.render();
+                    issueView.on("issue-removed", this.onIssueRemoved, this);
 
                     var issueSprint = issueView.model.get("sprint");
                     if ( issueSprint == 0) {
@@ -114,8 +123,22 @@ define(["text!pages/ScrumBoard/templates/BacklogView.html",
                         mode : "backlog"
                     });
                     issueView.render();
+                    issueView.$el.draggable({
+                        revert : "invalid",
+                        opacity : 0.75,
+                        zIndex : 100,
+                        containment : ".content",
+                        cursor : "move"
+                    }).droppable({
+                        drop: this.onDropInIssue
+                    });;
                     this.$("#product-backlog #add-issue").before(issueView.el);
                 }
+            },
+
+            onIssueRemoved: function(e) {
+                e.issueView.remove();
+                this.equalColumns();
             },
 
             equalColumns: function (selector) {

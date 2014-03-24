@@ -7,12 +7,13 @@ define(["text!pages/ScrumBoard/templates/TaskBoardView.html",
         "pages/ScrumBoard/views/SubissueView",
         "pages/ScrumBoard/views/EditSubissueView",
         "pages/ScrumBoard/views/DeleteSubissueView",
-        "pages/ScrumBoard/views/EditIssueView",
-        "pages/ScrumBoard/views/DeleteIssueView"],
+        /*"pages/ScrumBoard/views/EditIssueView",*/
+       /* "pages/ScrumBoard/views/DeleteIssueView"*/
+        "pages/ScrumBoard/Mediator"],
 
     function(taskBoardTemplate, Issues, Issue, IssueView, Subissues,
              Subissue, SubissueView, EditSubissueView, DeleteSubissueView,
-             EditIssueView, DeleteIssueView){
+            /* EditIssueView, DeleteIssueView*/ mediator){
         return Backbone.View.extend({ 
 
             initialize: function(options){
@@ -23,6 +24,15 @@ define(["text!pages/ScrumBoard/templates/TaskBoardView.html",
                                           in which field parent = issue.id */
                 
                 this.subissues.on("add", this.renderOne, this);
+                this.editIssueView = new options.editIssue({collection : this.issues});
+                this.editIssueView.render();
+                this.deleteIssueView = new options.deleteIssue();
+                this.deleteIssueView.render();
+
+                mediator.on("sprint-selected", function(sprint) {
+                    this.sprintSelected = sprint;
+                    this.render();
+                }, this);
             },
 
             events: {
@@ -98,9 +108,9 @@ define(["text!pages/ScrumBoard/templates/TaskBoardView.html",
                 deleteSubissueView.render();
                 this.deleteSubissueView = deleteSubissueView;
 
-                var deleteIssueView = new DeleteIssueView();
+                /*var deleteIssueView = new DeleteIssueView();
                 deleteIssueView.render();
-                this.deleteIssueView = deleteIssueView; 
+                this.deleteIssueView = deleteIssueView; */
 
 
                 var editSubissueView = new EditSubissueView({
@@ -110,11 +120,11 @@ define(["text!pages/ScrumBoard/templates/TaskBoardView.html",
                 this.editSubissueView = editSubissueView;
 
                 
-                var editIssueView = new EditIssueView({
+                /*var editIssueView = new EditIssueView({
                     collection: this.issues
                 });
                 editIssueView.render();
-                this.editIssueView = editIssueView;
+                this.editIssueView = editIssueView;*/
                 
                 this.issues.each(function(issue) {
                     if ( issue.get("kind") == "story" &&
@@ -134,14 +144,17 @@ define(["text!pages/ScrumBoard/templates/TaskBoardView.html",
                     issueView.on("issue-removed", that.onIssueRemoved, that);
                     issueView.render();
 
-                    if (issue.get("status") == "to do") {
-                        this.$(".todo ").append(issueView.el);
-                    }
-                    if (issue.get("status") == "doing") {
-                        this.$(".doing").append(issueView.el);
-                    }
-                    if (issue.get("status") == "done") {
-                        this.$(".done").append(issueView.el);
+                    if ( issue.get("sprint") == this.sprintSelected ) {
+
+                        if (issue.get("status") == "to do") {
+                            this.$(".todo ").append(issueView.el);
+                        }
+                        if (issue.get("status") == "doing") {
+                            this.$(".doing").append(issueView.el);
+                        }
+                        if (issue.get("status") == "done") {
+                            this.$(".done").append(issueView.el);
+                        }
                     }
                     _.each(this.filteredSub[issue.id], function(subissue){
                         var subissueView = new SubissueView({
