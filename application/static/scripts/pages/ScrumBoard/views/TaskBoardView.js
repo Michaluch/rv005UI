@@ -84,6 +84,7 @@ define(["text!pages/ScrumBoard/templates/TaskBoardView.html",
                 this.$el.html(taskBoardTemplate);
                 var subissues = this.subissues;
                 var handleDrop = function(event, ui){
+                    console.log(ui.draggable);
                     var clone = $(ui.helper);
                     clone.css("left", "0");
                     clone.css("top", "0");  
